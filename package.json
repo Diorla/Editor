@@ -1,0 +1,50 @@
+{
+  "name": "Scribble",
+  "version": "1.0.0",
+  "description": "A complete toolbox for story development",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "compile": "./node_modules/.bin/babel src -w --out-dir scripts"
+  },
+  "repository": "",
+  "keywords": [
+    "Novel",
+    "Story",
+    "Writer",
+    "Character",
+    "Generator",
+    "Characters",
+    "Scene",
+    "Creatures",
+    "Worlds"
+  ],
+  "author": "Ade Adeola <adedoster@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-preset-minify": "^0.5.1",
+    "electron": "^8.2.5"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "@material-ui/core": "^4.9.14",
+    "@reduxjs/toolkit": "^1.3.5",
+    "bootstrap": "^4.5.0",
+    "draft-js": "^0.11.5",
+    "jsonfile": "^6.0.1",
+    "localforage": "^1.7.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "react-quill": "^1.3.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "styled-jsx": "^3.2.5"
+  }
+}
