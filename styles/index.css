@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+button {
+  cursor: pointer;
+}
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+#app {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+}
+.title-bar {
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  background-color: #3e404096;
+}
+.menu-list {
+  background-color: rgb(16, 16, 16);
+}
+.divider {
+  color: silver;
+}
+.menu-button {
+  color: white;
+}
