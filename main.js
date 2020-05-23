@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 
 function createWindow() {
@@ -13,13 +13,27 @@ function createWindow() {
     },
     title: "Scribble",
     devTools: false,
+    show: false,
+    backgroundColor: "#2e2c29",
+    minWidth: 800,
+    minHeight: 600,
   });
 
   // hide menu bar
-  mainWindow.setMenuBarVisibility(false);
+  // mainWindow.setMenuBarVisibility(false);
 
   // and load the index.html of the app.
   mainWindow.loadFile("index.html");
+
+  // Display app only after all the components is loaded
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+  });
+
+  // Change the title
+  ipcMain.on("changeTitle", (event, title) => {
+    mainWindow.setTitle(title);
+  });
 }
 
 app.whenReady().then(createWindow);
