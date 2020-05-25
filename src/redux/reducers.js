@@ -2,15 +2,15 @@
 import { UPDATE_FILE, RESET_FILE, OPEN_FILE } from "./constant";
 
 /**
- * For navigating between different tabs
- * @param {{ activeFile: any; }} state
- * @param {{ type: any; fileName: any; }} action
+ * For selecting file
+ * @param {object} state
+ * @param {{ type: string; file: string; }} action
  */
 export const manageFile = (state, action) => {
-  if (state === undefined) return "active";
+  if (state === undefined) return "";
   switch (action.type) {
     case OPEN_FILE:
-      return action.fileName
+      return action.file;
     default:
       return state;
   }
@@ -22,10 +22,7 @@ export const manageFile = (state, action) => {
  * @param {{ type: any; payload: any; }} action
  */
 export const manageContent = (state, action) => {
-  if (state === undefined)
-    return {
-      name: "testing",
-    };
+  if (state === undefined) return {};
   switch (action.type) {
     case UPDATE_FILE:
       return {
