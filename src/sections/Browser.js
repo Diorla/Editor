@@ -1,32 +1,50 @@
+//@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import { OPEN_FILE } from "./../redux/constant";
-//@ts-check
+import { UPDATE_FILE } from "./../redux/constant";
+import Input from "../components/Input";
 
+/**
+ * @param {{ content: { name: ""; }; updateFile: (arg0: any) => void; }} props
+ */
 const Browser = (props) => {
   return (
     <div className="Browser">
-      <div>{props.file}</div>
-      <input
-        value={props.file}
-        onChange={(e) => props.updateFile(e.target.value)}
-      />
-      <div>name: {props.content.name}</div>
+      {Object.keys(props.content).map((key, index) => (
+        <Input
+          key={index}
+          label={key}
+          value={props.content[key]}
+          onChange={(val) =>
+            props.updateFile({
+              ...props.content,
+              [key]: val,
+            })
+          }
+        />
+      ))}
     </div>
   );
 };
 
+/**
+ * @param {{ content: any; }} state
+ */
 const mapStateToProps = (state) => ({
-  file: state.file,
   content: state.content,
 });
 
+/**
+ * @param {(arg0: { type: string; payload: any; }) => any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
-  // fnBlaBla: () => dispatch(action.name()),
-  updateFile: (fileName) =>
+  /**
+   * @param {any} value
+   */
+  updateFile: (value) =>
     dispatch({
-      type: OPEN_FILE,
-      fileName,
+      type: UPDATE_FILE,
+      payload: value,
     }),
 });
 
