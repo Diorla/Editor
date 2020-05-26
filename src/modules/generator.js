@@ -2,7 +2,6 @@
 
 import oddCalculator from "./oddCalculator";
 
-
 /**
  * @param {number} start
  * @param {number} [end]
@@ -40,8 +39,7 @@ const generator = (obj, generator) => {
             tempObj[key] || range(generatorData[0], generatorData[1]);
         } else {
           tempObj[key] =
-            tempObj[key] ||
-            oddCalculator(generatorData, generatorObject.odds);
+            tempObj[key] || oddCalculator(generatorData, generatorObject.odds);
         }
       } catch (err) {
         console.log(err);
@@ -58,7 +56,6 @@ const generator = (obj, generator) => {
       }
     }
   });
-  // console.log(tempObj);
   return tempObj;
 };
 
