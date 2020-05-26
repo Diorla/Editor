@@ -37,6 +37,7 @@
     "bootstrap": "^4.5.0",
     "draft-js": "^0.11.5",
     "jsonfile": "^6.0.1",
+    "klaw": "^3.0.0",
     "localforage": "^1.7.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
