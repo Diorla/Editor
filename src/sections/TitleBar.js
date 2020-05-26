@@ -6,6 +6,7 @@ import { remote } from "electron";
 import path from "path";
 import jsonfile from "jsonfile";
 import { OPEN_FILE, UPDATE_FILE } from "../redux/constant";
+import generator from "../modules/generator";
 
 const filters = [{ name: "Scribble files", extensions: ["scrb"] }];
 
@@ -58,6 +59,17 @@ const TitleBar = (props) => {
           }
         >
           Save
+        </Button>
+        <Button
+          variant="link"
+          onClick={() =>
+            jsonfile
+              .readFile(`${path.dirname(props.file)}/.generator`)
+              .then((val) => props.updateFile(generator(props.content, val)))
+              .catch((err) => console.log(err))
+          }
+        >
+          Randomise
         </Button>
         <Button
           variant="link"
