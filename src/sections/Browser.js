@@ -13,7 +13,7 @@ import Input from "../components/Input";
  */
 const Browser = (props) => {
   return (
-    <div className="Browser">
+    <div className="browser">
       {Object.keys(props.content).map((key, index) => {
         if (props.content[key] === "#52nxfjtpi3y2m03f3u3y2m03f3u")
           return <h1 key={index}>{key}</h1>;
@@ -36,6 +36,13 @@ const Browser = (props) => {
             />
           );
       })}
+      <style jsx>{`
+        .browser {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+      `}</style>
     </div>
   );
 };
