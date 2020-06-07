@@ -14,7 +14,6 @@ function createWindow() {
     title: "Scribble",
     devTools: false,
     show: false,
-    backgroundColor: "#2e2c29",
     minWidth: 800,
     minHeight: 600,
   });

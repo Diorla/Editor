@@ -36,14 +36,6 @@ const Browser = (props) => {
             />
           );
       })}
-      <style jsx>{`
-        .browser {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          margin-left: 180px; /*Note to overlap with sidebar*/
-        }
-      `}</style>
     </div>
   );
 };

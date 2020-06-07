@@ -84,13 +84,6 @@ const TitleBar = (props) => {
           Print
         </Button>
       </div>
-      <style jsx>{`
-        .titlebar {
-          display: flex;
-          justify-content: space-between;
-          padding: 4px;
-        }
-      `}</style>
     </div>
   );
 };

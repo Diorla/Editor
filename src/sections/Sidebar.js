@@ -31,13 +31,6 @@ const Container = (props) => {
         {data.name}
       </div>
       <div>{visible ? nestedTree : null}</div>
-      <style jsx>{`
-        .container {
-          font-size: 12px;
-          text-overflow: ellipsis;
-          background: rgba(50, 100, 150, 0.1)
-        }
-      `}</style>
     </div>
   );
 };
@@ -85,14 +78,6 @@ const SideBar = () => {
           <TreeList data={tree} />
         </div>
       </div>
-      <style jsx>{`
-        .sidebar {
-          padding: 4px;
-          width: 170px;
-          position: fixed;
-          top: 30px;
-        }
-      `}</style>
     </div>
   );
 };
