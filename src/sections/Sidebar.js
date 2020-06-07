@@ -2,108 +2,95 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { remote } from "electron";
-// import fs from "fs";
 import { FaFolder, FaFile, FaFolderOpen } from "react-icons/fa";
-import klaw from "klaw";
-import path from "path";
+import dirTree from "directory-tree";
 
-const Dir = (props) => {
-  const [open, setOpen] = useState(false);
-  const [val] = props.data;
+/**
+ * @param {{ onClick?: any; data?: any; nestedTree?: any; }} props
+ */
+const Container = (props) => {
+  const { data, nestedTree } = props;
+  const [visible, setVisible] = useState(false);
   return (
-    <div>
-      <div onClick={() => setOpen(!open)}>
-        {open ? (
-          <span style={{ cursor: "pointer" }}>
-            <FaFolderOpen color="#FFA000" /> {path.relative(props.root, val[0])}
-          </span>
-        ) : (
-          <span style={{ cursor: "pointer" }} className="line">
-            <FaFolder color="#FFA000" /> {path.relative(props.root, val[0])}
-          </span>
-        )}
+    <div
+      className="container"
+      style={{ marginLeft: "4px"}}
+      onClick={(e) => {
+        e.stopPropagation();
+        setVisible(!visible);
+        props.onClick({
+          path: data.path,
+          type: data.type,
+        });
+      }}
+    >
+      <div>
+        {data.type === "file" && <FaFile />}
+        {data.type === "directory" && visible && <FaFolderOpen />}
+        {data.type === "directory" && !visible && <FaFolder />}
+        {data.name}
       </div>
-      <div style={{ marginLeft: 24 }}>
-        {open
-          ? val[1].map((item, idx) => (
-              <div
-                key={idx}
-                style={{ cursor: "pointer" }}
-                onClick={() => console.log(item)}
-                className="line"
-              >
-                <FaFile color="#90CAF9" /> {path.relative(val[0], item)}
-              </div>
-            ))
-          : null}
-      </div>
+      <div>{visible ? nestedTree : null}</div>
       <style jsx>{`
-        .line {
-          word-break: break-all;
+        .container {
+          font-size: 12px;
+          text-overflow: ellipsis;
+          background: rgba(50, 100, 150, 0.1)
         }
       `}</style>
     </div>
   );
 };
 
-/**
- * @param {any[]} items
- * @param {{ (value: React.SetStateAction<{}>): void; (arg0: {}): void; }} fn
- */
-const configure = (items, fn) => {
-  const obj = {};
-  for (let item of items) {
-    // const basename = path.basename(item);
-    const dirname = path.dirname(item);
-    if (path.extname(item) === ".scrb") {
-      if (obj[dirname]) obj[dirname].push(item);
-      else obj[dirname] = [item];
-    }
-  }
-  fn(obj);
+const TreeList = ({ data }) => {
+  const nestedTree = (data.children || []).map((data, idx) => {
+    return <TreeList key={idx} data={data} />;
+  });
+
+  return (
+    <Container
+      data={data}
+      nestedTree={nestedTree}
+      onClick={(info) => console.log(info)}
+    />
+  );
 };
 
 const SideBar = () => {
   const [tree, setTree] = useState({});
-  const [root, setRoot] = useState("");
-  const treelist = Object.entries(tree);
   return (
     <div className="sidebar">
-      <button
-        onClick={() =>
-          remote.dialog
-            .showOpenDialog({
-              properties: ["openDirectory"],
-            })
-            .then((folder) => {
-              const items = [];
-              try {
-                klaw(folder.filePaths[0])
-                  .on("data", (item) => items.push(item.path))
-                  .on("end", () => {
-                    configure(items, setTree);
-                    setRoot(folder.filePaths[0]);
-                  });
-              } catch (err) {
-                console.log(err);
-              }
-            })
-            .catch((err) => console.log(err))
-        }
-      >
-        Open folder
-      </button>
-      <div>
-        {treelist.map((arr, idx) => (
-          <Dir data={[arr]} key={idx} root={root} />
-        ))}
+      <div className="sidebar-sub">
+        <button
+          onClick={() =>
+            remote.dialog
+              .showOpenDialog({
+                properties: ["openDirectory"],
+              })
+              .then((folder) => {
+                console.log("folder: ", folder.filePaths[0]);
+                const filePath = folder.filePaths[0];
+                const tree = dirTree(filePath, {
+                  extensions: /\.scrb/,
+                  exclude: /node_modules|\.git/,
+                });
+                setTree(tree);
+              })
+              .catch((err) => console.log(err))
+          }
+        >
+          Open folder
+        </button>
+        <div>
+          <TreeList data={tree} />
+        </div>
       </div>
       <style jsx>{`
         .sidebar {
           padding: 4px;
-          width: 160px;
-          border-right: 1px solid silver;
-          min-height: 95vh;
+          width: 170px;
+          position: fixed;
+          top: 30px;
         }
       `}</style>
     </div>
