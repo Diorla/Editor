@@ -1,5 +1,5 @@
 //@ts-check
-import { UPDATE_FILE, RESET_FILE, OPEN_FILE } from "./constant";
+import { UPDATE_FILE, RESET_FILE, OPEN_FILE, OPEN_DIR } from "./constant";
 
 /**
  * For selecting file
@@ -31,6 +31,20 @@ export const manageContent = (state, action) => {
       };
     case RESET_FILE:
       return {};
+    default:
+      return state;
+  }
+};
+
+/**
+ * @param {any} state
+ * @param {{ type: any; dir: Object; }} action
+ */
+export const manageDir = (state, action) => {
+  if (state === undefined) return "";
+  switch (action.type) {
+    case OPEN_DIR:
+      return action.dir;
     default:
       return state;
   }
