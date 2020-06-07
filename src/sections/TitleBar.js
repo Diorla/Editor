@@ -13,7 +13,7 @@ const filters = [{ name: "Scribble files", extensions: ["scrb"] }];
 const TitleBar = (props) => {
   const file = props.file ? path.basename(props.file) : "";
   return (
-    <div className="TitleBar">
+    <div className="titlebar">
       <Button
         variant="link"
         onClick={() => {
@@ -85,9 +85,10 @@ const TitleBar = (props) => {
         </Button>
       </div>
       <style jsx>{`
-        .TitleBar {
+        .titlebar {
           display: flex;
           justify-content: space-between;
+          padding: 4px;
         }
       `}</style>
     </div>

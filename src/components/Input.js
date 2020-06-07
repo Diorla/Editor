@@ -24,6 +24,7 @@ export default (props) => {
         }
         .input {
           margin-bottom: 16px;
+          #191818
         }
       `}</style>
     </div>
