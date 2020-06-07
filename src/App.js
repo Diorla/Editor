@@ -8,11 +8,11 @@ import jsonfile from "jsonfile";
 import Sidebar from "./sections/Sidebar";
 const { globalShortcut } = require("electron").remote;
 
-globalShortcut.register("CommandOrControl+S", () => {
-  const { file, content } = store.getState();
-  jsonfile.writeFile(file, content);
-  console.log("file saved");
-});
+// globalShortcut.register("CommandOrControl+S", () => {
+//   const { file, content } = store.getState();
+//   jsonfile.writeFile(file, content);
+//   console.log("file saved");
+// });
 
 export default () => {
   return (
