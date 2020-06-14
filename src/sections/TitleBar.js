@@ -1,122 +1,58 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import Button from "../components/Button";
-import { remote } from "electron";
-import path from "path";
-import jsonfile from "jsonfile";
-import { OPEN_FILE, UPDATE_FILE } from "../redux/constant";
-import generator from "../modules/generator";
+import { makeStyles } from "@material-ui/core";
+// import { GrRefresh } from "react-icons/gr";
+import { AiOutlineSave, AiOutlineDelete } from "react-icons/ai";
+import { GiInvertedDice3 } from "react-icons/gi";
+import { MdRefresh } from "react-icons/md";
 
-const filters = [{ name: "Scribble files", extensions: ["scrb"] }];
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    display: "flex",
+    zIndex: 1300,
+    width: "100%",
+    position: "fixed",
+    justifyContent: "space-between",
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  },
+  iconBar: {
+    width: 100,
+    justifyContent: "space-around",
+    display: "flex",
+    alignItems: "center",
+    fontSize: "large",
+    // color: theme.palette.secondary.contrastText,
+  },
+}));
 
-const TitleBar = (props) => {
-  const file = props.file ? path.basename(props.file) : "";
+const TitleBar = () => {
+  const classes = useStyles();
   return (
-    <div className="titlebar">
-      <Button
-        variant="link"
-        onClick={() => {
-          remote.dialog
-            .showOpenDialog({
-              properties: ["openFile"],
-              filters,
-            })
-            .then((folder) => {
-              const filePath = folder.filePaths[0];
-              const dir = path.dirname(filePath);
-              props.updateName(filePath);
-              jsonfile
-                .readFile(`${dir}/.template`)
-                .then((template) => {
-                  jsonfile.readFile(filePath).then((val) =>
-                    props.updateFile({
-                      ...template,
-                      ...val,
-                    })
-                  );
-                })
-                .catch((err) => {
-                  //file doesn't exist
-                  jsonfile
-                    .readFile(filePath)
-                    .then((val) => props.updateFile(val));
-                });
-            });
-        }}
-      >
-        Open file
-      </Button>
-      <span>{file}</span>
-      <div>
-        <Button
-          variant="link"
-          onClick={() =>
-            jsonfile
-              .writeFile(props.file, props.content)
-              .then(() => console.log("saved"))
-              .catch((err) => console.log(err))
-          }
-        >
-          Save
-        </Button>
-        <Button
-          variant="link"
-          onClick={() =>
-            jsonfile
-              .readFile(`${path.dirname(props.file)}/.generator`)
-              .then((val) => props.updateFile(generator(props.content, val)))
-              .catch((err) => console.log(err))
-          }
-        >
-          Randomise
-        </Button>
-        <Button
-          variant="link"
-          onClick={() => {
-            print();
-            jsonfile
-              .writeFile(props.file, props.content)
-              .then(() => console.log("saved"))
-              .catch((err) => console.log(err));
-          }}
-        >
-          Print
-        </Button>
+    <div className={classes.appBar}>
+      <div>Left</div>
+      <div>This is titlebar</div>
+      <div className={classes.iconBar}>
+        <GiInvertedDice3
+          title="Generate values"
+          onClick={() => console.log("icon")}
+        />
+        <MdRefresh title="Reset" onClick={() => console.log("icon")} />
+        <AiOutlineSave title="Save" onClick={() => console.log("icon")} />
+        <AiOutlineDelete title="Delete" onClick={() => console.log("icon")} />
       </div>
     </div>
   );
 };
 
-/**
- * @param {{ file: any; content: any; }} state
- */
 const mapStateToProps = (state) => ({
-  file: state.file,
-  content: state.content,
+  // content: state.content,
 });
 
-/**
- * @param {(arg0: { type: string; file?: any; payload?: any; }) => any} dispatch
- */
 const mapDispatchToProps = (dispatch) => ({
-  /**
-   * @param {any} file
-   */
-  updateName: (file) =>
-    dispatch({
-      type: OPEN_FILE,
-      file,
-    }),
-
-  /**
-   * @param {any} value
-   */
-  updateFile: (value) =>
-    dispatch({
-      type: UPDATE_FILE,
-      payload: value,
-    }),
+  // props
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);

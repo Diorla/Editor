@@ -1,93 +1,57 @@
 //@ts-check
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { remote } from "electron";
-import { FaFolder, FaFile, FaFolderOpen } from "react-icons/fa";
-import dirTree from "directory-tree";
+import { makeStyles, Drawer } from "@material-ui/core";
 
-/**
- * @param {{ onClick?: any; data?: any; nestedTree?: any; }} props
- */
-const Container = (props) => {
-  const { data, nestedTree } = props;
-  const [visible, setVisible] = useState(false);
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    marginTop: theme.spacing(4),
+  },
+  drawerContainer: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+let arr = [];
+
+arr.length = 500;
+
+arr.fill("This is it");
+
+const SideBar = (props) => {
+  const classes = useStyles();
   return (
-    <div
-      className="container"
-      style={{ marginLeft: "4px"}}
-      onClick={(e) => {
-        e.stopPropagation();
-        setVisible(!visible);
-        props.onClick({
-          path: data.path,
-          type: data.type,
-        });
+    <Drawer
+      className={classes.drawer}
+      variant="permanent"
+      classes={{
+        paper: classes.drawerPaper,
       }}
     >
-      <div>
-        {data.type === "file" && <FaFile />}
-        {data.type === "directory" && visible && <FaFolderOpen />}
-        {data.type === "directory" && !visible && <FaFolder />}
-        {data.name}
+      <div className={classes.drawerContainer}>
+        <div>Top</div>
+        {arr.map((item, idx) => (
+          <div key={idx}>{item}</div>
+        ))}
+        <div>Bottom</div>
       </div>
-      <div>{visible ? nestedTree : null}</div>
-    </div>
+    </Drawer>
   );
 };
 
-const TreeList = ({ data }) => {
-  const nestedTree = (data.children || []).map((data, idx) => {
-    return <TreeList key={idx} data={data} />;
-  });
-
-  return (
-    <Container
-      data={data}
-      nestedTree={nestedTree}
-      onClick={(info) => console.log(info)}
-    />
-  );
-};
-
-const SideBar = () => {
-  const [tree, setTree] = useState({});
-  return (
-    <div className="sidebar">
-      <div className="sidebar-sub">
-        <button
-          onClick={() =>
-            remote.dialog
-              .showOpenDialog({
-                properties: ["openDirectory"],
-              })
-              .then((folder) => {
-                console.log("folder: ", folder.filePaths[0]);
-                const filePath = folder.filePaths[0];
-                const tree = dirTree(filePath, {
-                  extensions: /\.scrb/,
-                  exclude: /node_modules|\.git/,
-                });
-                setTree(tree);
-              })
-              .catch((err) => console.log(err))
-          }
-        >
-          Open folder
-        </button>
-        <div>
-          <TreeList data={tree} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const mapStateToProps = (state) => ({
-  // blabla: state.blabla,
+const mapStateToProps = () => ({
+  // dir: state.dir,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // fnBlaBla: () => dispatch(action.name()),
+  //
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar);

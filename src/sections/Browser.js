@@ -1,64 +1,41 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import { UPDATE_FILE } from "./../redux/constant";
-import Input from "../components/Input";
+import { makeStyles } from "@material-ui/core";
 
-/**
- * @param {{ content: { name: ""; }; updateFile: (arg0: any) => void; }} props
- * I chose the following for h1 to h3 to prevent any clashing with inputs
- * #52nxfjtpi3y2m03f3u3y2m03f3u
- * #3dryadmnu4id9pu67s2thakncvv
- * #3y2m04cel3dryae0ci1ovz57069
- */
+let arr = [];
+
+arr.length = 1000;
+
+arr.fill("This is it");
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    flexGrow: 1,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+  },
+}));
+
 const Browser = (props) => {
+  const classes = useStyles();
   return (
-    <div className="browser">
-      {Object.keys(props.content).map((key, index) => {
-        if (props.content[key] === "#52nxfjtpi3y2m03f3u3y2m03f3u")
-          return <h1 key={index}>{key}</h1>;
-        else if (props.content[key] === "#3dryadmnu4id9pu67s2thakncvv")
-          return <h2 key={index}>{key}</h2>;
-        else if (props.content[key] === "#3y2m04cel3dryae0ci1ovz57069")
-          return <h3 key={index}>{key}</h3>;
-        else
-          return (
-            <Input
-              key={index}
-              label={key}
-              value={props.content[key]}
-              onChange={(val) =>
-                props.updateFile({
-                  ...props.content,
-                  [key]: val,
-                })
-              }
-            />
-          );
-      })}
-    </div>
+    <main className={classes.content}>
+      <div>Top</div>
+      {arr.map((item, idx) => (
+        <div key={idx}>{item}</div>
+      ))}
+      <div>Bottom</div>
+    </main>
   );
 };
 
-/**
- * @param {{ content: any; }} state
- */
 const mapStateToProps = (state) => ({
-  content: state.content,
+  // content: state.content,
 });
 
-/**
- * @param {(arg0: { type: string; payload: any; }) => any} dispatch
- */
 const mapDispatchToProps = (dispatch) => ({
-  /**
-   * @param {any} value
-   */
-  updateFile: (value) =>
-    dispatch({
-      type: UPDATE_FILE,
-      payload: value,
-    }),
+  // props
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Browser);

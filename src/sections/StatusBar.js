@@ -1,17 +1,40 @@
+//@ts-check
 import React from "react";
 import { connect } from "react-redux";
-//@ts-check
+import { makeStyles } from "@material-ui/core";
 
-const StatusBar = (props) => {
-  return <div className="StatusBar">Test content</div>;
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    display: "flex",
+    zIndex: 1300,
+    width: "100%",
+    position: "fixed",
+    justifyContent: "space-between",
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.primary.contrastText,
+    bottom: 0,
+  }
+}));
+
+const StatusBar = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.appBar}>
+      <div>World length</div>
+      <div>Character length</div>
+      <div>Template</div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
-  // blabla: state.blabla,
+  // content: state.content,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // fnBlaBla: () => dispatch(action.name()),
+  // props
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusBar);
