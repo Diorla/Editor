@@ -2,12 +2,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
-
-let arr = [];
-
-arr.length = 1000;
-
-arr.fill("This is it");
+import { browser } from "./Routes";
+import Home from "../pages/Home";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -17,21 +13,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Browser = (props) => {
+const Browser = ({ screen }) => {
   const classes = useStyles();
   return (
     <main className={classes.content}>
-      <div>Top</div>
-      {arr.map((item, idx) => (
-        <div key={idx}>{item}</div>
-      ))}
-      <div>Bottom</div>
+      {browser[screen] ? browser[screen] : <Home />}
     </main>
   );
 };
 
 const mapStateToProps = (state) => ({
-  // content: state.content,
+  screen: state.screen,
 });
 
 const mapDispatchToProps = (dispatch) => ({

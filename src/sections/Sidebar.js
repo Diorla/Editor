@@ -2,6 +2,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles, Drawer } from "@material-ui/core";
+import HomeNav from "./../pages/HomeNav";
+import { sidebar } from "./Routes";
 
 const drawerWidth = 240;
 
@@ -19,12 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let arr = [];
-
-arr.length = 500;
-
-arr.fill("This is it");
-
 const SideBar = (props) => {
   const classes = useStyles();
   return (
@@ -36,11 +32,7 @@ const SideBar = (props) => {
       }}
     >
       <div className={classes.drawerContainer}>
-        <div>Top</div>
-        {arr.map((item, idx) => (
-          <div key={idx}>{item}</div>
-        ))}
-        <div>Bottom</div>
+        {sidebar[screen] ? sidebar[screen] : <HomeNav />}
       </div>
     </Drawer>
   );

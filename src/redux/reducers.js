@@ -1,50 +1,11 @@
 //@ts-check
-import { UPDATE_FILE, RESET_FILE, OPEN_FILE, OPEN_DIR } from "./constant";
+import { CHANGE_SCREEN } from "./constant";
 
-/**
- * For selecting file
- * @param {object} state
- * @param {{ type: string; file: string; }} action
- */
-export const manageFile = (state, action) => {
+export const manageScreen = (state, action) => {
   if (state === undefined) return "";
   switch (action.type) {
-    case OPEN_FILE:
-      return action.file;
-    default:
-      return state;
-  }
-};
-
-/**
- * Update the content of current file
- * @param {{ content: any; }} state
- * @param {{ type: any; payload: any; }} action
- */
-export const manageContent = (state, action) => {
-  if (state === undefined) return {};
-  switch (action.type) {
-    case UPDATE_FILE:
-      return {
-        ...state.content,
-        ...action.payload,
-      };
-    case RESET_FILE:
-      return {};
-    default:
-      return state;
-  }
-};
-
-/**
- * @param {any} state
- * @param {{ type: any; dir: Object; }} action
- */
-export const manageDir = (state, action) => {
-  if (state === undefined) return "";
-  switch (action.type) {
-    case OPEN_DIR:
-      return action.dir;
+    case CHANGE_SCREEN:
+      return action.screen;
     default:
       return state;
   }

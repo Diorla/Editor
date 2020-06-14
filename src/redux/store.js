@@ -1,11 +1,9 @@
 //@ts-check
 import { combineReducers, createStore } from "redux";
-import { manageFile, manageContent, manageDir } from "./reducers";
+import { manageScreen } from "./reducers";
 
 const reducers = combineReducers({
-  file: manageFile,
-  content: manageContent,
-  dir: manageDir,
+  screen: manageScreen,
 });
 
 export default createStore(reducers);
