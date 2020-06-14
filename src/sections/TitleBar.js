@@ -2,10 +2,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
-// import { GrRefresh } from "react-icons/gr";
 import { AiOutlineSave, AiOutlineDelete } from "react-icons/ai";
-import { GiInvertedDice3 } from "react-icons/gi";
+import { GiInvertedDice3, GiMoon } from "react-icons/gi";
 import { MdRefresh } from "react-icons/md";
+import { CHANGE_THEME } from "../redux/constant";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     fontSize: "large",
-    // color: theme.palette.secondary.contrastText,
   },
 }));
 
-const TitleBar = () => {
+const TitleBar = (props) => {
   const classes = useStyles();
+  const { changeTheme } = props;
   return (
     <div className={classes.appBar}>
       <div>Left</div>
@@ -39,6 +39,7 @@ const TitleBar = () => {
           title="Generate values"
           onClick={() => console.log("icon")}
         />
+        <GiMoon title="Dark mode" onClick={() => changeTheme()} />
         <MdRefresh title="Reset" onClick={() => console.log("icon")} />
         <AiOutlineSave title="Save" onClick={() => console.log("icon")} />
         <AiOutlineDelete title="Delete" onClick={() => console.log("icon")} />
@@ -52,7 +53,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // props
+  changeTheme: () =>
+    dispatch({
+      type: CHANGE_THEME,
+    }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);
