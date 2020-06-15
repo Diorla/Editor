@@ -114,10 +114,17 @@ const fileTree = [
 // There will be a .config file at the root of the project.
 // It will contain additional information about the project.
 const config = {
+  // Will be used to save project on firebase storage
+  id: ID,
+  // By default, it will be the name of the project(dir)
+  // Changing it won't affect project/dir name
+  title: ""
   description: "This is a story of two or three etc",
   tags: ["fantasy", "bending", "esoterism"],
   genre: "Sci fi",
+  // Target audience age and gender
   target: "Adult male",
+  created: Date
 }
 ```
 

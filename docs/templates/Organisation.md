@@ -1,0 +1,28 @@
+# General
+
+- Name
+- Type: military, covert, criminal, governmental, religious etc
+- Created
+- History
+- Main goal: current target or aims
+- Purpose: why was the org created
+- Founders: Names
+- Headquarter
+- Leaders
+  - Name
+  - Role
+- Important members
+  - Name
+  - Role
+- Notable members: Not important but appears in the story
+  - Name
+  - Role
+- Oppositions/Rivals
+  - Name
+  - Why
+- Story
+  - Event 1
+  - Event 2
+- Promotion: how people move up the ladder
+- Requirement to join.
+- Finance: for running the organisation, how they get their money
