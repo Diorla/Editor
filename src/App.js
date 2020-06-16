@@ -8,14 +8,14 @@ export default () => {
   const { isDarkMode } = store.getState();
   return (
     <Provider store={store}>
-        <Layout />
-        <style>{`
+      <Layout />
+      <style>{`
           ::-webkit-scrollbar {
             width: 6px;
-            background: ${isDarkMode ? "#232323" : "white"}
+            background: ${isDarkMode ? "#232323" : "gray"}
           }
           ::-webkit-scrollbar-thumb {
-            background-color: ${isDarkMode ? "white" : "#303030"};
+            background-color: ${isDarkMode ? "gray" : "#303030"};
             height: 36px;
           }
         `}</style>
