@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import { browser } from "./Routes";
 import Home from "../pages/Home";
+import BrowserRoutes from "./BrowserRoutes";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -17,7 +18,7 @@ const Browser = ({ screen }) => {
   const classes = useStyles();
   return (
     <main className={classes.content}>
-      {browser[screen] ? browser[screen] : <Home />}
+      <BrowserRoutes />
     </main>
   );
 };

@@ -2,8 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles, Drawer } from "@material-ui/core";
-import HomeNav from "./../pages/HomeNav";
-import { sidebar } from "./Routes";
+import SidebarRoutes from "./SidebarRoutes";
 
 const drawerWidth = 240;
 
@@ -15,31 +14,25 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
   },
   drawerContainer: {
-    marginBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
 }));
 
 const SideBar = (props) => {
   const classes = useStyles();
+  const { screen } = props;
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <div className={classes.drawerContainer}>
-        {sidebar[screen] ? sidebar[screen] : <HomeNav />}
-      </div>
+    <Drawer className={classes.drawer} variant="permanent">
+      <SidebarRoutes />
     </Drawer>
   );
 };
 
-const mapStateToProps = () => ({
-  // dir: state.dir,
+const mapStateToProps = (state) => ({
+  screen: state.screen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
