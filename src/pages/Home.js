@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 import { makeStyles, Link } from "@material-ui/core";
 import fs from "fs";
 import jsonfile from "jsonfile";
-import { UPDATE_PROJECT_LIST, OPEN_PROJECT } from "./../redux/constant";
+import { OPEN_PROJECT } from "./../redux/constant";
 import HelpBar from "../components/HelpBar";
-import { CHANGE_SCREEN } from "./../redux/constant";
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -28,15 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = (props) => {
-  const {
-    updateProjectList,
-    projectList,
-    updateProjectDir,
-    changeScreen,
-  } = props;
   const classes = useStyles();
   const projectDir = `${process.cwd()}/projects`;
+  const { openProject } = props;
   const [helpList, setHelpList] = useState([]);
+  const [projectList, setProjectList] = useState([]);
   jsonfile.readFile(`${process.cwd()}/src/data/help.json`, (err, val) => {
     if (err) console.log(err);
     else setHelpList(val);
@@ -46,7 +41,7 @@ const Home = (props) => {
     if (err) throw err;
     // prevent infinite loop of update and re-render
     if (JSON.stringify(projectList) !== JSON.stringify(data))
-      updateProjectList(data);
+      setProjectList(data);
   });
 
   return (
@@ -58,8 +53,7 @@ const Home = (props) => {
             color="primary"
             key={idx}
             onClick={() => {
-              updateProjectDir(project);
-              changeScreen("Project");
+              openProject(project);
             }}
             component="button"
             className={classes.link}
@@ -87,40 +81,20 @@ const Home = (props) => {
  */
 const mapStateToProps = (state) => ({
   // content: state.content,
-  projectList: state.projectList,
 });
 
 /**
- * @param {(arg0: { type: string; projectList?: []; projectDir?: string; screen?: string; }) => any} dispatch
+ * @param {(arg0: { type: string; activeProject: string; }) => any} dispatch
  */
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = (dispatch) => ({
   /**
-   * @param {[]} projectList
+   * @param {string} activeProject
    */
-  ({
-    updateProjectList: (projectList) =>
-      dispatch({
-        type: UPDATE_PROJECT_LIST,
-        projectList,
-      }),
-
-    /**
-     * @param {string} projectDir
-     */
-    updateProjectDir: (projectDir) =>
-      dispatch({
-        type: OPEN_PROJECT,
-        projectDir,
-      }),
-
-    /**
-     * @param {string} screen
-     */
-    changeScreen: (screen) =>
-      dispatch({
-        type: CHANGE_SCREEN,
-        screen,
-      }),
-  });
+  openProject: (activeProject) =>
+    dispatch({
+      type: OPEN_PROJECT,
+      activeProject,
+    }),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -9,9 +9,8 @@ import {
   Link,
 } from "@material-ui/core";
 import fs from "fs";
-import { UPDATE_PROJECT_LIST } from "../redux/constant";
 import title from "./../utils/title";
-import Temp from "./../Temp";
+import { OPEN_PROJECT } from "../redux/constant";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -31,12 +30,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HomeNav = (props) => {
+  const classes = useStyles();
+  const { openProject } = props;
   const [projectName, setProjectName] = useState("");
   const [error, setError] = useState("");
   const [recentList, setRecentList] = useState([]);
-  const classes = useStyles();
-
-  const { updateProjectList, projectList } = props;
+  const [projectList, setProjectList] = useState([]);
   const projectDir = `${process.cwd()}/projects`;
 
   const addNewProject = (projectName) => {
@@ -47,8 +46,8 @@ const HomeNav = (props) => {
           if (err) throw err;
           // prevent infinite loop of update and re-render
           if (JSON.stringify(projectList) !== JSON.stringify(data)) {
-            updateProjectList(data);
-            setRecentList([...recentList, projectName]);
+            setProjectList(data);
+            setRecentList([projectName, ...recentList]);
             setProjectName("");
           }
         });
@@ -74,7 +73,9 @@ const HomeNav = (props) => {
         placeholder="Click enter to add project"
         onChange={(e) => {
           setProjectName(e.target.value);
+          // No input, no error
           if (!e.target.value.length) setError("");
+          // Input too short or name already exist
           else if (e.target.value.length < 2) setError("Name is too short");
           else if (projectList.map(title).includes(title(e.target.value)))
             setError("Name already exist");
@@ -82,6 +83,7 @@ const HomeNav = (props) => {
         }}
         onKeyDown={(e) => {
           if (e.keyCode === 13) {
+            // Can't disable enter, so I did the next best thing
             if (error) setError(title(`Can't add project, ${error}`));
             else if (!projectName) setError("Field is empty");
             else addNewProject(projectName);
@@ -96,34 +98,40 @@ const HomeNav = (props) => {
       {recentList.length ? (
         <Typography className={classes.projects} component="div">
           <Typography variant="h6">Recently added</Typography>
-          {recentList.map((item, idx) => (
+          {recentList.map((project, idx) => (
             <Link
               color="primary"
               key={idx}
-              onClick={() => console.log(item)}
+              onClick={() => {
+                openProject(project);
+              }}
               component="button"
               className={classes.link}
             >
-              {item}
+              {project}
             </Link>
           ))}
         </Typography>
       ) : null}
-      <Temp />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   // content: state.content,
-  projectList: state.projectList,
 });
 
+/**
+ * @param {(arg0: { type: string; activeProject: string; }) => any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
-  updateProjectList: (projectList) =>
+  /**
+   * @param {string} activeProject
+   */
+  openProject: (activeProject) =>
     dispatch({
-      type: UPDATE_PROJECT_LIST,
-      projectList,
+      type: OPEN_PROJECT,
+      activeProject,
     }),
 });
 
