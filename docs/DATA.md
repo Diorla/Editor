@@ -12,7 +12,7 @@ These are the data that will be edited directly
 - ActivePage
 - PageData
 
-## Screen
+# Screen
 
 This is basically used to navigate the app, it is like a webpage of app screen.
 
@@ -22,7 +22,7 @@ This is basically used to navigate the app, it is like a webpage of app screen.
 - Form
 - Blog page
 
-### Welcome page
+## Welcome page
 
 This is the default page of the app, it will show when
 
@@ -38,7 +38,7 @@ On sidebar, it will display
 - input for add new project
 - List of recently added project
 
-#### Local data
+### Local data
 
 ```js
 // sort in alphabetical order, it will be used to navigate/open a project
@@ -77,7 +77,7 @@ const post = [
 ];
 ```
 
-### Project
+## Project
 
 This is when a project is loaded
 
@@ -93,7 +93,7 @@ On the sidebar, it will display
 
 - A file tree indicating the files and folder inside a project
 
-#### Local data
+### Local data
 
 ```js
 // The file tree, it will be generated based on the ActiveProject
@@ -128,7 +128,7 @@ const config = {
 }
 ```
 
-### Folder
+## Folder
 
 Any one of the folders and subfolders inside a project.
 
@@ -144,7 +144,7 @@ Main page will contain
 
 Sidebar will still be based on the project.
 
-#### Local data
+### Local data
 
 ```js
 // .config will contain information about the folder
@@ -156,7 +156,7 @@ const config = {
 };
 ```
 
-### Files
+## Files
 
 Any one of the files inside a project
 
@@ -171,7 +171,8 @@ Sidebar
 
 - It will be based on the the projectDir
 
-#### Local data
+### Local data
+
 ```js
 // All files will be saved as .scrb, and it will in json format
 const scrb = {
@@ -184,3 +185,26 @@ const scrb = {
   //...
 };
 ```
+
+## Help
+
+These are pages that are predefined. It will basically render markdown It will also be availabe as modals in various pages.
+
+main page
+
+- renders markdown in learning format. If possible, I could even embed videos
+- So basically, it will show a lot of rich format
+
+side bar
+
+- list of available tutorials.
+
+# Summary
+
+| Screen       | Store         | Sidebar                | Browser                                     |
+| ------------ | ------------- | ---------------------- | ------------------------------------------- |
+| Welcome page | -             | input<br />recent list | project list<br />help list                 |
+| Project      | activeProject | File tree              | project config<br />button(new folder/file) |
+| Folder       | activeFolder  | File tree              | folder config<br />button(new folder/file)  |
+| File         | activeDir     | File tree              | file editor                                 |
+| Blogs        | blogId        | blog tree              | md render                                   |
