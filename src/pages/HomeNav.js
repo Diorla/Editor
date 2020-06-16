@@ -11,6 +11,7 @@ import {
 import fs from "fs";
 import { UPDATE_PROJECT_LIST } from "../redux/constant";
 import title from "./../utils/title";
+import Temp from "./../Temp";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -108,6 +109,7 @@ const HomeNav = (props) => {
           ))}
         </Typography>
       ) : null}
+      <Temp />
     </div>
   );
 };

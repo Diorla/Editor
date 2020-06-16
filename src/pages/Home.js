@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { makeStyles, Link } from "@material-ui/core";
 import fs from "fs";
 import jsonfile from "jsonfile";
-import { UPDATE_PROJECT_LIST } from "./../redux/constant";
+import { UPDATE_PROJECT_LIST, OPEN_PROJECT } from "./../redux/constant";
 import HelpBar from "../components/HelpBar";
+import { CHANGE_SCREEN } from "./../redux/constant";
 
 const useStyles = makeStyles((theme) => ({
   home: {
@@ -27,7 +28,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = (props) => {
-  const { updateProjectList, projectList } = props;
+  const {
+    updateProjectList,
+    projectList,
+    updateProjectDir,
+    changeScreen,
+  } = props;
   const classes = useStyles();
   const projectDir = `${process.cwd()}/projects`;
   const [helpList, setHelpList] = useState([]);
@@ -51,7 +57,10 @@ const Home = (props) => {
           <Link
             color="primary"
             key={idx}
-            onClick={() => console.log(project)}
+            onClick={() => {
+              updateProjectDir(project);
+              changeScreen("Project");
+            }}
             component="button"
             className={classes.link}
           >
@@ -73,17 +82,45 @@ const Home = (props) => {
   );
 };
 
+/**
+ * @param {{ projectList: []; }} state
+ */
 const mapStateToProps = (state) => ({
   // content: state.content,
   projectList: state.projectList,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  updateProjectList: (projectList) =>
-    dispatch({
-      type: UPDATE_PROJECT_LIST,
-      projectList,
-    }),
-});
+/**
+ * @param {(arg0: { type: string; projectList?: []; projectDir?: string; screen?: string; }) => any} dispatch
+ */
+const mapDispatchToProps = (dispatch) =>
+  /**
+   * @param {[]} projectList
+   */
+  ({
+    updateProjectList: (projectList) =>
+      dispatch({
+        type: UPDATE_PROJECT_LIST,
+        projectList,
+      }),
+
+    /**
+     * @param {string} projectDir
+     */
+    updateProjectDir: (projectDir) =>
+      dispatch({
+        type: OPEN_PROJECT,
+        projectDir,
+      }),
+
+    /**
+     * @param {string} screen
+     */
+    changeScreen: (screen) =>
+      dispatch({
+        type: CHANGE_SCREEN,
+        screen,
+      }),
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
