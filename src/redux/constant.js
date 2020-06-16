@@ -1,11 +1,9 @@
-// To navigate between pages
-export const CHANGE_SCREEN = "CHANGE_SCREEN";
-
 // Toggle between dark or light mode
 export const CHANGE_THEME = "CHANGE_THEME";
 
-// To fetch all the root directory
-export const UPDATE_PROJECT_LIST = "UPDATE_PROJECT_LIST";
-
-// Open a project directory
+// manage project view and consequently the screen
 export const OPEN_PROJECT = "OPEN_PROJECT";
+export const CLOSE_PROJECT = "CLOSE_PROJECT";
+export const OPEN_FOLDER = "OPEN_FOLDER";
+export const OPEN_FILE = "OPEN_FILE";
+export const OPEN_BLOG = "OPEN_BLOG";
