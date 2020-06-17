@@ -2,6 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
+import FileTree from "../components/FileTree";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -13,12 +14,16 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectNav = ({ project }) => {
   const classes = useStyles();
-  return <main className={classes.content}>navproject{project}</main>;
+  return (
+    <main className={classes.content}>
+      <FileTree activeDir={project} />
+    </main>
+  );
 };
 
 const mapStateToProps = (state) => ({
   screen: state.screen,
-  project: state.project,
+  project: state.project.activeProject,
 });
 
 const mapDispatchToProps = (dispatch) => ({
