@@ -2,7 +2,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
-import Tempe from "../Tempe";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -16,7 +15,7 @@ const Blog = (props) => {
   const classes = useStyles();
   return (
     <main className={classes.content}>
-      <Tempe />
+      This is blog
     </main>
   );
 };

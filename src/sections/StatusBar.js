@@ -22,7 +22,7 @@ const StatusBar = () => {
   const classes = useStyles();
   return (
     <div className={classes.appBar}>
-      <div>World length</div>
+      <div>Word count</div>
       <div>Character length</div>
       <div>Template</div>
     </div>
