@@ -7,7 +7,6 @@ import HomeNav from "../pages/HomeNav";
 
 const BrowserRoutes = (props) => {
   const { screen } = props;
-  console.log("sidebar", screen);
   if (screen === "Blog") return <BlogNav />;
   else if (["Page", "Folder", "Project"].includes(screen))
     return <ProjectNav />;
@@ -15,7 +14,7 @@ const BrowserRoutes = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  screen: state.screen,
+  screen: state.project.screen,
 });
 
 const mapDispatchToProps = (dispatch) => ({

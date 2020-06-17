@@ -9,7 +9,6 @@ import Project from "../pages/Project";
 
 const BrowserRoutes = (props) => {
   const { screen } = props;
-  console.log("browser:", screen);
   if (screen === "Blog") return <Blog />;
   else if (screen === "Page") return <Page />;
   else if (screen === "Folder") return <Folder />;
@@ -18,7 +17,7 @@ const BrowserRoutes = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  screen: state.screen,
+  screen: state.project.screen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
