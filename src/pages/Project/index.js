@@ -101,12 +101,12 @@ const Project = (props) => {
       />
       <Box className={classes.content}>
         <Typography component="h2" className={classes.header}>
-          Create folder
+          Create collection
         </Typography>
         <TextField
-          label="New folder"
+          label="New collection"
           value={collectionName}
-          placeholder="Click enter to add folder"
+          placeholder="Click enter to add collection"
           onChange={(e) => {
             setCollectionName(e.target.value);
             // No input, no error
@@ -120,7 +120,7 @@ const Project = (props) => {
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
               // Can't disable enter, so I did the next best thing
-              if (error) setError(title(`Can't add folder, ${error}`));
+              if (error) setError(title(`Can't add collection, ${error}`));
               else if (!collectionName) setError("Field is empty");
               else
                 createFolder(
@@ -146,7 +146,7 @@ const Project = (props) => {
           }}
           disabled={error || !collectionName ? true : false}
         >
-          New Folder
+          New collection
         </Button>
       </Box>
       {error && (

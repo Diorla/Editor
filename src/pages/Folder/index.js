@@ -63,7 +63,7 @@ const Folder = (props) => {
   return (
     <Box className={classes.content}>
       <Typography component="h2" className={classes.header}>
-        Folder settings
+        Collection settings
       </Typography>
       <TextField
         label="Title"
@@ -119,12 +119,12 @@ const Folder = (props) => {
       </FormControl>
       <Box className={classes.content}>
         <Typography component="h2" className={classes.header}>
-          Create file
+          Create document
         </Typography>
         <TextField
-          label="New file"
+          label="New document"
           value={fileName}
-          placeholder="Click enter to add file"
+          placeholder="Click enter to add document"
           onChange={(e) =>
             onFileInputChange(e, setFileName, setError, fileList)
           }

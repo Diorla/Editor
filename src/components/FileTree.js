@@ -83,7 +83,7 @@ const FileTree = (props) => {
     <TreeItem
       key={id}
       nodeId={id}
-      label={nodes.name}
+      label={path.basename(nodes.name, ".scrb")}
       title={nodes.type === "directory" ? "Double click to open settings" : ""}
       collapseIcon={
         nodes.type === "directory" ? (
