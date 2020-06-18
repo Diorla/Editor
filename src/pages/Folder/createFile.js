@@ -1,6 +1,7 @@
 //@ts-check
 import jsonfile from "jsonfile";
 import fs from "fs";
+import generateHash from "../../utils/generateHash";
 
 const logger = (template) => {
   let placeholder = {
@@ -14,14 +15,6 @@ const logger = (template) => {
       else console.log("template:", val);
     }
   );
-  // if (template === "Character") console.log("t");
-  // else if (template === "Story") console.log("t");
-  // else if (template === "Creature") console.log("t");
-  // else if (template === "Location") console.log("t");
-  // else if (template === "Magic") console.log("t");
-  // else if (template === "Objects") console.log("t");
-  // else if (template === "World") console.log("t");
-  // else if (template === "Organisation") console.log("t");
 };
 /**
  * @param {string} fileName
@@ -42,19 +35,29 @@ export default (
   state
 ) => {
   if (!fileList.includes(fileName)) {
-    logger(state.template);
-    jsonfile.writeFile(
-      `${projectDir}/${fileName}.scrb`,
-      [{ type: "Testing" }],
-      (err) => {
-        console.log(err);
-        // update file list
-        fs.readdir(projectDir, (err, files) => {
-          if (err) console.log(err);
-          else setFileList(files);
-          // reset input
-          setFileName("");
-        });
+    jsonfile.readFile(
+      process.cwd() + "/templates/" + state.template + ".json",
+      (err, val) => {
+        if (err) console.log("template error:", err);
+        else {
+          jsonfile.writeFile(
+            `${projectDir}/${fileName}.scrb`,
+            {
+              id: generateHash(),
+              ...val,
+            },
+            (err) => {
+              console.log(err);
+              // update file list
+              fs.readdir(projectDir, (err, files) => {
+                if (err) console.log(err);
+                else setFileList(files);
+                // reset input
+                setFileName("");
+              });
+            }
+          );
+        }
       }
     );
   } else setError("File already exist");
