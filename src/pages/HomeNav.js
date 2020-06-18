@@ -11,6 +11,8 @@ import {
 import fs from "fs";
 import title from "./../utils/title";
 import { OPEN_PROJECT } from "../redux/constant";
+import jsonfile from "jsonfile";
+import generateHash from "../utils/generateHash";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -42,6 +44,15 @@ const HomeNav = (props) => {
     fs.mkdir(`${projectDir}/${projectName}`, { recursive: true }, (err) => {
       if (err) console.log(err);
       else {
+        // create config file.
+        jsonfile.writeFile(`${projectDir}/${projectName}/.config`, {
+          id: generateHash(),
+          title: projectName,
+          description: "",
+          tags: "",
+          genre: "",
+          audience: "",
+        });
         fs.readdir(projectDir, (err, data) => {
           if (err) throw err;
           // prevent infinite loop of update and re-render
@@ -122,16 +133,16 @@ const mapStateToProps = (state) => ({
 });
 
 /**
- * @param {(arg0: { type: string; activeProject: string; }) => any} dispatch
+ * @param {(arg0: { type: string; projectName: string; }) => any} dispatch
  */
 const mapDispatchToProps = (dispatch) => ({
   /**
-   * @param {string} activeProject
+   * @param {string} projectName
    */
-  openProject: (activeProject) =>
+  openProject: (projectName) =>
     dispatch({
       type: OPEN_PROJECT,
-      activeProject,
+      projectName,
     }),
 });
 

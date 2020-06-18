@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 import Blog from "../pages/Blog";
 import Folder from "../pages/Folder";
 import Page from "../pages/Page";
-import Project from "../pages/Project";
+import Project from './../pages/Project/index';
 
 const BrowserRoutes = (props) => {
   const { screen } = props;

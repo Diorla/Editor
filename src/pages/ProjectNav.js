@@ -12,18 +12,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProjectNav = ({ project }) => {
+const ProjectNav = ({ projectName }) => {
   const classes = useStyles();
   return (
     <main className={classes.content}>
-      <FileTree activeDir={project} />
+      <FileTree activeFile={projectName} />
     </main>
   );
 };
 
 const mapStateToProps = (state) => ({
   screen: state.screen,
-  project: state.project.activeProject,
+  projectName: state.project.projectName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

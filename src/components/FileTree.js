@@ -7,12 +7,15 @@ import dirTree from "directory-tree";
 import chokidar from "chokidar";
 import { FaFolder, FaFile, FaFolderOpen } from "react-icons/fa";
 import { connect } from "react-redux";
+import { OPEN_COLLECTION, OPEN_PROJECT, OPEN_ITEM } from "../redux/constant";
+import path from "path";
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     maxWidth: 400,
     marginBottom: 30,
+    userSelect: "none",
   },
 });
 
@@ -25,9 +28,15 @@ const compareDir = (objA, objB) => {
   if (objA.type < objB.type) return -1;
   else return 1;
 };
-function FileTree({ activeDir }) {
+
+/**
+ * @param {{ project?: any; activeFile: string; openFolder?: (arg0: string)=> void; openFile?: (arg0: string)=> void; openProject?: (arg0: string)=> void; }} props
+ */
+const FileTree = (props) => {
+  const { activeFile, openFolder, openFile, openProject } = props;
+  const { itemDir } = props.project;
   const classes = useStyles();
-  const projectDir = `${process.cwd()}/projects/${activeDir}`;
+  const projectDir = `${process.cwd()}/projects/${activeFile}`;
   // To trigger re-render
   const [projectTree, setProjectTree] = useState(
     dirTree(projectDir, {
@@ -48,7 +57,6 @@ function FileTree({ activeDir }) {
   useEffect(() => {
     // Now watch out for changes
     const treeMonitor = chokidar.watch(projectDir, {
-      // persistent: true,
       ignored: /(^|[\/\\])\../, // ignore .config, .template & .generator
     });
 
@@ -74,8 +82,9 @@ function FileTree({ activeDir }) {
   const renderTree = (nodes, id = "0") => (
     <TreeItem
       key={id}
-      nodeId={nodes.path}
+      nodeId={id}
       label={nodes.name}
+      title={nodes.type === "directory" ? "Double click to open settings" : ""}
       collapseIcon={
         nodes.type === "directory" ? (
           <FaFolderOpen color="#FF9800" />
@@ -97,6 +106,32 @@ function FileTree({ activeDir }) {
           <FaFile color="#2196F3" />
         )
       }
+      onClick={(e) => {
+        e.stopPropagation();
+        if (nodes.type === "directory") {
+          // require double click to move away from file to folder
+          if (itemDir) console.log("can't move away");
+          else if (nodes.name === activeFile)
+            console.log("no need to navigate");
+          else {
+            console.log("folder opened");
+            openFolder(`${nodes.path}`);
+          }
+        } else {
+          console.log("file opened");
+          openFile(`${nodes.path}`);
+        }
+      }}
+      onDoubleClick={(e) => {
+        e.stopPropagation();
+        // require double click to move away from file to folder
+        if (nodes.type === "file") {
+          console.log("don't need double click to open file");
+        } else {
+          if (nodes.name === activeFile) openProject(activeFile);
+          else openFolder(nodes.path);
+        }
+      }}
     >
       {Array.isArray(nodes.children)
         ? nodes.children
@@ -107,21 +142,49 @@ function FileTree({ activeDir }) {
   );
 
   return (
-    <TreeView
-      className={classes.root}
-      onNodeSelect={(e, value) => console.log(value)}
-    >
+    <TreeView className={classes.root} defaultExpanded={["0"]}>
       {renderTree(projectTree)}
     </TreeView>
   );
-}
+};
 
+/**
+ * @param {{ project: {projectName: string, collectionDir: string, itemDir: string}; }} state
+ */
 const mapStateToProps = (state) => ({
-  // screen: state.screen,
+  project: state.project,
 });
 
+/**
+ * @param {(arg0: { type: string; collectionDir?: string; itemDir?: string; projectName?: string; }) => any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
-  // props
+  /**
+   * @param {string} collectionDir
+   */
+  openFolder: (collectionDir) =>
+    dispatch({
+      type: OPEN_COLLECTION,
+      collectionDir,
+    }),
+
+  /**
+   * @param {string} itemDir
+   */
+  openFile: (itemDir) =>
+    dispatch({
+      type: OPEN_ITEM,
+      itemDir,
+    }),
+
+  /**
+   * @param {string} projectName
+   */
+  openProject: (projectName) =>
+    dispatch({
+      type: OPEN_PROJECT,
+      projectName,
+    }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FileTree);

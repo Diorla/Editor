@@ -84,16 +84,16 @@ const mapStateToProps = (state) => ({
 });
 
 /**
- * @param {(arg0: { type: string; activeProject: string; }) => any} dispatch
+ * @param {(arg0: { type: string; projectName: string; }) => any} dispatch
  */
 const mapDispatchToProps = (dispatch) => ({
   /**
-   * @param {string} activeProject
+   * @param {string} projectName
    */
-  openProject: (activeProject) =>
+  openProject: (projectName) =>
     dispatch({
       type: OPEN_PROJECT,
-      activeProject,
+      projectName,
     }),
 });
 

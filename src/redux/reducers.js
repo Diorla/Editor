@@ -3,8 +3,8 @@ import {
   CHANGE_THEME,
   CLOSE_PROJECT,
   OPEN_PROJECT,
-  OPEN_FOLDER,
-  OPEN_FILE,
+  OPEN_COLLECTION,
+  OPEN_ITEM,
   OPEN_BLOG,
 } from "./constant";
 
@@ -26,49 +26,49 @@ export const manageProject = (state, action) => {
   if (state === undefined)
     return {
       screen: "",
-      activeProject: "",
-      activeFolder: "",
-      activeFile: "",
+      projectName: "",
+      collectionDir: "",
+      itemDir: "",
       activeBlog: "",
     };
   switch (action.type) {
     case OPEN_PROJECT:
       return {
         screen: "Project",
-        activeProject: action.activeProject,
-        activeFolder: "",
-        activeFile: "",
+        projectName: action.projectName,
+        collectionDir: "",
+        itemDir: "",
         activeBlog: "",
       };
     case CLOSE_PROJECT:
       return {
         screen: "",
-        activeProject: "",
-        activeFolder: "",
-        activeFile: "",
+        projectName: "",
+        collectionDir: "",
+        itemDir: "",
         activeBlog: "",
       };
-    case OPEN_FOLDER:
+    case OPEN_COLLECTION:
       return {
-        ...state, // activeProject
+        ...state, // projectName
         screen: "Folder",
-        activeFolder: action.activeFolder,
-        activeFile: "",
+        collectionDir: action.collectionDir,
+        itemDir: "",
         activeBlog: "",
       };
-    case OPEN_FILE:
+    case OPEN_ITEM:
       return {
-        ...state, // activeProject & activeFolder
+        ...state, // projectName & collectionDir
         screen: "Page",
-        activeFile: action.activeFile,
+        itemDir: action.itemDir,
         activeBlog: "",
       };
     case OPEN_BLOG:
       return {
         screen: "Blog",
-        activeProject: "",
-        activeFolder: "",
-        activeFile: "",
+        projectName: "",
+        collectionDir: "",
+        itemDir: "",
         activeBlog: action.activeBlog,
       };
     default:

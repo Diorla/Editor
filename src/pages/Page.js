@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Page = (props) => {
+const Page = ({ project }) => {
   const classes = useStyles();
-  return <main className={classes.content}>This is page</main>;
+  return <main className={classes.content}>Page: {project.activeFile}</main>;
 };
 
 const mapStateToProps = (state) => ({
-  screen: state.screen,
+  project: state.project,
 });
 
 const mapDispatchToProps = (dispatch) => ({

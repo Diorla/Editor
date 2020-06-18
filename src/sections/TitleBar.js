@@ -1,12 +1,13 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles, Link, Button } from "@material-ui/core";
+import { makeStyles, Link } from "@material-ui/core";
 import { AiOutlineSave, AiOutlineDelete } from "react-icons/ai";
 import { GiInvertedDice3, GiMoon } from "react-icons/gi";
 import { MdRefresh } from "react-icons/md";
 import { CHANGE_THEME } from "../redux/constant";
 import { CLOSE_PROJECT } from "./../redux/constant";
+import path from "path";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -34,8 +35,12 @@ const useStyles = makeStyles((theme) => ({
 const TitleBar = (props) => {
   const classes = useStyles();
   const { changeTheme, closeProject } = props;
-  const { activeProject, activeFolder, activeFile, activeBlog } = props.project;
-  const title = activeBlog || activeFile || activeFolder || activeProject;
+  const { projectName, collectionDir, itemDir, activeBlog } = props.project;
+  const title =
+    activeBlog ||
+    path.basename(itemDir) ||
+    path.basename(collectionDir) ||
+    projectName;
   return (
     <div className={classes.appBar}>
       <Link
