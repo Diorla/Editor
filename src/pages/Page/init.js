@@ -9,6 +9,5 @@ export default (fileDir, setState) => {
   jsonfile.readFile(fileDir, (err, data) => {
     if (err) console.log(err);
     else setState(data);
-    console.log(data);
   });
 };
