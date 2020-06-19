@@ -1,6 +1,6 @@
 {
-  "name": "Nm",
-  "contrast": "Con",
+  "template": "Creature",
+  "contrast": "",
   "physical": "",
   "habitat": "",
   "locomotion": "",

@@ -1,4 +1,9 @@
 {
-  "type": "default",
-  "data": []
+  "template": "Default",
+  "data": [
+    {
+      "title": "",
+      "content": ""
+    }
+  ]
 }

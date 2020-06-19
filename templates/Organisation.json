@@ -1,6 +1,5 @@
 {
-  "id": "a52wabfnri3dxivmfuc1oyrft7x6",
-  "name": "jhttyjhh",
+  "template": "Organisation",
   "type": "",
   "created": "",
   "history": "",
@@ -16,7 +15,5 @@
   "requirement": "",
   "promotion": "",
   "financing": "",
-  "more": "",
-  "dataType": "organisation",
-  "projectId": "a4iaoelnx43y0ccryfh3y0ccryfh"
+  "more": ""
 }
