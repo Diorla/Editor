@@ -106,15 +106,16 @@ const Folder = (props) => {
           }
           onBlur={(e) => saveConfig(state, collectionDir)}
         >
-          <option value="Default">None</option>
+          <option value="Default">No template</option>
           <option value="Character">Character</option>
-          <option value="Story">Story</option>
           <option value="Creature">Creature</option>
           <option value="Location">Location</option>
           <option value="Magic">Magic</option>
+          <option value="Note">Note</option>
           <option value="Objects">Object</option>
-          <option value="World">World</option>
           <option value="Organisation">Organisation</option>
+          <option value="Story">Story</option>
+          <option value="World">World</option>
         </select>
       </FormControl>
       <Box className={classes.content}>
