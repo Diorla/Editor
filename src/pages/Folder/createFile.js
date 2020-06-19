@@ -36,7 +36,8 @@ export default (
 ) => {
   if (!fileList.includes(fileName)) {
     jsonfile.readFile(
-      process.cwd() + "/templates/" + state.template + ".json",
+      // process.cwd() + "/templates/" + state.template + ".json",
+      `${process.cwd()}/templates/${state.template}.json`,
       (err, val) => {
         if (err) console.log("template error:", err);
         else {
@@ -44,6 +45,7 @@ export default (
             `${projectDir}/${fileName}.scrb`,
             {
               id: generateHash(),
+              name: fileName,
               ...val,
             },
             (err) => {
