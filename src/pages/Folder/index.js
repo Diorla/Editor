@@ -132,7 +132,7 @@ const Folder = (props) => {
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
               // Can't disable enter, so I did the next best thing
-              if (error) setError(`Can't add folder, ${error}`);
+              if (error) setError(`Can't add document, ${error}`);
               else if (!fileName) setError("Field is empty");
               else
                 createFile(
@@ -153,8 +153,23 @@ const Folder = (props) => {
           variant="contained"
           size="small"
           disabled={error || !fileName ? true : false}
+          onClick={() => {
+            if (fileName)
+              createFile(
+                fileName,
+                collectionDir,
+                fileList,
+                setFileList,
+                setFileName,
+                setError,
+                {
+                  template: state.template,
+                }
+              );
+            else setError("You shouldn't be able to click this button");
+          }}
         >
-          New Folder
+          New Document
         </Button>
       </Box>
       {error && (
