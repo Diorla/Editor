@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * @param {{ isDarkMode: boolean; }} props
+ */
 function Layout(props) {
   const classes = useStyles();
   return (
@@ -31,10 +34,16 @@ function Layout(props) {
   );
 }
 
+/**
+ * @param {{ isDarkMode: boolean; }} state
+ */
 const mapStateToProps = (state) => ({
   isDarkMode: state.isDarkMode,
 });
 
+/**
+ * @param {any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
   //
 });

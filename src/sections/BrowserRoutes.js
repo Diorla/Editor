@@ -7,6 +7,9 @@ import Folder from "../pages/Folder";
 import Page from "../pages/Page/index";
 import Project from "./../pages/Project/index";
 
+/**
+ * @param {{ screen: string; }} props
+ */
 const BrowserRoutes = (props) => {
   const { screen } = props;
   if (screen === "Blog") return <Blog />;
@@ -16,10 +19,16 @@ const BrowserRoutes = (props) => {
   else return <Home />;
 };
 
+/**
+ * @param {{ project: { screen: string; }; }} state
+ */
 const mapStateToProps = (state) => ({
   screen: state.project.screen,
 });
 
+/**
+ * @param {any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
   // dispatch
 });

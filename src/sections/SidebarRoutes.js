@@ -5,7 +5,10 @@ import BlogNav from "../pages/BlogNav";
 import ProjectNav from "../pages/ProjectNav";
 import HomeNav from "../pages/HomeNav";
 
-const BrowserRoutes = (props) => {
+/**
+ * @param {{ screen: string; }} props
+ */
+const SidebarRoutes = (props) => {
   const { screen } = props;
   if (screen === "Blog") return <BlogNav />;
   else if (["Page", "Folder", "Project"].includes(screen))
@@ -21,4 +24,4 @@ const mapDispatchToProps = (dispatch) => ({
   // dispatch
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BrowserRoutes);
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarRoutes);

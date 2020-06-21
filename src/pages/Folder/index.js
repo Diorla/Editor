@@ -12,17 +12,16 @@ import {
   Typography,
   TextField,
   FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Button,
 } from "@material-ui/core";
 import loadConfig from "./loadConfig";
 import createFile from "./createFile";
 
+/**
+ * @param {{ project: { collectionDir: string; }; }} props
+ */
 const Folder = (props) => {
-  const { project } = props;
-  const { collectionDir } = project;
+  const { collectionDir } = props.project;
   const [state, dispatch] = useReducer(reducer, initValue);
   const classes = useStyles();
   const [fileName, setFileName] = useState("");
@@ -114,6 +113,7 @@ const Folder = (props) => {
           <option value="Note">Note</option>
           <option value="Objects">Object</option>
           <option value="Organisation">Organisation</option>
+          <option value="Plot">Plot</option>
           <option value="Story">Story</option>
           <option value="World">World</option>
         </select>

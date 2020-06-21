@@ -1,7 +1,7 @@
 //@ts-check
 /**
- * This will be used by "useReducer"
- * @param {{ title?: string, description?: string, template?: string }} state
+ * This will be used by React.useReducer
+ * @param {{id: string, title: string, description: string, template: string }} state
  * @param {{ type: string; title?: string; description?: string; template?: string; payload?: {}; }} action
  */
 export default (state, action) => {

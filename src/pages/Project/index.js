@@ -12,7 +12,7 @@ import getFolderList from "./getFolderList";
 import loadConfig from "./loadConfig";
 
 /**
- * @param {{ project: { projectName: any; }; }} props
+ * @param {{ project: { projectName: string; }; }} props
  */
 const Project = (props) => {
   const { projectName } = props.project;

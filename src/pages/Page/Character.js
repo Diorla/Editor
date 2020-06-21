@@ -1,14 +1,12 @@
 //@ts-check
 import React from "react";
 import useStyles from "./useStyles";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { Box, Typography, TextField, Button } from "@material-ui/core";
 import Accordion from "../../components/Accordion";
 
+/**
+ * @param {{ state: object; setState: (arg0: object)=> void; saveConfig: ()=>void; }} props
+ */
 export default (props) => {
   const { state, setState, saveConfig } = props;
   const classes = useStyles();

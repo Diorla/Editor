@@ -79,6 +79,9 @@ const FileTree = (props) => {
     };
   }, []);
 
+  /**
+   * @param {dirTree.DirectoryTree} nodes
+   */
   const renderTree = (nodes, id = "0") => (
     <TreeItem
       key={id}

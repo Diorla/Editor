@@ -7,6 +7,25 @@ import jsonfile from "jsonfile";
 import { OPEN_PROJECT } from "./../redux/constant";
 import HelpBar from "../components/HelpBar";
 
+/**
+ * Left side of the screen
+ * # Start
+ * projects[]
+ * 
+ * # Help
+ * cheat sheet
+ * tips and tricks
+ * join newsletter
+ * open website
+ */
+/**
+ * Right side of the screen
+ * # Customise
+ * color theme
+ * 
+ * # Blogs
+ * blogs[]
+ */
 const useStyles = makeStyles((theme) => ({
   home: {
     display: "flex",

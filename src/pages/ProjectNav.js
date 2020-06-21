@@ -21,11 +21,17 @@ const ProjectNav = ({ projectName }) => {
   );
 };
 
+/**
+ * @param {{ screen: string; project: { projectName: string; }; }} state
+ */
 const mapStateToProps = (state) => ({
   screen: state.screen,
   projectName: state.project.projectName,
 });
 
+/**
+ * @param {any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
   // props
 });

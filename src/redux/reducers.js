@@ -22,6 +22,10 @@ export const manageTheme = (state, action) => {
   }
 };
 
+/**
+ * @param {{ screen: string, projectName: string, collectionDir: string, itemDir: string, activeBlog: string }} state
+ * @param {{ type: any; projectName: any; collectionDir: any; itemDir: any; activeBlog: any; }} action
+ */
 export const manageProject = (state, action) => {
   if (state === undefined)
     return {

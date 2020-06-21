@@ -3,19 +3,6 @@ import jsonfile from "jsonfile";
 import fs from "fs";
 import generateHash from "../../utils/generateHash";
 
-const logger = (template) => {
-  let placeholder = {
-    type: "default",
-    data: [],
-  };
-  jsonfile.readFile(
-    process.cwd() + "/templates/" + template + ".json",
-    (err, val) => {
-      if (err) console.log("template error:", err);
-      else console.log("template:", val);
-    }
-  );
-};
 /**
  * @param {string} fileName
  * @param {fs.PathLike} projectDir

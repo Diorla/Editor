@@ -21,10 +21,16 @@ const Browser = ({ screen }) => {
   );
 };
 
+/**
+ * @param {{ screen: string; }} state
+ */
 const mapStateToProps = (state) => ({
   screen: state.screen,
 });
 
+/**
+ * @param {any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
   // props
 });

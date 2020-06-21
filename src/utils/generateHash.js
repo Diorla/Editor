@@ -1,3 +1,4 @@
+//@ts-check
 // Aside from preventing syntax error, "edtr" is also a signature
 // indicating it was created on the desktop editor
 export default () =>

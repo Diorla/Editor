@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * @param {{ openProject: (projectName: string)=>void; }} props
+ */
 const HomeNav = (props) => {
   const classes = useStyles();
   const { openProject } = props;
@@ -40,6 +43,9 @@ const HomeNav = (props) => {
   const [projectList, setProjectList] = useState([]);
   const projectDir = `${process.cwd()}/projects`;
 
+  /**
+   * @param {string} projectName
+   */
   const addNewProject = (projectName) => {
     fs.mkdir(`${projectDir}/${projectName}`, { recursive: true }, (err) => {
       if (err) console.log(err);
@@ -128,6 +134,9 @@ const HomeNav = (props) => {
   );
 };
 
+/**
+ * @param {any} state
+ */
 const mapStateToProps = (state) => ({
   // content: state.content,
 });

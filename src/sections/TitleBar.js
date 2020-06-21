@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * @param {{ project?: {projectName: string, collectionDir: string, itemDir: string, activeBlog: string}; changeTheme?: ()=> void; closeProject?: ()=> void; }} props
+ */
 const TitleBar = (props) => {
   const classes = useStyles();
   const { changeTheme, closeProject } = props;
@@ -65,10 +68,16 @@ const TitleBar = (props) => {
   );
 };
 
+/**
+ * @param {{ project: {projectName: string, collectionDir: string, itemDir: string, activeBlog: string}; }} state
+ */
 const mapStateToProps = (state) => ({
   project: state.project,
 });
 
+/**
+ * @param {(arg0: { type: string; }) => any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
   changeTheme: () =>
     dispatch({

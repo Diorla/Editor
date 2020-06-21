@@ -1,4 +1,7 @@
-const title = (word) =>
-  word.slice(0, 1).toUpperCase() + word.slice(1).toLocaleLowerCase();
+//@ts-check
 
-export default title;
+/**
+ * @param {string} word
+ */
+export default (word) =>
+  word.slice(0, 1).toUpperCase() + word.slice(1).toLocaleLowerCase();
