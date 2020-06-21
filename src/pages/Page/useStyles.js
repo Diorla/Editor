@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
   content: {
-    flexGrow: 1,
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
     display: "flex",
@@ -24,5 +23,23 @@ export default makeStyles((theme) => ({
     display: "flex",
     flex: 1,
     alignItems: "center",
+    justifyContent: "space-around",
+  },
+  row3: {
+    display: "flex",
+    flex: "3 !important",
+  },
+  row7: {
+    display: "flex",
+    flex: "7 !important",
+  },
+  fullWidth: {
+    width: "100%",
+  },
+  successButton: {
+    color: theme.palette.success.main,
+  },
+  dangerButton: {
+    color: theme.palette.error.main,
   },
 }));

@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core";
 import init from "./init";
 import Character from "./Character";
 import saveConfig from "./saveConfig";
+import Plot from "./Plot";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -41,6 +42,13 @@ const Page = ({ project }) => {
       {state.template === "Note" && <div>Note</div>}
       {state.template === "Objects" && <div>Objects</div>}
       {state.template === "Organisation" && <div>Organisation</div>}
+      {state.template === "Plot" && (
+        <Plot
+          state={state}
+          setState={setState}
+          itemDir={itemDir}
+        />
+      )}
       {state.template === "Story" && <div>Story</div>}
       {state.template === "World" && <div>World</div>}
     </main>
