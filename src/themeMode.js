@@ -18,6 +18,13 @@ export const darkTheme = createMuiTheme({
       contrastText: "white",
     },
   },
+  props: {
+    MuiTextField: {
+      style: {
+        margin: 2,
+      },
+    },
+  },
 });
 
 export const lightTheme = createMuiTheme({

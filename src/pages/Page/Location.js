@@ -1,7 +1,7 @@
 //@ts-check
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { TextField, Box, Typography } from "@material-ui/core";
+import { TextField, Box, Typography, Button } from "@material-ui/core";
 import {
   TimelineItem,
   TimelineOppositeContent,
@@ -12,7 +12,6 @@ import {
 } from "@material-ui/lab";
 import useStyles from "./useStyles";
 import { MdColorLens } from "react-icons/md";
-import { Button } from "@material-ui/core";
 import saveConfig from "./saveConfig";
 import Accordion from "../../components/Accordion";
 
@@ -30,7 +29,7 @@ const toggleColor = (colour) => {
 /**
  * @param {{ state: object; setState: (arg0: state)=> void; itemDir: string; }} props
  */
-const Plot = (props) => {
+const Location = (props) => {
   const { state, setState, itemDir } = props;
   const { scenes } = state;
   const classes = useStyles();
@@ -372,4 +371,4 @@ const mapDispatchToProps = (dispatch) => ({
   // props
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Plot);
+export default connect(mapStateToProps, mapDispatchToProps)(Location);

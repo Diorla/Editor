@@ -9,7 +9,8 @@ export default () => {
   return (
     <Provider store={store}>
       <Layout />
-      <style>{`
+      <style>
+        {`
           ::-webkit-scrollbar {
             width: 6px;
             background: ${isDarkMode ? "#232323" : "gray"}
@@ -18,7 +19,8 @@ export default () => {
             background-color: ${isDarkMode ? "gray" : "#303030"};
             height: 36px;
           }
-        `}</style>
+        `}
+      </style>
     </Provider>
   );
 };

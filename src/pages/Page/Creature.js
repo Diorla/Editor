@@ -8,7 +8,7 @@ import saveConfig from "./saveConfig";
 /**
  * @param {{ state: any; setState: any; itemDir: any; }} props
  */
-const Plot = (props) => {
+const Creature = (props) => {
   const { state, setState, itemDir } = props;
 
   const classes = useStyles();
@@ -192,4 +192,4 @@ const mapDispatchToProps = (dispatch) => ({
   // props
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Plot);
+export default connect(mapStateToProps, mapDispatchToProps)(Creature);

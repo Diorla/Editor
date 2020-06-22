@@ -13,6 +13,7 @@ export default makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.primary.main,
     fontWeight: "bold",
+    marginTop: 8,
   },
   expansionPanel: {
     margin: 0,
@@ -41,5 +42,9 @@ export default makeStyles((theme) => ({
   },
   dangerButton: {
     color: theme.palette.error.main,
+  },
+  column: {
+    display: "flex",
+    flexDirection: "column",
   },
 }));

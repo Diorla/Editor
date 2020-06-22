@@ -1,7 +1,7 @@
 //@ts-check
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { TextField, Box } from "@material-ui/core";
+import { TextField, Box, Button } from "@material-ui/core";
 import {
   TimelineItem,
   TimelineOppositeContent,
@@ -12,7 +12,6 @@ import {
 } from "@material-ui/lab";
 import useStyles from "./useStyles";
 import { MdColorLens } from "react-icons/md";
-import { Button } from "@material-ui/core";
 import saveConfig from "./saveConfig";
 
 /**

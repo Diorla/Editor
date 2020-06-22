@@ -25,7 +25,7 @@ Some are extensive with unique subgroup e.g.
 - Drawbacks: The bad part of using this ability e.g. the more you use it, the shorter you lifespan
 - Limitations: What are the things that seems possible but you can't do with this ability
 - Possible additions: You're thinking it, but you're not sure yet.
-- Specifics: it will a list of something you can do e.g. The force
+- Specific move: it will a list of something you can do e.g. The force
   - Mind control: Ability to make someone do what you like, especially if s/he is weakminded. Certain species and Jedi knights are immune to this.
   - Force choke: Can choke someone to death from a distance.
 - Notable people
