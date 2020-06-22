@@ -8,9 +8,8 @@ import saveConfig from "./saveConfig";
 /**
  * @param {{ state: object; setState: (arg0: state)=> void; itemDir: string; }} props
  */
-const Plot = (props) => {
+const Magic = (props) => {
   const { state, setState, itemDir } = props;
-  const { scenes } = state;
   const classes = useStyles();
   useEffect(() => {
     saveConfig(state, itemDir);
@@ -414,4 +413,4 @@ const mapDispatchToProps = (dispatch) => ({
   // props
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Plot);
+export default connect(mapStateToProps, mapDispatchToProps)(Magic);

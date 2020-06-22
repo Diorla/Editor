@@ -47,7 +47,7 @@ const TitleBar = (props) => {
   const { projectName, collectionDir, itemDir, activeBlog } = props.project;
   const title =
     activeBlog ||
-    path.basename(itemDir) ||
+    path.basename(itemDir, ".scrb") ||
     path.basename(collectionDir) ||
     projectName;
   return (

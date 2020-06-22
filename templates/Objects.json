@@ -1,6 +1,7 @@
 {
   "template": "Objects",
-  "description": "Con",
+  "description": "",
+  "creator": "",
   "history": "",
   "use": "",
   "safety": "",
@@ -9,8 +10,7 @@
   "cost": "",
   "availability": "",
   "regulation": "",
-  "creator": "",
   "owner": "",
-  "more": "",
-  "culture": ""
+  "culture": "",
+  "more": ""
 }
