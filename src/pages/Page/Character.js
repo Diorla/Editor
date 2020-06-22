@@ -465,6 +465,7 @@ export default (props) => {
               }
             />
             <Button
+              className={classes.dangerButton}
               onClick={() =>
                 setState({
                   ...state,
@@ -615,9 +616,9 @@ export default (props) => {
         header={<Typography className={classes.header}>Background</Typography>}
       >
         <TextField
-          label="Short term goal"
+          label="Family economic status"
           value={state.familyEconomicStatus}
-          placeholder=""
+          placeholder="Upper middle class"
           multiline
           onChange={(e) =>
             setState({
@@ -626,8 +627,9 @@ export default (props) => {
             })
           }
         />
+        <Typography className={classes.header}>Home town</Typography>
         <TextField
-          label="Short term goal"
+          label="Country"
           value={state.homeCountry}
           placeholder=""
           multiline
@@ -639,7 +641,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Sub country"
           value={state.homeSubcountry}
           placeholder=""
           multiline
@@ -651,7 +653,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="City"
           value={state.homeCity}
           placeholder=""
           multiline
@@ -663,9 +665,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Childhood"
           value={state.childhood}
-          placeholder=""
+          placeholder="Sheltered father and abusive mother"
           multiline
           onChange={(e) =>
             setState({
@@ -675,7 +677,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Favourite activity"
           value={state.favouriteActivity}
           placeholder=""
           multiline
@@ -687,9 +689,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Phobia"
           value={state.phobia}
-          placeholder=""
+          placeholder="Afraid of heights and spiders"
           multiline
           onChange={(e) =>
             setState({
@@ -699,9 +701,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Education history"
           value={state.educationHistory}
-          placeholder=""
+          placeholder="Went to FGC Ilorin and Obafemi Awolowo University"
           multiline
           onChange={(e) =>
             setState({
@@ -711,9 +713,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="School club"
           value={state.schoolClub}
-          placeholder=""
+          placeholder="Mathematics club, JET club, AV club"
           multiline
           onChange={(e) =>
             setState({
@@ -723,9 +725,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Job history"
           value={state.jobHistory}
-          placeholder=""
+          placeholder="Started as a waiter at MacDonalds and now he's the manager."
           multiline
           onChange={(e) =>
             setState({
@@ -735,9 +737,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Favourite place"
           value={state.favouritePlace}
-          placeholder=""
+          placeholder="He likes to go to museums, libraries and observatory"
           multiline
           onChange={(e) =>
             setState({
@@ -746,8 +748,11 @@ export default (props) => {
             })
           }
         />
+        <Typography className={classes.header}>
+          If they could change something in the past
+        </Typography>
         <TextField
-          label="Short term goal"
+          label="What would they change"
           value={state.whatToChangeInThePast}
           placeholder=""
           multiline
@@ -759,7 +764,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Why would they change it"
           value={state.whyChangeThePast}
           placeholder=""
           multiline
@@ -771,9 +776,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Major turning point"
           value={state.turningPoint}
-          placeholder=""
+          placeholder="When he got admitted into college"
           multiline
           onChange={(e) =>
             setState({
@@ -783,7 +788,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Earliest memory"
           value={state.earliestMemory}
           placeholder=""
           multiline
@@ -795,7 +800,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Happiest memory"
           value={state.happiestMemory}
           placeholder=""
           multiline
@@ -807,7 +812,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Saddest memory"
           value={state.saddestMemory}
           placeholder=""
           multiline
@@ -819,9 +824,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Clearest memory"
           value={state.clearestMemory}
-          placeholder=""
+          placeholder="He could remember it, just like it happened yesterday even 10 years after the event"
           multiline
           onChange={(e) =>
             setState({
@@ -831,7 +836,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Criminal record"
           value={state.criminalRecord}
           placeholder=""
           multiline
@@ -843,9 +848,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Dream job"
           value={state.dreamJob}
-          placeholder=""
+          placeholder="As a kid, all he ever wanted to be is a firefighter"
           multiline
           onChange={(e) =>
             setState({
@@ -855,9 +860,9 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Favourite object"
           value={state.favouriteObject}
-          placeholder=""
+          placeholder="A locket with the photo of his deceased parent"
           multiline
           onChange={(e) =>
             setState({
@@ -867,7 +872,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Role model"
           value={state.roleModel}
           placeholder=""
           multiline
@@ -879,7 +884,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Regret"
           value={state.regret}
           placeholder=""
           multiline
@@ -891,7 +896,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="Big secret"
           value={state.bigSecret}
           placeholder=""
           multiline
@@ -903,7 +908,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label="More"
           value={state.background}
           placeholder=""
           multiline
@@ -920,7 +925,7 @@ export default (props) => {
         header={<Typography className={classes.header}>Mannerisms</Typography>}
       >
         <TextField
-          label="Short term goal"
+          label=""
           value={state.speechStyle}
           placeholder=""
           multiline
@@ -932,7 +937,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.speechTempo}
           placeholder=""
           multiline
@@ -944,7 +949,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.voice}
           placeholder=""
           multiline
@@ -956,7 +961,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.nonVerbal}
           placeholder=""
           multiline
@@ -968,7 +973,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.speechImpediment}
           placeholder=""
           multiline
@@ -980,7 +985,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.catchPhrase}
           placeholder=""
           multiline
@@ -992,7 +997,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.curseWord}
           placeholder=""
           multiline
@@ -1004,7 +1009,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.laughter}
           placeholder=""
           multiline
@@ -1016,7 +1021,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.smile}
           placeholder=""
           multiline
@@ -1028,7 +1033,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.restingFace}
           placeholder=""
           multiline
@@ -1040,7 +1045,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.likes}
           placeholder=""
           multiline
@@ -1052,7 +1057,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.dislikes}
           placeholder=""
           multiline
@@ -1064,7 +1069,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.hobbies}
           placeholder=""
           multiline
@@ -1076,7 +1081,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.badHabit}
           placeholder=""
           multiline
@@ -1088,7 +1093,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.quirks}
           placeholder=""
           multiline
@@ -1100,7 +1105,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.boringStuff}
           placeholder=""
           multiline
@@ -1112,7 +1117,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.annoyingStuff}
           placeholder=""
           multiline
@@ -1124,7 +1129,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.habit}
           placeholder=""
           multiline
@@ -1148,7 +1153,7 @@ export default (props) => {
         header={<Typography className={classes.header}>Perception</Typography>}
       >
         <TextField
-          label="Short term goal"
+          label=""
           value={state.self}
           placeholder=""
           multiline
@@ -1160,7 +1165,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.immediateFamily}
           placeholder=""
           multiline
@@ -1172,7 +1177,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.extendedFamily}
           placeholder=""
           multiline
@@ -1184,7 +1189,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.friends}
           placeholder=""
           multiline
@@ -1196,7 +1201,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.acquaintances}
           placeholder=""
           multiline
@@ -1208,7 +1213,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.colleagues}
           placeholder=""
           multiline
@@ -1220,7 +1225,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.subordinates}
           placeholder=""
           multiline
@@ -1232,7 +1237,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.authorityFigure}
           placeholder=""
           multiline
@@ -1244,7 +1249,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.confidant}
           placeholder=""
           multiline
@@ -1256,7 +1261,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.oppositeSex}
           placeholder=""
           multiline
@@ -1268,7 +1273,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.adversary}
           placeholder=""
           multiline
@@ -1280,7 +1285,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.stranger}
           placeholder=""
           multiline
@@ -1292,7 +1297,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.groupDynamic}
           placeholder=""
           multiline
@@ -1304,7 +1309,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.dependable}
           placeholder=""
           multiline
@@ -1316,7 +1321,7 @@ export default (props) => {
           }
         />
         <TextField
-          label="Short term goal"
+          label=""
           value={state.perception}
           placeholder=""
           multiline
