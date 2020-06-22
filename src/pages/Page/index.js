@@ -6,7 +6,18 @@ import init from "./init";
 import Character from "./Character";
 import Plot from "./Plot";
 import Creature from "./Creature";
+import Location from "./Location";
 
+// TODO: Remove <Note />
+/**
+ * Note will be provided via the titlebar and accessible from anywhere
+ * in the app.
+ * And the default template will serve as purpose of generic no format
+ * template. 
+ * In the note, I will add "clipboard icon" to each textinput, so that user
+ * can just copy the content of that textfield. 
+ * So, I will have to create a store.clipboard(string) as well as store.notes(an array)
+ */
 const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
@@ -35,7 +46,9 @@ const Page = ({ project }) => {
         <Creature state={state} setState={setState} itemDir={itemDir} />
       )}
       {state.template === "Default" && <div>Default</div>}
-      {state.template === "Location" && <div>Location</div>}
+      {state.template === "Location" && (
+        <Location state={state} setState={setState} itemDir={itemDir} />
+      )}
       {state.template === "Magic" && <div>Magic</div>}
       {state.template === "Note" && <div>Note</div>}
       {state.template === "Objects" && <div>Objects</div>}

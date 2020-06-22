@@ -1,7 +1,7 @@
 //@ts-check
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { TextField, Box, Link } from "@material-ui/core";
+import { TextField, Box } from "@material-ui/core";
 import {
   TimelineItem,
   TimelineOppositeContent,
@@ -26,7 +26,7 @@ const toggleColor = (colour) => {
   else return "primary";
 };
 /**
- * @param {{ state: any; setState: any; itemDir: any; }} props
+ * @param {{ state: object; setState: (arg0: state)=> void; itemDir: string; }} props
  */
 const Plot = (props) => {
   const { state, setState, itemDir } = props;
@@ -60,7 +60,7 @@ const Plot = (props) => {
               {
                 date: "",
                 content: "",
-                colour: "",
+                colour: "inherit",
               },
               ...events,
             ],
@@ -71,7 +71,7 @@ const Plot = (props) => {
       </Button>
       {events.map(
         /**
-         * @param {{ date: string; content: string; colour: "primary"|"secondary"|"grey"; }} event
+         * @param {{ date: string; content: string; colour: "primary"|"secondary"|"grey"|"inherit"; }} event
          * @param {number} idx
          */
         (event, idx) => (
