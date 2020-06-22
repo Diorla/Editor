@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import init from "./init";
 import Character from "./Character";
-import saveConfig from "./saveConfig";
 import Plot from "./Plot";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,11 +28,7 @@ const Page = ({ project }) => {
   return (
     <main className={classes.content}>
       {state.template === "Character" && (
-        <Character
-          state={state}
-          setState={setState}
-          saveConfig={() => saveConfig(state, itemDir)}
-        />
+        <Character state={state} setState={setState} itemDir={itemDir} />
       )}
       {state.template === "Creature" && <div>Creature</div>}
       {state.template === "Default" && <div>Default</div>}
@@ -43,11 +38,7 @@ const Page = ({ project }) => {
       {state.template === "Objects" && <div>Objects</div>}
       {state.template === "Organisation" && <div>Organisation</div>}
       {state.template === "Plot" && (
-        <Plot
-          state={state}
-          setState={setState}
-          itemDir={itemDir}
-        />
+        <Plot state={state} setState={setState} itemDir={itemDir} />
       )}
       {state.template === "Story" && <div>Story</div>}
       {state.template === "World" && <div>World</div>}

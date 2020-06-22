@@ -1,15 +1,23 @@
 //@ts-check
-import React from "react";
+import React, { useEffect } from "react";
 import useStyles from "./useStyles";
 import { Box, Typography, TextField, Button } from "@material-ui/core";
 import Accordion from "../../components/Accordion";
+import saveConfig from "./saveConfig";
 
 /**
- * @param {{ state: object; setState: (arg0: object)=> void; saveConfig: ()=>void; }} props
+ * @param {{ state: object; setState: (arg0: object)=> void; itemDir: string }} props
  */
 export default (props) => {
-  const { state, setState, saveConfig } = props;
   const classes = useStyles();
+  const { state, setState, itemDir } = props;
+  useEffect(() => {
+    saveConfig(state, itemDir);
+    return () => {
+      console.log("unmounting");
+    };
+  }, [state]);
+
   return (
     <Box>
       <Accordion
@@ -26,7 +34,6 @@ export default (props) => {
               name: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Age"
@@ -39,7 +46,6 @@ export default (props) => {
               age: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Gender"
@@ -52,7 +58,6 @@ export default (props) => {
               gender: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Birthday"
@@ -65,7 +70,6 @@ export default (props) => {
               birthday: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Blood group"
@@ -78,7 +82,6 @@ export default (props) => {
               bloodGroup: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <Typography className={classes.header}>Place of birth</Typography>
         <TextField
@@ -92,7 +95,6 @@ export default (props) => {
               birthCountry: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Sub country"
@@ -105,7 +107,6 @@ export default (props) => {
               birthSubCountry: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="City"
@@ -118,7 +119,6 @@ export default (props) => {
               birthCity: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <Typography className={classes.header}>Residence</Typography>
         <TextField
@@ -132,7 +132,6 @@ export default (props) => {
               residentCountry: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Sub country"
@@ -145,7 +144,6 @@ export default (props) => {
               residentSubcountry: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="City"
@@ -158,7 +156,6 @@ export default (props) => {
               residentCity: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Education level"
@@ -171,7 +168,6 @@ export default (props) => {
               education: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Occupation"
@@ -184,7 +180,6 @@ export default (props) => {
               occupation: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Social status"
@@ -197,7 +192,6 @@ export default (props) => {
               socialStatus: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="More"
@@ -210,7 +204,6 @@ export default (props) => {
               basic: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
       </Accordion>
 
@@ -228,7 +221,6 @@ export default (props) => {
               height: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Body build"
@@ -241,7 +233,6 @@ export default (props) => {
               build: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Skin tone"
@@ -254,7 +245,6 @@ export default (props) => {
               skinTone: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Facial features"
@@ -267,7 +257,6 @@ export default (props) => {
               face: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Hair"
@@ -280,7 +269,6 @@ export default (props) => {
               hair: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Eyes"
@@ -293,7 +281,6 @@ export default (props) => {
               eye: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Distinguishing features"
@@ -306,7 +293,6 @@ export default (props) => {
               distinguishingFeatures: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Preferred outfit"
@@ -319,7 +305,6 @@ export default (props) => {
               preferredOutfit: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Accessories"
@@ -332,7 +317,6 @@ export default (props) => {
               accessories: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Grooming"
@@ -345,7 +329,6 @@ export default (props) => {
               grooming: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Health"
@@ -358,7 +341,6 @@ export default (props) => {
               health: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Gait"
@@ -371,7 +353,6 @@ export default (props) => {
               gait: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Posture"
@@ -384,7 +365,6 @@ export default (props) => {
               posture: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Handwriting"
@@ -397,7 +377,6 @@ export default (props) => {
               handwriting: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="More"
@@ -410,7 +389,6 @@ export default (props) => {
               physical: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
       </Accordion>
 
@@ -428,7 +406,6 @@ export default (props) => {
               role: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -441,7 +418,6 @@ export default (props) => {
               shortGoal: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Long term goal"
@@ -454,7 +430,6 @@ export default (props) => {
               goal: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Motivation"
@@ -467,7 +442,6 @@ export default (props) => {
               motivation: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <Typography className={classes.header}>Story arc</Typography>
         {state.arcs.map((arc, idx) => (
@@ -489,7 +463,6 @@ export default (props) => {
                   ],
                 })
               }
-              onBlur={saveConfig}
             />
             <Button
               onClick={() =>
@@ -527,7 +500,6 @@ export default (props) => {
               characterType: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Back story"
@@ -540,7 +512,6 @@ export default (props) => {
               backStory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Describe in three words"
@@ -553,7 +524,6 @@ export default (props) => {
               threeWords: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="The lie"
@@ -566,7 +536,6 @@ export default (props) => {
               lie: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="The truth"
@@ -579,7 +548,6 @@ export default (props) => {
               truth: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="External conflict"
@@ -592,7 +560,6 @@ export default (props) => {
               externalConflict: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Internal conflict"
@@ -605,7 +572,6 @@ export default (props) => {
               internalConflict: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Strengths"
@@ -618,7 +584,6 @@ export default (props) => {
               strength: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Flaws"
@@ -631,7 +596,6 @@ export default (props) => {
               flaw: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="More"
@@ -644,7 +608,6 @@ export default (props) => {
               story: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
       </Accordion>
 
@@ -662,7 +625,6 @@ export default (props) => {
               familyEconomicStatus: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -675,7 +637,6 @@ export default (props) => {
               homeCountry: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -688,7 +649,6 @@ export default (props) => {
               homeSubcountry: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -701,7 +661,6 @@ export default (props) => {
               homeCity: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -714,7 +673,6 @@ export default (props) => {
               childhood: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -727,7 +685,6 @@ export default (props) => {
               favouriteActivity: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -740,7 +697,6 @@ export default (props) => {
               phobia: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -753,7 +709,6 @@ export default (props) => {
               educationHistory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -766,7 +721,6 @@ export default (props) => {
               schoolClub: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -779,7 +733,6 @@ export default (props) => {
               jobHistory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -792,7 +745,6 @@ export default (props) => {
               favouritePlace: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -805,7 +757,6 @@ export default (props) => {
               whatToChangeInThePast: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -818,7 +769,6 @@ export default (props) => {
               whyChangeThePast: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -831,7 +781,6 @@ export default (props) => {
               turningPoint: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -844,7 +793,6 @@ export default (props) => {
               earliestMemory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -857,7 +805,6 @@ export default (props) => {
               happiestMemory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -870,7 +817,6 @@ export default (props) => {
               saddestMemory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -883,7 +829,6 @@ export default (props) => {
               clearestMemory: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -896,7 +841,6 @@ export default (props) => {
               criminalRecord: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -909,7 +853,6 @@ export default (props) => {
               dreamJob: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -922,7 +865,6 @@ export default (props) => {
               favouriteObject: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -935,7 +877,6 @@ export default (props) => {
               roleModel: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -948,7 +889,6 @@ export default (props) => {
               regret: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -961,7 +901,6 @@ export default (props) => {
               bigSecret: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -974,7 +913,6 @@ export default (props) => {
               background: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
       </Accordion>
 
@@ -992,7 +930,6 @@ export default (props) => {
               speechStyle: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1005,7 +942,6 @@ export default (props) => {
               speechTempo: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1018,7 +954,6 @@ export default (props) => {
               voice: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1031,7 +966,6 @@ export default (props) => {
               nonVerbal: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1044,7 +978,6 @@ export default (props) => {
               speechImpediment: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1057,7 +990,6 @@ export default (props) => {
               catchPhrase: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1070,7 +1002,6 @@ export default (props) => {
               curseWord: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1083,7 +1014,6 @@ export default (props) => {
               laughter: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1096,7 +1026,6 @@ export default (props) => {
               smile: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1109,7 +1038,6 @@ export default (props) => {
               restingFace: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1122,7 +1050,6 @@ export default (props) => {
               likes: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1135,7 +1062,6 @@ export default (props) => {
               dislikes: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1148,7 +1074,6 @@ export default (props) => {
               hobbies: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1161,7 +1086,6 @@ export default (props) => {
               badHabit: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1174,7 +1098,6 @@ export default (props) => {
               quirks: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1187,7 +1110,6 @@ export default (props) => {
               boringStuff: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1200,7 +1122,6 @@ export default (props) => {
               annoyingStuff: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1213,7 +1134,6 @@ export default (props) => {
               habit: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
       </Accordion>
 
@@ -1238,7 +1158,6 @@ export default (props) => {
               self: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1251,7 +1170,6 @@ export default (props) => {
               immediateFamily: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1264,7 +1182,6 @@ export default (props) => {
               extendedFamily: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1277,7 +1194,6 @@ export default (props) => {
               friends: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1290,7 +1206,6 @@ export default (props) => {
               acquaintances: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1303,7 +1218,6 @@ export default (props) => {
               colleagues: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1316,7 +1230,6 @@ export default (props) => {
               subordinates: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1329,7 +1242,6 @@ export default (props) => {
               authorityFigure: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1342,7 +1254,6 @@ export default (props) => {
               confidant: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1355,7 +1266,6 @@ export default (props) => {
               oppositeSex: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1368,7 +1278,6 @@ export default (props) => {
               adversary: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1381,7 +1290,6 @@ export default (props) => {
               stranger: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1394,7 +1302,6 @@ export default (props) => {
               groupDynamic: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1407,7 +1314,6 @@ export default (props) => {
               dependable: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
         <TextField
           label="Short term goal"
@@ -1420,7 +1326,6 @@ export default (props) => {
               perception: e.target.value,
             })
           }
-          onBlur={saveConfig}
         />
       </Accordion>
       <Accordion
