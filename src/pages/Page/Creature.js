@@ -24,6 +24,7 @@ const Creature = (props) => {
         value={state.name}
         label="Title"
         placeholder=""
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -33,6 +34,7 @@ const Creature = (props) => {
       />
       <TextField
         value={state.contrast}
+        multiline
         label="Contrast"
         placeholder="This creature is most similar to a dog"
         onChange={(e) =>
@@ -46,6 +48,7 @@ const Creature = (props) => {
         value={state.physical}
         label="Physical appearance"
         placeholder="Shape, colour, size etc"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -57,6 +60,7 @@ const Creature = (props) => {
         value={state.habitat}
         label="Habitat"
         placeholder="Where they live ie. geographic distribution"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -68,6 +72,7 @@ const Creature = (props) => {
         value={state.locomotion}
         label="Locomotion"
         placeholder="How many limbs, can fly (with or without wings)"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -79,6 +84,7 @@ const Creature = (props) => {
         value={state.basicNeed}
         label="Basic need"
         placeholder="Requires oxygen, water, food and sleep"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -90,6 +96,7 @@ const Creature = (props) => {
         value={state.nutrition}
         label="Contrast"
         placeholder="Canivorous, prefers to eat rat"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -101,6 +108,7 @@ const Creature = (props) => {
         value={state.interaction}
         label="Interacts"
         placeholder="How they communicate with their environment ie. senses like sight and sound, camouflage, mimicry"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -112,6 +120,7 @@ const Creature = (props) => {
         value={state.growth}
         label="Growth and development"
         placeholder="Rate of growh, maturity, developemental milestone"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -123,6 +132,7 @@ const Creature = (props) => {
         value={state.excretion}
         label="Excretion"
         placeholder="Types and frequency e.g. Faeces, sweat, carbon dioxide, urine, molting, shed fur"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -134,6 +144,7 @@ const Creature = (props) => {
         value={state.reproduction}
         label="Reproduction"
         placeholder="Genders, types of mating, offsprings, internal or external fertilisation), infant care(e.g. lactation)"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -145,6 +156,7 @@ const Creature = (props) => {
         value={state.culture}
         label="Cultural significance"
         placeholder="How the creature are viewed in the society, dispicted in literature, films or even flags"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -156,6 +168,7 @@ const Creature = (props) => {
         value={state.death}
         label="Death"
         placeholder="Average life span, weakness and strengths, and predators"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -167,6 +180,7 @@ const Creature = (props) => {
         value={state.more}
         label="More"
         placeholder="Any additional information"
+        multiline
         onChange={(e) =>
           setState({
             ...state,

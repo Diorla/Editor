@@ -110,7 +110,6 @@ const Folder = (props) => {
           <option value="Creature">Creature</option>
           <option value="Location">Location</option>
           <option value="Magic">Magic</option>
-          <option value="Note">Note</option>
           <option value="Objects">Object</option>
           <option value="Organisation">Organisation</option>
           <option value="Plot">Plot</option>

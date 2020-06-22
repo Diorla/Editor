@@ -49,6 +49,7 @@ const Creature = (props) => {
                 value={datum.title}
                 label="Title"
                 placeholder="This is title"
+                multiline
                 className={classes.fullWidth}
                 onChange={(e) =>
                   setState({
@@ -104,6 +105,7 @@ const Creature = (props) => {
               value={datum.content}
               label="Content"
               placeholder=""
+              multiline
               onChange={(e) =>
                 setState({
                   ...state,

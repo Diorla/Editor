@@ -41,6 +41,7 @@ const Plot = (props) => {
     <main className={classes.content}>
       <TextField
         value={state.name}
+        multiline
         label="Title"
         placeholder="Main plot, Season 1, Protagonist plot"
         onChange={(e) =>
@@ -82,6 +83,7 @@ const Plot = (props) => {
                   className={classes.fullWidth}
                   label="Period"
                   placeholder="5 years ago, 24th June"
+                  multiline
                   onChange={(e) =>
                     setState({
                       ...state,
@@ -158,8 +160,8 @@ const Plot = (props) => {
               <TextField
                 value={event.content}
                 label="Event"
-                placeholder="It was his last day at Veritage academy and he was going to make the best out of it."
                 multiline
+                placeholder="It was his last day at Veritage academy and he was going to make the best out of it."
                 className={classes.fullWidth}
                 onChange={(e) =>
                   setState({

@@ -48,6 +48,7 @@ const Location = (props) => {
           value={state.name}
           label="Title"
           placeholder=""
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -58,6 +59,7 @@ const Location = (props) => {
         <TextField
           value={state.category}
           label="Category"
+          multiline
           placeholder="Indoors or outdoors"
           onChange={(e) =>
             setState({
@@ -69,6 +71,7 @@ const Location = (props) => {
         <TextField
           value={state.type}
           label="Type of location"
+          multiline
           placeholder="Bedroom, hallway, garage, park etc"
           onChange={(e) =>
             setState({
@@ -80,6 +83,7 @@ const Location = (props) => {
         <TextField
           value={state.composition}
           label="Composition"
+          multiline
           placeholder="List all the materials in that location e.g the furniture, the bill board"
           onChange={(e) =>
             setState({
@@ -91,6 +95,7 @@ const Location = (props) => {
         <TextField
           value={state.sight}
           label="Description"
+          multiline
           placeholder="What you can see in terms of shape, colour, size position and relative distance between each of them."
           onChange={(e) =>
             setState({
@@ -103,6 +108,7 @@ const Location = (props) => {
           value={state.smell}
           label="Smell"
           placeholder="Describe the air, fresh, polluted with exhaut pipes"
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -114,6 +120,7 @@ const Location = (props) => {
           value={state.sound}
           label="Sound"
           placeholder="Noise level, source of sound e.g. traffick, crickets, music blaring"
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -124,6 +131,7 @@ const Location = (props) => {
         <TextField
           value={state.feeling}
           label="Feeling"
+          multiline
           placeholder="How it makes you feel, e.g. prison(afraid), orphanage(sad), national capital(awe)"
           onChange={(e) =>
             setState({
@@ -135,6 +143,7 @@ const Location = (props) => {
         <TextField
           value={state.esp}
           label="Extra sensory perception"
+          multiline
           placeholder="This is specific to supernatural or sci-fi genres e.g. haunted"
           onChange={(e) =>
             setState({
@@ -147,6 +156,7 @@ const Location = (props) => {
           value={state.importance}
           label="Importance"
           placeholder="The basic function or importance of the site"
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -158,6 +168,7 @@ const Location = (props) => {
           value={state.environment}
           label="Environment"
           placeholder="Weather,temperature or even the climate. Dry hot air, freezing"
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -169,6 +180,7 @@ const Location = (props) => {
           value={state.creatures}
           label="Creatures"
           placeholder="Living organisms e.g. animals, people, trees, rodents, insects etc."
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -180,6 +192,7 @@ const Location = (props) => {
           value={state.landmark}
           label="Landmark"
           placeholder="Important structure, paintings, furniture etc. Something that stands out."
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -191,6 +204,7 @@ const Location = (props) => {
           value={state.more}
           label="More"
           placeholder="Any additional information"
+          multiline
           onChange={(e) =>
             setState({
               ...state,
@@ -235,6 +249,7 @@ const Location = (props) => {
                     className={classes.fullWidth}
                     label="Period"
                     placeholder="5 years ago, 24th June"
+                    multiline
                     onChange={(e) =>
                       setState({
                         ...state,
@@ -254,6 +269,7 @@ const Location = (props) => {
                     className={classes.fullWidth}
                     label="Event"
                     placeholder="Robbery"
+                    multiline
                     onChange={(e) =>
                       setState({
                         ...state,

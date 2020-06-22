@@ -24,6 +24,7 @@ const Plot = (props) => {
         value={state.name}
         label="Title"
         placeholder="Bending, esoterism, the force, waterbending etc"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -35,6 +36,7 @@ const Plot = (props) => {
         value={state.description}
         label="Description"
         placeholder="The ability to conjure things out of thin air"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -46,6 +48,7 @@ const Plot = (props) => {
         value={state.system}
         label="System"
         placeholder="A collection or group that it belongs to e.g. waterbending belongs to bending."
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -57,6 +60,7 @@ const Plot = (props) => {
         value={state.race}
         label="Race"
         placeholder="A race or specie that can use or possess this ability"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -68,6 +72,7 @@ const Plot = (props) => {
         value={state.prevalence}
         label="Prevalence"
         placeholder="The percentage of the population that have it., Perhaps according to race, gender etc"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -87,7 +92,8 @@ const Plot = (props) => {
               className={classes.fullWidth}
               value={rule}
               label={`Rule ${idx + 1}`}
-              placeholder="First, you need a wand to do magic, and then appropriate speel"
+              placeholder="First, you need a wand to do magic, and then appropriate spell"
+              multiline
               onChange={(e) =>
                 setState({
                   ...state,
@@ -133,6 +139,7 @@ const Plot = (props) => {
         value={state.importance}
         label="Importance"
         placeholder="The significance of the ability to the story or a plot"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -144,6 +151,7 @@ const Plot = (props) => {
         value={state.requirements}
         label="Feeling"
         placeholder="The tools needed to use this ability, e.g. innate, inheritance, certain object"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -155,6 +163,7 @@ const Plot = (props) => {
         value={state.improvements}
         label="Improving"
         placeholder="How does someone gets better, age, training, stealing it from other people."
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -175,6 +184,7 @@ const Plot = (props) => {
               value={rank}
               label={`Rank ${idx + 1}`}
               placeholder="Apprentice, master, grandmaster"
+              multiline
               onChange={(e) =>
                 setState({
                   ...state,
@@ -220,6 +230,7 @@ const Plot = (props) => {
         value={state.strength}
         label="Strength"
         placeholder="The advantage to using this ability"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -231,6 +242,7 @@ const Plot = (props) => {
         value={state.weakness}
         label="Environment"
         placeholder="How the ability can be exploited by opponents"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -242,6 +254,7 @@ const Plot = (props) => {
         value={state.drawbacks}
         label="Creatures"
         placeholder="Negative effect of the ability e.g. shorter lifespan, losing ones' soul"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -253,6 +266,7 @@ const Plot = (props) => {
         value={state.limitations}
         label="Limitations"
         placeholder="Restrictions based on law, biology or any other means"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
@@ -273,6 +287,7 @@ const Plot = (props) => {
               value={move}
               label={`Move ${idx + 1}`}
               placeholder="Chokehold, mind control, telekinesis"
+              multiline
               onChange={(e) =>
                 setState({
                   ...state,
@@ -326,6 +341,7 @@ const Plot = (props) => {
               className={classes.fullWidth}
               value={addition}
               label={`Addition ${idx + 1}`}
+              multiline
               placeholder="Possible additions to the ability, perhaps speculative or you're not sure yet."
               onChange={(e) =>
                 setState({
@@ -372,6 +388,7 @@ const Plot = (props) => {
         value={state.more}
         label="More"
         placeholder="Any additional information"
+        multiline
         onChange={(e) =>
           setState({
             ...state,
