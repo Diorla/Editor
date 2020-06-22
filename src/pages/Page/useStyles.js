@@ -47,4 +47,12 @@ export default makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  group: {
+    display: "flex",
+    flexDirection: "column",
+    background: "rgba(0, 0, 0, 0.2)",
+    margin: 8,
+    marginRight: 0,
+    marginLeft: 0,
+  },
 }));

@@ -8,6 +8,7 @@ import Plot from "./Plot";
 import Creature from "./Creature";
 import Location from "./Location";
 import Magic from "./Magic";
+import Default from "./Default";
 
 // TODO: More on <Note />
 /**
@@ -46,7 +47,9 @@ const Page = ({ project }) => {
       {state.template === "Creature" && (
         <Creature state={state} setState={setState} itemDir={itemDir} />
       )}
-      {state.template === "Default" && <div>Default</div>}
+      {state.template === "Default" && (
+        <Default state={state} setState={setState} itemDir={itemDir} />
+      )}
       {state.template === "Location" && (
         <Location state={state} setState={setState} itemDir={itemDir} />
       )}

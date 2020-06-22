@@ -20,7 +20,7 @@ export default (projectDir, folderName, setFolderList, setFolderName) => {
           id: generateHash(),
           title: folderName,
           description: "",
-          template: "",
+          template: "Default",
         },
         (err) => console.log(err)
       );
