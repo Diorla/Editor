@@ -10,6 +10,7 @@ import Location from "./Location";
 import Magic from "./Magic";
 import Default from "./Default";
 import Objects from "./Objects";
+import Organisation from "./Organisation";
 
 // TODO: More on <Note />
 /**
@@ -60,7 +61,9 @@ const Page = ({ project }) => {
       {state.template === "Objects" && (
         <Objects state={state} setState={setState} itemDir={itemDir} />
       )}
-      {state.template === "Organisation" && <div>Organisation</div>}
+      {state.template === "Organisation" && (
+        <Organisation state={state} setState={setState} itemDir={itemDir} />
+      )}
       {state.template === "Plot" && (
         <Plot state={state} setState={setState} itemDir={itemDir} />
       )}
