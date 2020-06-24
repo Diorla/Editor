@@ -1077,185 +1077,120 @@ export default (props) => {
       <Accordion
         header={<Typography className={classes.header}>Perception</Typography>}
       >
-        <TextField
-          label=""
-          value={state.self}
+        <Box className={classes.group}>
+          <Typography color="primary">
+            The impression peole have about the character
+          </Typography>
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="self"
+            placeholder="What the character thinks of himself or herself"
+            label="Self"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="immediateFamily"
+            placeholder="Nuclear family like spouse, childen or parents"
+            label="Immediate family"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="extendedFamily"
+            placeholder="Extended family like uncles, aunts, nieces, nephews, grandparents etc"
+            label="Extende family"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="friends"
+            placeholder="His friends thinks he's the coolest guy on earth"
+            label="Friends"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="acquaintances"
+            placeholder="People who know the character"
+            label="Acquaintances"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="colleagues"
+            placeholder="Co-workers, classmates, associates, teammates etc"
+            label="Colleagues"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="subordinates"
+            placeholder="Lower in rank or status"
+            label="Subordinates"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="authorityFigure"
+            placeholder="Police, school principal, Human Resources"
+            label="Authority figure"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="confidant"
+            placeholder="A person somebody trusts and discusses personal matters and problems with"
+            label="Confidant"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="oppositeSex"
+            placeholder="This is in the scope of sexual tension and it may include people of the same gender especially if the character is not heterosexual."
+            label="Opposite sex"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="adversary"
+            placeholder="Rivals, competitor or enemies"
+            label="Adversary"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="stranger"
+            placeholder="First impression"
+            label="Stranger"
+          />
+        </Box>
+        <Box className={classes.group}>
+          <Typography color="primary">
+            Their role among friends, a group or association
+          </Typography>
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="groupDynamic"
+            placeholder="The joker, the leader, the reasonable one, the moocher, the smart one etc."
+            label="Group dynamic"
+          />
+          <SimpleInput
+            state={state}
+            setState={setState}
+            objectKey="dependable"
+            placeholder="Advice, crying shoulder, wingman, fun time"
+            label="Dependability"
+          />
+        </Box>
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="perception"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              self: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.immediateFamily}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              immediateFamily: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.extendedFamily}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              extendedFamily: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.friends}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              friends: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.acquaintances}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              acquaintances: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.colleagues}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              colleagues: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.subordinates}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              subordinates: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.authorityFigure}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              authorityFigure: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.confidant}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              confidant: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.oppositeSex}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              oppositeSex: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.adversary}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              adversary: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.stranger}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              stranger: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.groupDynamic}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              groupDynamic: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.dependable}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              dependable: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label=""
-          value={state.perception}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              perception: e.target.value,
-            })
-          }
+          label="More"
         />
       </Accordion>
       <Accordion
