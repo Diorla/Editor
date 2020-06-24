@@ -4,6 +4,7 @@ import useStyles from "./useStyles";
 import { Box, Typography, TextField, Button } from "@material-ui/core";
 import Accordion from "../../components/Accordion";
 import saveConfig from "./saveConfig";
+import { SimpleInput } from "../../components/Input";
 
 /**
  * @param {{ state: object; setState: (arg0: object)=> void; itemDir: string }} props
@@ -924,221 +925,131 @@ export default (props) => {
       <Accordion
         header={<Typography className={classes.header}>Mannerisms</Typography>}
       >
-        <TextField
-          label=""
-          value={state.speechStyle}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Speech style"
+          objectKey="speechStyle"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              speechStyle: e.target.value,
-            })
-          }
         />
-        <TextField
-          label=""
-          value={state.speechTempo}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Speech tempo"
+          objectKey="speechTempo"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              speechTempo: e.target.value,
-            })
-          }
         />
-        <TextField
-          label=""
-          value={state.voice}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              voice: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Voice"
+          objectKey="voice"
+          placeholder="High pitched, croaking, low voice"
         />
-        <TextField
-          label=""
-          value={state.nonVerbal}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              nonVerbal: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Body gestures"
+          objectKey="nonVerbal"
+          placeholder="Compulsive hand talker, eye twitches during public speeches"
         />
-        <TextField
-          label=""
-          value={state.speechImpediment}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              speechImpediment: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Speech impediments"
+          objectKey="speechImpediment"
+          placeholder="stutter, can't pronounce 'r'"
         />
-        <TextField
-          label=""
-          value={state.catchPhrase}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              catchPhrase: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Catch phrase"
+          objectKey="catchPhrase"
+          placeholder="I'm too old for this. Engage!"
         />
-        <TextField
-          label=""
-          value={state.curseWord}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              curseWord: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Curse word"
+          objectKey="curseWord"
+          placeholder="Fuck! Damn! Never curses."
         />
-        <TextField
-          label=""
-          value={state.laughter}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              laughter: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Laughter"
+          objectKey="laughter"
+          placeholder="croaky, snorty"
         />
-        <TextField
-          label=""
-          value={state.smile}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              smile: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Smile"
+          objectKey="smile"
+          placeholder="Crooked, toothy, gap toothed"
         />
-        <TextField
-          label=""
-          value={state.restingFace}
-          placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              restingFace: e.target.value,
-            })
-          }
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Resting face"
+          objectKey="restingFace"
+          placeholder="Angry, smirk, always with a smile"
         />
-        <TextField
-          label=""
-          value={state.likes}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Likes"
+          objectKey="likes"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              likes: e.target.value,
-            })
-          }
         />
-        <TextField
-          label=""
-          value={state.dislikes}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          label="Dislikes"
+          objectKey="dislikes"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              dislikes: e.target.value,
-            })
-          }
         />
-        <TextField
-          label=""
-          value={state.hobbies}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="hobbies"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              hobbies: e.target.value,
-            })
-          }
+          label="Hobbies"
         />
-        <TextField
-          label=""
-          value={state.badHabit}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="badHabit"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              badHabit: e.target.value,
-            })
-          }
+          label="Bad habits"
         />
-        <TextField
-          label=""
-          value={state.quirks}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="quirks"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              quirks: e.target.value,
-            })
-          }
+          label="Quirks"
         />
-        <TextField
-          label=""
-          value={state.boringStuff}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="boringStuff"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              boringStuff: e.target.value,
-            })
-          }
+          label="Things they find boring"
         />
-        <TextField
-          label=""
-          value={state.annoyingStuff}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="annoyingStuff"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              annoyingStuff: e.target.value,
-            })
-          }
+          label="Things they find annoying"
         />
-        <TextField
-          label=""
-          value={state.habit}
+        <SimpleInput
+          state={state}
+          setState={setState}
+          objectKey="habit"
           placeholder=""
-          multiline
-          onChange={(e) =>
-            setState({
-              ...state,
-              habit: e.target.value,
-            })
-          }
+          label="More"
         />
       </Accordion>
 
