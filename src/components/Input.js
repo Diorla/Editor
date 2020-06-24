@@ -31,6 +31,7 @@ export const SimpleInput = (props) => {
       value={state[objectKey]}
       label={label}
       placeholder={placeholder}
+      multiline
       onChange={(e) =>
         setState({
           ...state,
@@ -128,7 +129,7 @@ export const ObjectInput = (props) => {
     mainPlaceholder,
   } = props;
   return (
-    <Box>
+    <Box className={classes.group}>
       <Typography className={classes.header}>{label}</Typography>
       {state[objectKey].map(
         /**
@@ -136,7 +137,7 @@ export const ObjectInput = (props) => {
          * @param {number} idx
          */
         (datum, idx) => (
-          <Box className={classes.group} key={idx}>
+          <Box key={idx}>
             <Box className={classes.row}>
               <TextField
                 value={datum[mainSubKey]}
@@ -201,6 +202,7 @@ export const ObjectInput = (props) => {
                 label={title(ky)}
                 placeholder={obj[ky]}
                 multiline
+                className={classes.fullWidth}
                 onChange={(e) =>
                   setState({
                     ...state,
