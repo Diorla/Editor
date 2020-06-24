@@ -87,7 +87,14 @@
   "boringStuff": "",
   "annoyingStuff": "",
   "habit": "",
-  "relationships": "",
+  "relationships": [
+    {
+      "name": "",
+      "age": "",
+      "connection": "",
+      "description": ""
+    }
+  ],
   "self": "",
   "immediateFamily": "",
   "extendedFamily": "",

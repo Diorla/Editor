@@ -128,6 +128,7 @@ export const ObjectInput = (props) => {
     mainLabel,
     mainPlaceholder,
   } = props;
+  const tempObj = {};
   return (
     <Box className={classes.group}>
       <Typography className={classes.header}>{label}</Typography>
@@ -170,7 +171,6 @@ export const ObjectInput = (props) => {
                         datum,
                         {
                           [mainSubKey]: "",
-                          ...obj,
                         },
                         ...state[objectKey].slice(idx + 1),
                       ],

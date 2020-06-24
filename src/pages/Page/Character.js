@@ -4,7 +4,7 @@ import useStyles from "./useStyles";
 import { Box, Typography, TextField, Button } from "@material-ui/core";
 import Accordion from "../../components/Accordion";
 import saveConfig from "./saveConfig";
-import { SimpleInput } from "../../components/Input";
+import { SimpleInput, ObjectInput } from "../../components/Input";
 
 /**
  * @param {{ state: object; setState: (arg0: object)=> void; itemDir: string }} props
@@ -1058,7 +1058,21 @@ export default (props) => {
           <Typography className={classes.header}>Relationship</Typography>
         }
       >
-        <h1> This is relationship</h1>
+        <ObjectInput
+          state={state}
+          label="Relationships"
+          setState={setState}
+          objectKey="relationships"
+          obj={{
+            age: "Same age, 25 years old, adult",
+            connection: "Brother",
+            description:
+              "Growing up, they were inseparable, but since they he moved to a new country, they hard speak.",
+          }}
+          mainSubKey="name"
+          mainLabel="Name"
+          mainPlaceholder="The name of the person"
+        />
       </Accordion>
       <Accordion
         header={<Typography className={classes.header}>Perception</Typography>}
