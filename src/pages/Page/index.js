@@ -1,7 +1,6 @@
 //@ts-check
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core";
 import init from "./init";
 import Character from "./Character";
 import Plot from "./Plot";
@@ -12,6 +11,9 @@ import Default from "./Default";
 import Objects from "./Objects";
 import Organisation from "./Organisation";
 import World from "./World";
+import { GiInvertedDice3 } from "react-icons/gi";
+import { MdRefresh } from "react-icons/md";
+import useStyles from "./useStyles";
 
 // TODO: More on <Note />
 /**
@@ -23,13 +25,12 @@ import World from "./World";
  * can just copy the content of that textfield.
  * So, I will have to create a store.clipboard(string) as well as store.notes(an array)
  */
-const useStyles = makeStyles((theme) => ({
-  content: {
-    flexGrow: 1,
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-  },
-}));
+// TODO: Add specific icon to each page
+/**
+ * I should reduce the icons on the titlebar and render it based on the page.
+ * Each page should have different icon.
+ * For example character.js will contain "randomise icon"
+ */
 
 const Page = ({ project }) => {
   const classes = useStyles();
@@ -44,6 +45,18 @@ const Page = ({ project }) => {
   }, [itemDir]);
   return (
     <main className={classes.content}>
+      <div className={classes.pageHeader}>
+        {state.template === "Character" ? (
+          <GiInvertedDice3
+            title="Generate values"
+            onClick={() => console.log("randomise")}
+          />
+        ) : (
+          <span> </span>
+        )}
+        <div>{state.template}</div>
+        <MdRefresh title="Reset" onClick={() => console.log("reset")} />
+      </div>
       {state.template === "Character" && (
         <Character state={state} setState={setState} itemDir={itemDir} />
       )}

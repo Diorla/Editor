@@ -55,4 +55,14 @@ export default makeStyles((theme) => ({
     marginRight: 0,
     marginLeft: 0,
   },
+  pageHeader: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    color: theme.palette.primary.main,
+    fontSize: 21,
+    fontWeight: "bolder",
+    borderBottom: "1px solid",
+  },
 }));

@@ -3,9 +3,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles, Link } from "@material-ui/core";
 import { AiOutlineDelete } from "react-icons/ai";
-import { GiInvertedDice3, GiMoon } from "react-icons/gi";
+import { GiMoon } from "react-icons/gi";
 import { IoMdHelp } from "react-icons/io";
-import { MdRefresh } from "react-icons/md";
 import { FaRegStickyNote } from "react-icons/fa";
 import { CHANGE_THEME } from "../redux/constant";
 import { CLOSE_PROJECT } from "./../redux/constant";
@@ -63,14 +62,9 @@ const TitleBar = (props) => {
       </div>
       <div className={classes.appSection}>{`${title} - Tome Editor`}</div>
       <div className={classes.iconBar}>
-        <GiInvertedDice3
-          title="Generate values"
-          onClick={() => console.log("randomise")}
-        />
         <GiMoon title="Dark mode" onClick={() => changeTheme()} />
-        <MdRefresh title="Reset" onClick={() => console.log("reset")} />
         <FaRegStickyNote title="Add note" onClick={() => console.log("note")} />
-        <IoMdHelp title="Save" onClick={() => console.log("save")} />
+        <IoMdHelp title="Get help" onClick={() => console.log("help")} />
         <AiOutlineDelete title="Delete" onClick={() => console.log("delete")} />
       </div>
     </div>
