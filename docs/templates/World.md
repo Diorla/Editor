@@ -2,8 +2,7 @@
 
 - Type: Universe, Galaxy, Star system, Planet, Continent, Country, Subcountry or City
 - Description
-- Created
-- Umbrella: The bigger world that encompasses this world e.g. Manitoba is part of Canada, Canada is part of North America and North America is part of Earth or Human race
+- Umbrella(Association): The bigger world that encompasses this world e.g. Manitoba is part of Canada, Canada is part of North America and North America is part of Earth or Human race
 
 # Geography
 
@@ -13,15 +12,9 @@
   - Description
 - Climates, weather or atmospheric conditions
 - Natural wonders
-- Nautral resources e.g. gold, crude oil
+- Nautral resources e.g. gold, crude oil. Valuable natural resources depends on your story e.g. between 13th to 15th century, spices were extremelty important, but today it's crude oil, gemstones and minerals
 - Natural sites like rivers, beaches and lakes
 - Topography
-
-# Education
-
-- Levels and lengths
-- Significance
-- Degrees
 
 # History
 
@@ -32,6 +25,7 @@
 
 # System
 
+- Education
 - Technology and Science
 - Urbanisation
 - Art & entertainment
@@ -45,7 +39,6 @@
 - Government
 - Laws
 - History
-- Created
 - Opposition: usually acknowledged and respected
 - Anti government: Involves deviants and rebels
 - Populace perception
