@@ -14,6 +14,7 @@ import World from "./World";
 import { GiInvertedDice3 } from "react-icons/gi";
 import { MdRefresh } from "react-icons/md";
 import useStyles from "./useStyles";
+import Story from "./Story";
 
 // TODO: More on <Note />
 /**
@@ -81,7 +82,9 @@ const Page = ({ project }) => {
       {state.template === "Plot" && (
         <Plot state={state} setState={setState} itemDir={itemDir} />
       )}
-      {state.template === "Story" && <div>Story</div>}
+      {state.template === "Story" && (
+        <Story state={state} setState={setState} itemDir={itemDir} />
+      )}
       {state.template === "World" && (
         <World state={state} setState={setState} itemDir={itemDir} />
       )}

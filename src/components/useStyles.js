@@ -1,6 +1,14 @@
 //@ts-check
 import { makeStyles } from "@material-ui/core";
 
+//TODO: Use one useStyles.js file(this one) to style the app
+/**
+ * So I will delete all other useStyles
+ * Also, I intend to reduce my reliance on material-ui and replace
+ * most of the components with styled-jsx or styled-components
+ * I will only keep essential modules like fileTree component
+ * Perhaps, I could update the <input/> too
+ */
 export default makeStyles((theme) => ({
   header: {
     textAlign: "center",
