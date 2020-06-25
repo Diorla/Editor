@@ -15,7 +15,26 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
 }));
-
+//TODO: Generator
+/**
+ * The dice icon at the titlebar will open another panel at the side of screen.
+ * It will contain dropdown at the top for different possible template that
+ * can be auto-generated e.g. character
+ * Once you select a template, all the possible inputs that can be auto
+ * generated will be rendered with options to fill some of them.
+ * The inputs that have effects on other parts e.g. gender will be 
+ * controlled (dropdown containing recognised genders) or select categories 
+ * e.g. skintone (ie. white, offwhite, brown & black), hence black will generate
+ * skin colours like chocolate/ebony, while white will generate colours like porcelain/milky
+ * On each inputs, there will a copy icon, so that user can click them and copy them into
+ * their own editor. 
+ * To make it easier, this generator inputs will retain the last inputs so that they don't
+ * lose information easily, and if they want to clear all inputs, a button will be provided
+ * for that.
+ * There will also be a freeze icon on each input to prevent it from being cleared in case
+ * the user wants to retain this information which will in turn influence any new generated
+ * information e.g. if all the characters are from the same country, just freeze the country.  
+ */
 /**
  * @param {{ isDarkMode: boolean; }} props
  */

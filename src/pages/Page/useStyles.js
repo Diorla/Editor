@@ -65,4 +65,8 @@ export default makeStyles((theme) => ({
     fontWeight: "bolder",
     borderBottom: "1px solid",
   },
+  quill: {
+    background: theme.palette.background.default,
+    color: theme.palette.secondary.contrastText,
+  },
 }));

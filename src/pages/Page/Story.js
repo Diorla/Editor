@@ -6,6 +6,7 @@ import useStyles from "./useStyles";
 import saveConfig from "./saveConfig";
 import Accordion from "../../components/Accordion";
 import { SimpleInput } from "../../components/Input";
+import Quill from "./Quill";
 
 //TODO: Use react-quill for the content
 const Magic = (props) => {
@@ -52,12 +53,14 @@ const Magic = (props) => {
         />
       </Accordion>
       <Typography className={classes.header}>Content</Typography>
-      <SimpleInput
-        state={state}
-        setState={setState}
-        label=""
-        objectKey="content"
-        placeholder="Once upon a time..."
+      <Quill
+        content={state.content}
+        onChange={(content) =>
+          setState({
+            ...state,
+            content,
+          })
+        }
       />
     </main>
   );
