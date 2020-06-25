@@ -47,6 +47,8 @@ const Page = ({ project }) => {
   return (
     <main className={classes.content}>
       <div className={classes.pageHeader}>
+        <span> </span>
+        <div>{state.template}</div>
         {state.template === "Character" ? (
           <GiInvertedDice3
             title="Generate values"
@@ -55,8 +57,6 @@ const Page = ({ project }) => {
         ) : (
           <span> </span>
         )}
-        <div>{state.template}</div>
-        <MdRefresh title="Reset" onClick={() => console.log("reset")} />
       </div>
       {state.template === "Character" && (
         <Character state={state} setState={setState} itemDir={itemDir} />

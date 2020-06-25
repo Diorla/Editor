@@ -1,16 +1,4 @@
 {
   "template": "Creature",
-  "contrast": "",
-  "physical": "",
-  "habitat": "",
-  "locomotion": "",
-  "basicNeed": "",
-  "nutrition": "",
-  "interaction": "",
-  "growth": "",
-  "excretion": "",
-  "reproduction": "",
-  "culture": "",
-  "death": "",
-  "more": ""
+  "content": "<h1>Contrast</h1><p>This creature is most similar to a dog</p><br/><br/><h1>Physical</h1><p>Shape, colour, size etc</p><br/><br/><h1>Habitat</h1><p>Where they live ie. geographic distribution</p><br/><br/><h1>Movements</h1><p>How many limbs, can fly (with or without wings)</p><br/><br/><h1>Basic Need</h1><p>Requires oxygen, water, food and sleep</p><br/><br/><h1>Nutrition</h1><p>Canivorous, prefers to eat rat</p><br/><br/><h1>Interaction</h1><p>How they communicate with their environment ie. senses like sight and sound, camouflage, mimicry</p><br/><br/><h1>Growth</h1><p>Rate of growh, maturity, developemental milestone</p><br/><br/><h1>Excretion</h1><p>Types and frequency e.g. Faeces, sweat, carbon dioxide, urine, molting, shed fur</p><br/><br/><h1>Reproduction</h1><p>Genders, types of mating, offsprings, internal or external fertilisation), infant care(e.g. lactation)</p><br/><br/><h1>Culture</h1><p>How the creature are viewed in the society, dispicted in literature, films or even flags</p><br/><br/><h1>Life cycle</h1><p>Average life span, weakness and strengths, and predators</p><br/><br/><h1>More</h1>"
 }

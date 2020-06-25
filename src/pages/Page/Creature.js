@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { TextField } from "@material-ui/core";
 import useStyles from "./useStyles";
 import saveConfig from "./saveConfig";
+import Quill from "./Quill";
 
 /**
  * @param {{ state: any; setState: any; itemDir: any; }} props
@@ -32,159 +33,12 @@ const Creature = (props) => {
           })
         }
       />
-      <TextField
-        value={state.contrast}
-        multiline
-        label="Contrast"
-        placeholder="This creature is most similar to a dog"
-        onChange={(e) =>
+      <Quill
+        content={state.content}
+        onChange={(content) =>
           setState({
             ...state,
-            contrast: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.physical}
-        label="Physical appearance"
-        placeholder="Shape, colour, size etc"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            physical: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.habitat}
-        label="Habitat"
-        placeholder="Where they live ie. geographic distribution"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            habitat: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.locomotion}
-        label="Locomotion"
-        placeholder="How many limbs, can fly (with or without wings)"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            locomotion: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.basicNeed}
-        label="Basic need"
-        placeholder="Requires oxygen, water, food and sleep"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            basicNeed: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.nutrition}
-        label="Contrast"
-        placeholder="Canivorous, prefers to eat rat"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            nutrition: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.interaction}
-        label="Interacts"
-        placeholder="How they communicate with their environment ie. senses like sight and sound, camouflage, mimicry"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            interaction: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.growth}
-        label="Growth and development"
-        placeholder="Rate of growh, maturity, developemental milestone"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            growth: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.excretion}
-        label="Excretion"
-        placeholder="Types and frequency e.g. Faeces, sweat, carbon dioxide, urine, molting, shed fur"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            excretion: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.reproduction}
-        label="Reproduction"
-        placeholder="Genders, types of mating, offsprings, internal or external fertilisation), infant care(e.g. lactation)"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            reproduction: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.culture}
-        label="Cultural significance"
-        placeholder="How the creature are viewed in the society, dispicted in literature, films or even flags"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            culture: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.death}
-        label="Death"
-        placeholder="Average life span, weakness and strengths, and predators"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            death: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={state.more}
-        label="More"
-        placeholder="Any additional information"
-        multiline
-        onChange={(e) =>
-          setState({
-            ...state,
-            more: e.target.value,
+            content,
           })
         }
       />

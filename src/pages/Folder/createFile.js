@@ -22,7 +22,6 @@ export default (
   state
 ) => {
   if (!fileList.includes(fileName)) {
-    console.log("state!:", state)
     jsonfile.readFile(
       // process.cwd() + "/templates/" + state.template + ".json",
       `${process.cwd()}/templates/${state.template}.json`,
