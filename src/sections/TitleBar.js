@@ -13,7 +13,7 @@ import path from "path";
 const useStyles = makeStyles((theme) => ({
   appBar: {
     display: "flex",
-    zIndex: 1300,
+    zIndex: 10001,
     width: "100%",
     position: "fixed",
     justifyContent: "space-between",
