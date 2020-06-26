@@ -68,5 +68,14 @@ export default makeStyles((theme) => ({
   quill: {
     background: theme.palette.background.default,
     color: theme.palette.secondary.contrastText,
+    marginTop: 8,
+  },
+  centre: {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  input: {
+    width: 300,
   },
 }));

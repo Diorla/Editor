@@ -2,19 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import init from "./init";
-import Character from "./Character";
 import Plot from "./Plot";
-import Creature from "./Creature";
 import Location from "./Location";
 import Magic from "./Magic";
 import Default from "./Default";
 import Objects from "./Objects";
 import Organisation from "./Organisation";
 import World from "./World";
-import { GiInvertedDice3 } from "react-icons/gi";
-import { MdRefresh } from "react-icons/md";
 import useStyles from "./useStyles";
 import Story from "./Story";
+import Quill from "./Quill";
 
 // TODO: More on <Note />
 /**
@@ -35,9 +32,9 @@ import Story from "./Story";
 
 const Page = ({ project }) => {
   const classes = useStyles();
-  const [state, setState] = useState({ template: "" });
+  const [state, setState] = useState({ template: "", content: "" });
   const { itemDir } = project;
-
+  const quilled = ["Character", "Creature"];
   useEffect(() => {
     init(itemDir, setState);
     return () => {
@@ -46,24 +43,23 @@ const Page = ({ project }) => {
   }, [itemDir]);
   return (
     <main className={classes.content}>
-      <div className={classes.pageHeader}>
-        <span> </span>
-        <div>{state.template}</div>
-        {state.template === "Character" ? (
-          <GiInvertedDice3
-            title="Generate values"
-            onClick={() => console.log("randomise")}
-          />
-        ) : (
-          <span> </span>
-        )}
-      </div>
-      {state.template === "Character" && (
+      {/*state.template === "Character" && (
         <Character state={state} setState={setState} itemDir={itemDir} />
+      )*/}
+      {quilled.includes(state.template) && (
+        <Quill
+          content={state.content}
+          onChange={(content) =>
+            setState({
+              ...state,
+              content,
+            })
+          }
+        />
       )}
-      {state.template === "Creature" && (
+      {/*state.template === "Creature" && (
         <Creature state={state} setState={setState} itemDir={itemDir} />
-      )}
+      )*/}
       {state.template === "Default" && (
         <Default state={state} setState={setState} itemDir={itemDir} />
       )}
