@@ -20,8 +20,23 @@ import { stateToHTML } from "draft-js-export-html";
  * Or perhaps, add it to settings where user may choose between autosave and
  * manual saving.
  */
+// TODO: Add shortcuts to all the toolbar
 /**
- * @param {{ itemDir: string; template: string; }} props
+ * --- Block
+ * H1: Ctrl + 1
+ * H2: Ctrl + 2
+ * H3: Ctrl + 3
+ * Quote: Ctrl + '
+ * Ol: Ctrl + 0
+ * Ul: Ctrl + *
+ * --- Inline
+ * Bold: Ctrl + B
+ * Italic: Ctrl + I
+ * Underline: Ctrl + U
+ * Strikethrough: Ctrl + /
+ */
+/**
+ * @param {{ itemDir: string; }} props
  */
 export default (props) => {
   const { itemDir } = props;
@@ -47,8 +62,7 @@ export default (props) => {
 
       setEditorState(() => EditorState.createWithContent(state));
     });
-    focusEditor();
-  }, []);
+  }, [itemDir]);
 
   /**
    * For updating the value of the editorState
@@ -101,8 +115,6 @@ export default (props) => {
     );
   };
 
-  const select = editorState.getSelection();
-
   // Remove placeholder after clicking toolbar
   let className = `${classes.editor}`;
   const contentState = editorState.getCurrentContent();
@@ -120,7 +132,7 @@ export default (props) => {
           <InlineTools toggleBlock={toggleInline} editorState={editorState} />
         </Box>
       </Box>
-      <div className={className} onClick={focus}>
+      <div className={className}>
         <Editor
           ref={editorRef}
           editorState={editorState}
