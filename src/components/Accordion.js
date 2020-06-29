@@ -27,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * @param {{ header: React.ReactNode; children: React.ReactNode; }} props
+ * @param {{ header: React.ReactNode; children: React.ReactNode; onBlur?: ()=> void}} props
  */
 export default (props) => {
   const [expand, setExpand] = useState(false);
-  const { header, children } = props;
+  const { header, children, onBlur } = props;
   const classes = useStyles();
   return (
-    <div className={classes.panel}>
+    <div className={classes.panel} onBlur={onBlur}>
       <div
         onClick={(e) => {
           setExpand(!expand);
