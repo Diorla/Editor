@@ -24,4 +24,8 @@ export default makeStyles((theme) => ({
     borderColor: theme.palette.primary.dark,
     outline: "none",
   },
+  help: {
+    color: theme.palette.success.main,
+    textAlign: "center",
+  },
 }));

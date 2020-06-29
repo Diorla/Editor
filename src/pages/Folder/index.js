@@ -12,10 +12,10 @@ import {
   Typography,
   TextField,
   FormControl,
-  Button,
 } from "@material-ui/core";
 import loadConfig from "./loadConfig";
 import createFile from "./createFile";
+import detail from "./detail";
 
 /**
  * @param {{ project: { collectionDir: string; }; }} props
@@ -148,29 +148,8 @@ const Folder = (props) => {
             }
           }}
         />
-        <Button
-          variant="contained"
-          size="small"
-          disabled={error || !fileName ? true : false}
-          onClick={() => {
-            if (fileName)
-              createFile(
-                fileName,
-                collectionDir,
-                fileList,
-                setFileList,
-                setFileName,
-                setError,
-                {
-                  template: state.template,
-                }
-              );
-            else setError("You shouldn't be able to click this button");
-          }}
-        >
-          New Document
-        </Button>
       </Box>
+      <Box className={classes.help}>{detail[state.template] || detail.Default}</Box>
       {error && (
         <Typography variant="subtitle1" color="error">
           {error}
