@@ -1,19 +1,4 @@
 {
   "template": "Magic",
-  "description": "",
-  "system": "",
-  "race": "",
-  "prevalence": "",
-  "rules": [""],
-  "importance": "",
-  "requirements": "",
-  "improvements": "",
-  "ranks": [""],
-  "strength": "",
-  "weakness": "",
-  "drawbacks": "",
-  "limitations": "",
-  "moves": [""],
-  "additions": [""],
-  "more": ""
+  "content": "<h1>Description</h1>\n<blockquote>Basic introduction into this magic system or type</blockquote>\n<h1>System</h1>\n<blockquote>For magic system with categorization e.g. <em>Air, Earth, Fire &amp; Water </em>are types of Bending.</blockquote>\n<h1>Distribution</h1>\n<ul>\n  <li>The races or species that may posses or use this ability</li>\n  <li>Prevalence: The percentage of the race/species or demographics who have it,&nbsp;</li>\n</ul>\n<h1>Rules</h1>\n<blockquote>How the magic system works, the requirements e.g. genetics, certain time of the day, objects or artefacts that allows or amplifies the ability.</blockquote>\n<h1>Importance</h1>\n<blockquote>The significance of the ability in the society or the story</blockquote>\n<h1>Improvements</h1>\n<blockquote>How&nbsp;does&nbsp;someone&nbsp;gets&nbsp;better e.g. age,&nbsp;training,&nbsp;stealing&nbsp;it&nbsp;from&nbsp;other&nbsp;people</blockquote>\n<h1>Ranking</h1>\n<blockquote>Defining position or status e.g. trainee, master, grandmaster</blockquote>\n<h1>Merit</h1>\n<blockquote>The advantages to having this ability and possible use</blockquote>\n<h1>Weakness</h1>\n<blockquote>How&nbsp;the&nbsp;ability&nbsp;can&nbsp;be&nbsp;exploited&nbsp;by&nbsp;opponents</blockquote>\n<h1>Drawbacks</h1>\n<blockquote>Negative&nbsp;effect&nbsp;of&nbsp;the&nbsp;ability&nbsp;e.g.&nbsp;shorter&nbsp;lifespan,&nbsp;\"losing&nbsp;ones'&nbsp;soul\"</blockquote>\n<h1>Limitations</h1>\n<blockquote>Restrictions&nbsp;based&nbsp;on&nbsp;law,&nbsp;biology&nbsp;or&nbsp;any&nbsp;other&nbsp;means e.g. a user can only use their ability at night or for just 5 continous minutes per day.</blockquote>\n<h1>Moves</h1>\n<blockquote>Specific gestures or act e.g. list of spells, unique body movements</blockquote>\n<h1>Possible additions</h1>\n<blockquote>Under the maybe or not sure column</blockquote>"
 }

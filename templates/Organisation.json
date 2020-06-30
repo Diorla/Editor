@@ -1,19 +1,4 @@
 {
   "template": "Organisation",
-  "type": "",
-  "created": "",
-  "history": "",
-  "purpose": "",
-  "goal": "",
-  "founders": [""],
-  "headquarter": "",
-  "leaders": [{ "name": "", "role": "" }],
-  "importantMember": [{ "name": "", "role": "" }],
-  "notableMember": [{ "name": "", "role": "" }],
-  "oppositions": [{ "name": "", "why": "" }],
-  "arc": [""],
-  "requirement": "",
-  "promotion": "",
-  "financing": "",
-  "more": ""
+  "content": "<h1>Introduction</h1>\n<ul>\n  <li>Name</li>\n  <li>Type: Military,&nbsp;covert,&nbsp;criminal,&nbsp;governmental,&nbsp;religious etc</li>\n  <li>Headquarter: The&nbsp;primary&nbsp;base&nbsp;of&nbsp;operation</li>\n  <li>Founders</li>\n  <li>Oppositions (who/what and why): rivals, competitors or enemy e.g. other similar organisation, law enforcement who disagrees because of political, religious, intellectual disagreement or just competitive spirit.</li>\n</ul>\n<h1>History</h1>\n<ul>\n  <li>Created: how it came into existence, with dates and specifics</li>\n  <li>Founders</li>\n  <li>History: Since it was created to current time</li>\n  <li>Purpose: The reason it was created e.g. to fight for justice</li>\n  <li>Goal: Current target or aim, e.g. free all the women unjustly imprisoned</li>\n</ul>\n<h1>Membership</h1>\n<ul>\n  <li>Leadership: Names of leaders and position</li>\n  <li>Important members: Names of key members and their role or importance</li>\n  <li>Notable members: Names of members who plays certain role in the story and are worthy of mention e.g. the security guard who jumped in took the bullet and died for the president.</li>\n</ul>\n<h1>Operation</h1>\n<ul>\n  <li>Requirements: requitment process or pre-requisites to join</li>\n  <li>Promotion: How to move up the ranks</li>\n  <li>Finance: Source(s) of money or funding and other fiduciary issues like wages</li>\n  <li>Administration: the hierarchy and day to day running of the organisation</li>\n</ul>\n<h1>Arcs</h1>\n<blockquote>The role they play in the story or one/more arcs they are involved in</blockquote>"
 }

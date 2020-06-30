@@ -1,16 +1,4 @@
 {
   "template": "Objects",
-  "description": "",
-  "creator": "",
-  "history": "",
-  "use": "",
-  "safety": "",
-  "requirement": "",
-  "importance": "",
-  "cost": "",
-  "availability": "",
-  "regulation": "",
-  "owner": "",
-  "culture": "",
-  "more": ""
+  "content": "<h1>Basic</h1>\n<blockquote>Name, description (shape,&nbsp;size,&nbsp;colour,&nbsp;weight,&nbsp;material&nbsp;etc).</blockquote>\n<h1>Use</h1>\n<blockquote>What it's used for, how it is used.</blockquote>\n<h1>History</h1>\n<blockquote>Creator, history use and significance, modifications and transformation e.g. The discovery of oil brought about the industrial revolution and the creation of tanks made war far deadlier</blockquote>\n<h1>Regulation</h1>\n<blockquote>Safety(safe, hazardous, radioactive), Requirements/pre-requisite&nbsp;in&nbsp;order&nbsp;to&nbsp;possess&nbsp;or&nbsp;use&nbsp;it&nbsp;e.g.&nbsp;age&nbsp;limit,&nbsp;certain&nbsp;training, background checks)</blockquote>\n<h1>Proprietorship</h1>\n<blockquote>Availability, cost and owners(in case it's rare or limited in numbers)</blockquote>\n<h1>Importance</h1>\n<blockquote>Economical, sociological, cultural etc importance e.g. crude oil is the main source of national income and diamond is a consider a precious gem for engagement ring in western world</blockquote>"
 }
