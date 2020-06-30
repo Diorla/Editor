@@ -4,3 +4,5 @@ test.js
 quill.min.css
 projects
 temp
+*.test.js
+__snapshots__
