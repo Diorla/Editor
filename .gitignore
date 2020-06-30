@@ -5,4 +5,4 @@ quill.min.css
 projects
 temp
 *.test.js
-__snapshots__
+error-log
