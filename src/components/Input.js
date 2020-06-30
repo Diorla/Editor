@@ -20,24 +20,20 @@ import title from "../utils/title";
  * 2. update: state = {...state, ...action.payload}
  * 3. create: state = {...action.payload}
  */
+
 /**
- * @param {{ state: object; objectKey: string; label: string; placeholder: string; setState: (state: object)=> void; }} props
+ * @param {{ value: string; label: string; placeholder: string; onChange: (arg0: string)=> void; }} props
  */
 export const SimpleInput = (props) => {
-  const { state, objectKey, label, placeholder, setState } = props;
+  const { value, label, placeholder, onChange } = props;
 
   return (
     <TextField
-      value={state[objectKey]}
+      value={value}
       label={label}
       placeholder={placeholder}
       multiline
-      onChange={(e) =>
-        setState({
-          ...state,
-          [objectKey]: e.target.value,
-        })
-      }
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 };
