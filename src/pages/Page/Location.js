@@ -36,13 +36,16 @@ const Location = (props) => {
   const classes = useStyles();
   useEffect(() => {
     jsonfile.readFile(itemDir, (err, data) => {
-      const { scenes } = data;
-      setScenes(scenes);
+      if (err) console.log("error loading file");
+      else {
+        const { scenes } = data;
+        setScenes(scenes);
+      }
     });
     return () => {
       console.log("unmounting");
     };
-  }, []);
+  }, [itemDir]);
   const save = () => {
     jsonfile.readFile(itemDir, (err, data) => {
       if (err) console.log("error saving data:", err);
@@ -53,151 +56,153 @@ const Location = (props) => {
         });
     });
   };
-  return (
-    <main className={classes.content}>
-      <Accordion
-        header={<Typography className={classes.header}>Location</Typography>}
-      >
-        <Editor itemDir={itemDir} />
-      </Accordion>
-      <Accordion
-        header={<Typography className={classes.header}>Scenes</Typography>}
-        onBlur={save}
-      >
-        <Button
-          color="primary"
-          onClick={() => {
-            setScenes([
-              {
-                date: "",
-                event: "",
-                changes: "",
-                colour: "inherit",
-              },
-              ...scenes,
-            ]);
-          }}
+  if (scenes)
+    return (
+      <main className={classes.content}>
+        <Accordion
+          header={<Typography className={classes.header}>Location</Typography>}
         >
-          New node
-        </Button>
-        {scenes.map(
-          /**
-           * @param {{ date: string; event: string; changes: string; colour: "primary"|"secondary"|"grey"|"inherit"; }} event
-           * @param {number} idx
-           */
-          (event, idx) => (
-            <TimelineItem key={idx}>
-              <TimelineOppositeContent className={classes.row3}>
-                <Box className={classes.fullWidth}>
-                  <TextField
-                    value={event.date}
-                    className={classes.fullWidth}
-                    label="Period"
-                    placeholder="5 years ago, 24th June"
-                    multiline
-                    onChange={(e) =>
-                      setScenes([
-                        ...scenes.slice(0, idx),
-                        {
-                          ...event,
-                          date: e.target.value,
-                        },
-                        ...scenes.slice(idx + 1),
-                      ])
-                    }
-                  />
-                  <TextField
-                    value={event.event}
-                    className={classes.fullWidth}
-                    label="Event"
-                    placeholder="Robbery"
-                    multiline
-                    onChange={(e) =>
-                      setScenes([
-                        ...scenes.slice(0, idx),
-                        {
-                          ...event,
-                          event: e.target.value,
-                        },
-                        ...scenes.slice(idx + 1),
-                      ])
-                    }
-                  />
-                  <Box className={classes.row}>
-                    <Button
-                      className={classes.successButton}
+          <Editor itemDir={itemDir} />
+        </Accordion>
+        <Accordion
+          header={<Typography className={classes.header}>Scenes</Typography>}
+          onBlur={save}
+        >
+          <Button
+            color="primary"
+            onClick={() => {
+              setScenes([
+                {
+                  date: "",
+                  event: "",
+                  changes: "",
+                  colour: "inherit",
+                },
+                ...scenes,
+              ]);
+            }}
+          >
+            New node
+          </Button>
+          {scenes.map(
+            /**
+             * @param {{ date: string; event: string; changes: string; colour: "primary"|"secondary"|"grey"|"inherit"; }} event
+             * @param {number} idx
+             */
+            (event, idx) => (
+              <TimelineItem key={idx}>
+                <TimelineOppositeContent className={classes.row3}>
+                  <Box className={classes.fullWidth}>
+                    <TextField
+                      value={event.date}
+                      className={classes.fullWidth}
+                      label="Period"
+                      placeholder="5 years ago, 24th June"
+                      multiline
+                      onChange={(e) =>
+                        setScenes([
+                          ...scenes.slice(0, idx),
+                          {
+                            ...event,
+                            date: e.target.value,
+                          },
+                          ...scenes.slice(idx + 1),
+                        ])
+                      }
+                    />
+                    <TextField
+                      value={event.event}
+                      className={classes.fullWidth}
+                      label="Event"
+                      placeholder="Robbery"
+                      multiline
+                      onChange={(e) =>
+                        setScenes([
+                          ...scenes.slice(0, idx),
+                          {
+                            ...event,
+                            event: e.target.value,
+                          },
+                          ...scenes.slice(idx + 1),
+                        ])
+                      }
+                    />
+                    <Box className={classes.row}>
+                      <Button
+                        className={classes.successButton}
+                        onClick={(e) => {
+                          setScenes([
+                            ...scenes.slice(0, idx),
+                            event,
+                            {
+                              date: "",
+                              event: "",
+                              changes: "",
+                              colour: event.colour,
+                            },
+                            ...scenes.slice(idx + 1),
+                          ]);
+                        }}
+                      >
+                        Add
+                      </Button>
+                      <Button
+                        className={classes.dangerButton}
+                        onClick={(e) => {
+                          setScenes([
+                            ...scenes.slice(0, idx),
+                            ...scenes.slice(idx + 1),
+                          ]);
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    </Box>
+                  </Box>
+                </TimelineOppositeContent>
+                <TimelineSeparator>
+                  <TimelineDot color={event.colour}>
+                    <MdColorLens
                       onClick={(e) => {
                         setScenes([
                           ...scenes.slice(0, idx),
-                          event,
                           {
-                            date: "",
-                            event: "",
-                            changes: "",
-                            colour: event.colour,
+                            ...event,
+                            colour: toggleColor(event.colour),
                           },
                           ...scenes.slice(idx + 1),
                         ]);
                       }}
-                    >
-                      Add
-                    </Button>
-                    <Button
-                      className={classes.dangerButton}
-                      onClick={(e) => {
-                        setScenes([
-                          ...scenes.slice(0, idx),
-                          ...scenes.slice(idx + 1),
-                        ]);
-                      }}
-                    >
-                      Remove
-                    </Button>
-                  </Box>
-                </Box>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color={event.colour}>
-                  <MdColorLens
-                    onClick={(e) => {
+                    />
+                  </TimelineDot>
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent className={classes.row7}>
+                  <TextField
+                    value={event.changes}
+                    label="Changes"
+                    placeholder="The painting of van Gogh was missing, the dead body of Mr John Doe was lying on the bed, and the white bed sheet now red."
+                    multiline
+                    className={classes.fullWidth}
+                    onChange={(e) =>
                       setScenes([
                         ...scenes.slice(0, idx),
                         {
                           ...event,
-                          colour: toggleColor(event.colour),
+                          changes: e.target.value,
                         },
                         ...scenes.slice(idx + 1),
-                      ]);
-                    }}
+                      ])
+                    }
                   />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent className={classes.row7}>
-                <TextField
-                  value={event.changes}
-                  label="Changes"
-                  placeholder="The painting of van Gogh was missing, the dead body of Mr John Doe was lying on the bed, and the white bed sheet now red."
-                  multiline
-                  className={classes.fullWidth}
-                  onChange={(e) =>
-                    setScenes([
-                      ...scenes.slice(0, idx),
-                      {
-                        ...event,
-                        changes: e.target.value,
-                      },
-                      ...scenes.slice(idx + 1),
-                    ])
-                  }
-                />
-              </TimelineContent>
-            </TimelineItem>
-          )
-        )}
-      </Accordion>
-    </main>
-  );
+                </TimelineContent>
+              </TimelineItem>
+            )
+          )}
+        </Accordion>
+      </main>
+    );
+  else return null;
 };
 
 /**

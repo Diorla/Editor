@@ -20,6 +20,19 @@ import { stateToHTML } from "draft-js-export-html";
  * Or perhaps, add it to settings where user may choose between autosave and
  * manual saving.
  */
+//TODO: Add more to toolbars
+/**
+ * Indent: increase or decrease the indentation, in case of list, it would either
+ * create a child list or bring it out to parent list or even remove the list
+ * Image: image will be saved as imageData, so no physical files needed, also there
+ * will be a way to change the image dimension, perhaps I will start by setting
+ * a standard dimension at the beginning to prevent too big an image (ht < 300px)
+ */
+// TODO: Advanced tools
+/**
+ * This includes stuff like multiple selection and edition, like managing more than
+ * one cursor like I do on VsCode using alt + click
+ */
 // TODO: Add shortcuts to all the toolbar
 /**
  * --- Block
@@ -103,16 +116,20 @@ export default (props) => {
   const save = () => {
     const contentState = editorState.getCurrentContent();
     const raw = stateToHTML(contentState);
-    jsonfile.writeFile(
-      itemDir,
-      {
-        ...data,
-        content: raw,
-      },
-      (err) => {
-        if (err) console.log("error saving data");
-      }
-    );
+    jsonfile.readFile(itemDir, (err, data) => {
+      if (err) console.log("error reading file:", err);
+      else
+        jsonfile.writeFile(
+          itemDir,
+          {
+            ...data,
+            content: raw,
+          },
+          (err) => {
+            if (err) console.log("error saving data");
+          }
+        );
+    });
   };
 
   // Remove placeholder after clicking toolbar
