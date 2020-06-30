@@ -10,6 +10,11 @@ import { connect } from "react-redux";
 import { OPEN_COLLECTION, OPEN_PROJECT, OPEN_ITEM } from "../redux/constant";
 import path from "path";
 
+// TODO: Move to ./section
+/**
+ * Since this is to be used only once
+ */
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,

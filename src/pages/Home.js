@@ -7,6 +7,18 @@ import jsonfile from "jsonfile";
 import { OPEN_PROJECT } from "./../redux/constant";
 import HelpBar from "../components/HelpBar";
 
+//TODO: Add templates creator.
+/**
+ * This will basically lead to page where there will list of default/created templates
+ * on the sidebar. At the top of the sidebar, there will be a text input to enable
+ * user to create a new template. The sidebar will be populated based on the files inside
+ * ./template folder.
+ * On the browser, there will be a simple editor based on the template in focus(when user
+ * clicks a template or create new one)
+ * The template editor will basically be like any other editor, and will be available as
+ * a dropdown whenever a user wants to create a new document.
+ * Note, users may be able to edit default templates, but they can't delete it.
+ */
 /**
  * Left side of the screen
  * # Start

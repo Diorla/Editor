@@ -4,14 +4,11 @@ import { connect } from "react-redux";
 import init from "./init";
 import Plot from "./Plot";
 import Location from "./Location";
-import Magic from "./Magic";
-import Default from "./Default";
-import Objects from "./Objects";
 import Organisation from "./Organisation";
 import World from "./World";
 import useStyles from "./useStyles";
 import Story from "./Story";
-import Quill from "./Quill";
+import Editor from "../../components/Editor";
 
 // TODO: More on <Note />
 /**
@@ -34,58 +31,35 @@ const Page = ({ project }) => {
   const classes = useStyles();
   const [state, setState] = useState({ template: "", content: "" });
   const { itemDir } = project;
-  const quilled = ["Character", "Creature"];
+  const isEditor = [
+    "Character",
+    "Creature",
+    "Default",
+    "Magic",
+    "Objects",
+    "Organisation",
+    "World",
+  ];
   useEffect(() => {
     init(itemDir, setState);
     return () => {
       console.log("unmounting");
     };
   }, [itemDir]);
-  return (
-    <main className={classes.content}>
-      {/*state.template === "Character" && (
-        <Character state={state} setState={setState} itemDir={itemDir} />
-      )*/}
-      {quilled.includes(state.template) && (
-        <Quill
-          content={state.content}
-          onChange={(content) =>
-            setState({
-              ...state,
-              content,
-            })
-          }
-        />
-      )}
-      {/*state.template === "Creature" && (
-        <Creature state={state} setState={setState} itemDir={itemDir} />
-      )*/}
-      {state.template === "Default" && (
-        <Default state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "Location" && (
-        <Location state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "Magic" && (
-        <Magic state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "Objects" && (
-        <Objects state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "Organisation" && (
-        <Organisation state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "Plot" && (
-        <Plot state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "Story" && (
-        <Story state={state} setState={setState} itemDir={itemDir} />
-      )}
-      {state.template === "World" && (
-        <World state={state} setState={setState} itemDir={itemDir} />
-      )}
-    </main>
-  );
+  if (state.template)
+    return (
+      <main className={classes.content}>
+        {isEditor.includes(state.template) && <Editor itemDir={itemDir} />}
+        {state.template === "Location" && <Location itemDir={itemDir} />}
+        {state.template === "Plot" && (
+          <Plot state={state} setState={setState} itemDir={itemDir} />
+        )}
+        {state.template === "Story" && (
+          <Story state={state} setState={setState} itemDir={itemDir} />
+        )}
+      </main>
+    );
+  return <main className={classes.content}></main>;
 };
 
 const mapStateToProps = (state) => ({
