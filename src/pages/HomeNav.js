@@ -74,16 +74,6 @@ const HomeNav = (props) => {
 
   return (
     <div className={classes.input}>
-      <Button
-        variant="contained"
-        size="small"
-        onClick={() => {
-          if (projectName) addNewProject(projectName);
-        }}
-        disabled={error || !projectName ? true : false}
-      >
-        New project
-      </Button>
       <TextField
         label="New project"
         value={projectName}

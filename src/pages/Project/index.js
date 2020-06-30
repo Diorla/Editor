@@ -132,22 +132,6 @@ const Project = (props) => {
             }
           }}
         />
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => {
-            if (collectionName)
-              createFolder(
-                projectDir,
-                collectionName,
-                setCollectionList,
-                setCollectionName
-              );
-          }}
-          disabled={error || !collectionName ? true : false}
-        >
-          New collection
-        </Button>
       </Box>
       {error && (
         <Typography variant="subtitle1" color="error">
