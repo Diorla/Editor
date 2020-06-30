@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { makeStyles, Link } from "@material-ui/core";
 import { AiOutlineDelete } from "react-icons/ai";
 import { GiMoon } from "react-icons/gi";
-import { IoMdHelp } from "react-icons/io";
+import { IoMdHelp, IoMdSettings } from "react-icons/io";
 import { FaRegStickyNote } from "react-icons/fa";
 import { CHANGE_THEME } from "../redux/constant";
 import { CLOSE_PROJECT } from "./../redux/constant";
@@ -65,6 +65,10 @@ const TitleBar = (props) => {
         <GiMoon title="Dark mode" onClick={() => changeTheme()} />
         <FaRegStickyNote title="Add note" onClick={() => console.log("note")} />
         <IoMdHelp title="Get help" onClick={() => console.log("help")} />
+        <IoMdSettings
+          title="Get preferences"
+          onClick={() => console.log("settings")}
+        />
         <AiOutlineDelete title="Delete" onClick={() => console.log("delete")} />
       </div>
     </div>

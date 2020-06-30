@@ -29,4 +29,36 @@ import App from "./scripts/App";
  * like a clipboard that is accessible anywhere in the program.
  * This will allow user to copy details from one document, collection or project to another.
  */
+
+//TODO: Help and blogs
+/**
+ * The help and blogs on the side of the home project will be in normal .scrb files that will loaded 
+ * with a readonly editor(ie. no toolbars) and will be saved inside ./help folder. 
+ * I will also add blogs from other sources like contribution from our editors and users 
+ * (which they can do with their app)
+ * This .scrb files will contain
+ * title- The title of the help or blog
+ * author- The name of the writer, if it's help, it will be "Tome editor" or the name of the app
+ * date- The date it was published if it's a blog
+ * content- The content of the app.
+ * video- At the top of the editor, there will be a conditional media loader that will play in
+ * case there is video. I may use normal <video/> tag or perhaps <embed/> youtube links
+ * so that users can view it on the app and other devices via youtube.
+ * version- In case it's help, so only help that matches the version of the app will be loaded
+ * thus excluding possibly obsolete help. So I will ensure that even if the content of help.scrb 
+ * doesn't change, the version must change to match that of the app.
+ */
+
+//TODO: Add settings to title bar
+/**
+ * Note, stuff like settings, help and blogs will be rendered via modal or drawers, which will
+ * not affect tthe workflow of the app, so when you close it, it will return you to where you 
+ * are simply by hiding the modal. 
+ * I will create a store.modal that will accept stuff like
+ * screen: settings, help or blog
+ * filename: if it's a blog or help
+ * generators too will follow  the same principle but won't be modals, rather, it would it will
+ * a section of the browser that is hidden and displayed, like half of it or standard size e.g.
+ * 300px width
+ */
 ReactDOM.render(<App />, document.getElementById("app"));
