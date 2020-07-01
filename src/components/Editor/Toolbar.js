@@ -8,6 +8,7 @@ import {
   FaListUl,
   FaListOl,
   FaStrikethrough,
+  FaCode,
 } from "react-icons/fa";
 import useStyles from "../useStyles";
 
@@ -15,32 +16,32 @@ const blockButtons = [
   {
     label: "H1",
     style: "header-one",
-    description: "Heading 1",
+    description: "Heading 1: Ctrl + 1",
   },
   {
     label: "H2",
     style: "header-two",
-    description: "Heading 2",
+    description: "Heading 2: Ctrl + 2",
   },
   {
     label: "H3",
     style: "header-three",
-    description: "Heading 3",
+    description: "Heading 3: Ctrl + 3",
   },
   {
     label: <FaQuoteRight />,
     style: "blockquote",
-    description: "Blockquote",
+    description: "Blockquote: Ctrl + '",
   },
   {
     label: <FaListUl />,
     style: "unordered-list-item",
-    description: "Unordered list",
+    description: "Unordered list: Ctrl + *",
   },
   {
     label: <FaListOl />,
     style: "ordered-list-item",
-    description: "Ordered list",
+    description: "Ordered list: Ctrl + 0",
   },
 ];
 
@@ -63,7 +64,12 @@ const inlineButtons = [
   {
     label: <FaStrikethrough />,
     style: "STRIKETHROUGH",
-    description: "strikethrough",
+    description: "strikethrough: Ctrl + /",
+  },
+  {
+    label: "tt",
+    style: "CODE",
+    description: "monospace: Ctrl + `",
   },
 ];
 
@@ -100,7 +106,7 @@ const ToolbarItem = (props) => {
  */
 export const BlockTools = (props) => {
   const { toggleBlock, editorState } = props;
-  const select  = editorState.getSelection();
+  const select = editorState.getSelection();
   const blockStyle = editorState
     .getCurrentContent()
     .getBlockForKey(select.getStartKey())
