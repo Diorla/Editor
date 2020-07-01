@@ -155,11 +155,6 @@ Array [
             <div
               className="MuiFormControl-root MuiTextField-root"
               onKeyDown={[Function]}
-              style={
-                Object {
-                  "margin": 2,
-                }
-              }
             >
               <label
                 className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
