@@ -23,7 +23,7 @@ import HelpBar from "../components/HelpBar";
  * Left side of the screen
  * # Start
  * projects[]
- * 
+ *
  * # Help
  * cheat sheet
  * tips and tricks
@@ -34,7 +34,7 @@ import HelpBar from "../components/HelpBar";
  * Right side of the screen
  * # Customise
  * color theme
- * 
+ *
  * # Blogs
  * blogs[]
  */
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   home: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     padding: 8,
   },
   projects: {
@@ -99,7 +99,7 @@ const Home = (props) => {
           <HelpBar
             key={idx}
             title={helpItem.title}
-            content={helpItem.content}
+            content={helpItem.description}
           />
         ))}
       </div>
