@@ -152,30 +152,6 @@ Array [
           <div
             className="makeStyles-input-9"
           >
-            <button
-              className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSizeSmall MuiButton-sizeSmall Mui-disabled Mui-disabled"
-              disabled={true}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onDragLeave={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              tabIndex={-1}
-              type="button"
-            >
-              <span
-                className="MuiButton-label"
-              >
-                New project
-              </span>
-            </button>
             <div
               className="MuiFormControl-root MuiTextField-root"
               onKeyDown={[Function]}

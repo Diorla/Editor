@@ -1,26 +1,16 @@
 //@ts-check
 import React, { useState, useRef, useEffect } from "react";
-import {
-  Editor,
-  EditorState,
-  RichUtils,
-  convertFromHTML,
-  ContentState,
-} from "draft-js";
+import { Editor, EditorState, RichUtils } from "draft-js";
 import { Divider, Box } from "@material-ui/core";
 import { InlineTools, BlockTools } from "./Toolbar";
 import useStyles from "../useStyles";
-import jsonfile from "jsonfile";
-import { stateToHTML } from "draft-js-export-html";
+import save from "./save";
+import handleKeyCommand from "./handleKeyCommand";
+import load from "./load";
+import KeybindingFn from "./KeybindingFn";
 
 // TODO: Enable editor focus after clicking toolbar
-// TODO: Use Ctrl + S to save file.
-/**
- * This would mean I need to prevent navigation when the user has not saved their work
- * Or perhaps, add it to settings where user may choose between autosave and
- * manual saving.
- */
-//TODO: Add more to toolbars
+// TODO: Add more to toolbars
 /**
  * Indent: increase or decrease the indentation, in case of list, it would either
  * create a child list or bring it out to parent list or even remove the list
@@ -33,21 +23,6 @@ import { stateToHTML } from "draft-js-export-html";
  * This includes stuff like multiple selection and edition, like managing more than
  * one cursor like I do on VsCode using alt + click
  */
-// TODO: Add shortcuts to all the toolbar
-/**
- * --- Block
- * H1: Ctrl + 1
- * H2: Ctrl + 2
- * H3: Ctrl + 3
- * Quote: Ctrl + '
- * Ol: Ctrl + 0
- * Ul: Ctrl + *
- * --- Inline
- * Bold: Ctrl + B
- * Italic: Ctrl + I
- * Underline: Ctrl + U
- * Strikethrough: Ctrl + /
- */
 /**
  * @param {{ itemDir: string; }} props
  */
@@ -57,24 +32,16 @@ export default (props) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const [data, setData] = useState({});
   const editorRef = useRef(null);
+  // BUG: Editor cursor is erratic
   /**
+   * Whenever I call the function inside useEffect(which should enable autofocus on page load)
+   * It works at first, and then cursor starts jumping around on the editor
    * For turning focus to the editor
    */
-  const focusEditor = () => editorRef.current.focus();
+  // const focusEditor = () => editorRef.current.focus();
   useEffect(() => {
-    jsonfile.readFile(itemDir).then((val, err) => {
-      setData(val);
-      const { content } = val;
-      const blocksFromHTML = convertFromHTML(content);
-      const state = ContentState.createFromBlockArray(
-        blocksFromHTML.contentBlocks,
-        blocksFromHTML.entityMap
-      );
-
-      setEditorState(() => EditorState.createWithContent(state));
-    });
+    load(itemDir, setEditorState);
   }, [itemDir]);
 
   /**
@@ -97,41 +64,6 @@ export default (props) => {
   const toggleBlock = (type) =>
     onChange(RichUtils.toggleBlockType(editorState, type));
 
-  /**
-   * For handling keys like Ctrl B= bold
-   * @param {string} command
-   * @param {EditorState} editorState
-   */
-  const handleKeyCommand = (command, editorState) => {
-    /** @type {React.SetStateAction<EditorState>} */
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
-      onChange(newState);
-
-      return "handled";
-    }
-    return "not-handled";
-  };
-
-  const save = () => {
-    const contentState = editorState.getCurrentContent();
-    const raw = stateToHTML(contentState);
-    jsonfile.readFile(itemDir, (err, data) => {
-      if (err) console.log("error reading file:", err);
-      else
-        jsonfile.writeFile(
-          itemDir,
-          {
-            ...data,
-            content: raw,
-          },
-          (err) => {
-            if (err) console.log("error saving data");
-          }
-        );
-    });
-  };
-
   // Remove placeholder after clicking toolbar
   let className = `${classes.editor}`;
   const contentState = editorState.getCurrentContent();
@@ -139,6 +71,13 @@ export default (props) => {
     if (contentState.getBlockMap().first().getType() !== "unstyled")
       className += ` ${classes.hidePlaceholder}`;
   }
+
+  //FIXME: onTab is deprecated
+  /**
+   * So I need to fix it, by replacing it with KeybindingFn
+   * @param {React.KeyboardEvent<{}>} e
+   */
+  const onTab = (e) => onChange(RichUtils.onTab(e, editorState, 4));
 
   return (
     <div>
@@ -154,13 +93,17 @@ export default (props) => {
           ref={editorRef}
           editorState={editorState}
           onChange={onChange}
-          handleKeyCommand={handleKeyCommand}
+          handleKeyCommand={(command) =>
+            handleKeyCommand(command, editorState, onChange)
+          }
           placeholder="Once upon a time..."
           spellCheck
           autoCapitalize="sentence"
           autoComplete="on"
           autoCorrect="on"
-          onBlur={save}
+          onBlur={() => save(editorState, itemDir)}
+          onTab={onTab}
+          keyBindingFn={(e) => KeybindingFn(e)}
         />
       </div>
     </div>
