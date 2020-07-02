@@ -4,16 +4,13 @@ import { connect } from "react-redux";
 import { makeStyles, Link } from "@material-ui/core";
 import { AiOutlineDelete } from "react-icons/ai";
 import { GiMoon } from "react-icons/gi";
-// import { IoMdHelp, IoMdSettings } from "react-icons/io";
-// import { FaRegStickyNote } from "react-icons/fa";
+import { IoMdHelp, IoMdSettings } from "react-icons/io";
+import { FaRegStickyNote } from "react-icons/fa";
 import {
   CHANGE_THEME,
-  OPEN_COLLECTION,
-  OPEN_PROJECT,
-  CLOSE_PROJECT,
+  ON_BROWSER_CLOSE,
+  ON_SIDEBAR_CHANGE,
 } from "./../redux/constant";
-import path from "path";
-import fs from "fs";
 // TODO: Complete toolbars
 /**
  * There are three types of icons on the titlebar
@@ -58,18 +55,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/**
- * @param {{ project?: {projectName: string, collectionDir: string, itemDir: string, activeBlog: string}; changeTheme?: ()=> void; closeProject?: ()=> void; openFolder?: (arg0: string)=> void; openProject?: (arg0: string)=> void;}} props
- */
 const TitleBar = (props) => {
   const classes = useStyles();
-  const { changeTheme, closeProject, openFolder, openProject } = props;
-  const { projectName, collectionDir, itemDir, activeBlog } = props.project;
-  const title =
-    activeBlog ||
-    path.basename(itemDir, ".scrb") ||
-    path.basename(collectionDir) ||
-    projectName;
+  const { changeTheme, closeProject, browser } = props;
+  console.log("titlebar:", browser);
   return (
     <div className={classes.appBar}>
       <div className={classes.appSection}>
@@ -81,60 +70,32 @@ const TitleBar = (props) => {
           Home
         </Link>
       </div>
-      <div className={classes.appSection}>{`${title} - Tome Editor`}</div>
+      {browser.name ? (
+        <div className={classes.appSection}>{`${
+          browser.name || ""
+        } - Tome Editor`}</div>
+      ) : (
+        <div className={classes.appSection}>Tome Editor</div>
+      )}
       <div className={classes.iconBar}>
         <GiMoon title="Dark mode" onClick={() => changeTheme()} />
-        {/*<FaRegStickyNote title="Add note" onClick={() => console.log("note")} />
+        <FaRegStickyNote title="Add note" onClick={() => console.log("note")} />
         <IoMdHelp title="Get help" onClick={() => console.log("help")} />
         <IoMdSettings
           title="Get preferences"
           onClick={() => console.log("settings")}
-        />*/}
+        />
         <AiOutlineDelete
           title="Delete"
-          onClick={() => {
-            // const { projectName, collectionDir, itemDir, activeBlog } = props.project;
-            const target = "" || itemDir || collectionDir || projectName;
-            if (
-              target &&
-              confirm(`Are you sure you want to delete ${target}`)
-            ) {
-              if (itemDir) {
-                openFolder(collectionDir);
-                fs.unlink(itemDir, (err) => {
-                  if (err) console.log(err);
-                  else console.log("file deleted");
-                });
-              } else if (collectionDir) {
-                openProject(projectName);
-                fs.rmdir(collectionDir, { recursive: true }, (err) => {
-                  if (err) console.log(err);
-                  else console.log("file deleted");
-                });
-              } else {
-                closeProject();
-                fs.rmdir(
-                  `${process.cwd()}/projects/${projectName}`,
-                  { recursive: true },
-                  (err) => {
-                    if (err) console.log(err);
-                    else console.log("file deleted");
-                  }
-                );
-              }
-            } else console.log("Not deleting");
-          }}
+          onClick={() => console.log("deleted")}
         />
       </div>
     </div>
   );
 };
 
-/**
- * @param {{ project: {projectName: string, collectionDir: string, itemDir: string, activeBlog: string}; }} state
- */
 const mapStateToProps = (state) => ({
-  project: state.project,
+  browser: state.browser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -142,26 +103,16 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({
       type: CHANGE_THEME,
     }),
-  closeProject: () =>
+  closeProject: () => {
     dispatch({
-      type: CLOSE_PROJECT,
-    }),
-  /**
-   * @param {string} collectionDir
-   */
-  openFolder: (collectionDir) =>
+      type: ON_BROWSER_CLOSE,
+    });
     dispatch({
-      type: OPEN_COLLECTION,
-      collectionDir,
-    }),
-  /**
-   * @param {string} projectName
-   */
-  openProject: (projectName) =>
-    dispatch({
-      type: OPEN_PROJECT,
-      projectName,
-    }),
+      type: ON_SIDEBAR_CHANGE,
+      mode: "home",
+      dir: "",
+    });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);

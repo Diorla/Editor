@@ -1,30 +1,16 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles, Drawer, Box } from "@material-ui/core";
-import SidebarRoutes from "./SidebarRoutes";
-
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  drawer: {
-    minWidth: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerContainer: {
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    width: drawerWidth,
-  },
-}));
+import { Drawer, Box } from "@material-ui/core";
+import Router from "./Router";
+import useStyles from "../components/useStyles";
 
 const SideBar = (props) => {
   const classes = useStyles();
   return (
     <Drawer className={classes.drawer} variant="permanent">
       <Box className={classes.drawerContainer}>
-        <SidebarRoutes />
+        <Router />
       </Box>
     </Drawer>
   );

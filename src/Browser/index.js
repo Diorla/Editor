@@ -1,22 +1,14 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core";
-import BrowserRoutes from "./BrowserRoutes";
+import Router from "./Router";
+import useStyles from "../components/useStyles";
 
-const useStyles = makeStyles((theme) => ({
-  content: {
-    flexGrow: 1,
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-  },
-}));
-
-const Browser = ({ screen }) => {
+const Browser = () => {
   const classes = useStyles();
   return (
-    <main className={classes.content}>
-      <BrowserRoutes />
+    <main className={classes.browser}>
+      <Router />
     </main>
   );
 };
@@ -25,7 +17,7 @@ const Browser = ({ screen }) => {
  * @param {{ screen: string; }} state
  */
 const mapStateToProps = (state) => ({
-  screen: state.screen,
+  // state
 });
 
 /**
