@@ -1,39 +1,14 @@
 //@ts-check
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {
-  makeStyles,
-  Button,
-  TextField,
-  Typography,
-  Link,
-} from "@material-ui/core";
+import { TextField, Typography, Link } from "@material-ui/core";
 import fs from "fs";
-import title from "./../utils/title";
-import { OPEN_PROJECT } from "../redux/constant";
 import jsonfile from "jsonfile";
-import generateHash from "../utils/generateHash";
+import generateHash from "../../utils/generateHash";
+import title from "../../utils/title";
+import useStyles from "../../components/useStyles";
+import { ON_BROWSER_OPEN, ON_SIDEBAR_CHANGE } from "../../redux/constant";
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    display: "flex",
-    flexDirection: "column",
-    padding: 8,
-  },
-  projects: {
-    marginTop: 16,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-  },
-  link: {
-    padding: 4,
-  },
-}));
-
-/**
- * @param {{ openProject: (projectName: string)=>void; }} props
- */
 const HomeNav = (props) => {
   const classes = useStyles();
   const { openProject } = props;
@@ -43,9 +18,6 @@ const HomeNav = (props) => {
   const [projectList, setProjectList] = useState([]);
   const projectDir = `${process.cwd()}/projects`;
 
-  /**
-   * @param {string} projectName
-   */
   const addNewProject = (projectName) => {
     fs.mkdir(`${projectDir}/${projectName}`, { recursive: true }, (err) => {
       if (err) console.log(err);
@@ -109,9 +81,16 @@ const HomeNav = (props) => {
             <Link
               color="primary"
               key={idx}
-              onClick={() => {
-                openProject(project);
-              }}
+              onClick={() =>
+                openProject(
+                  {
+                    name: project,
+                    fullDir: `./projects/${project}/.config`,
+                    data: {},
+                  },
+                  `./projects/${project}`
+                )
+              }
               component="button"
               className={classes.link}
             >
@@ -124,25 +103,27 @@ const HomeNav = (props) => {
   );
 };
 
-/**
- * @param {any} state
- */
 const mapStateToProps = (state) => ({
   // content: state.content,
 });
 
-/**
- * @param {(arg0: { type: string; projectName: string; }) => any} dispatch
- */
 const mapDispatchToProps = (dispatch) => ({
-  /**
-   * @param {string} projectName
-   */
-  openProject: (projectName) =>
+  openProject: (payload, dir) => {
     dispatch({
-      type: OPEN_PROJECT,
-      projectName,
-    }),
+      type: ON_BROWSER_OPEN,
+      payload: {
+        ...payload,
+        mode: "project",
+      },
+    });
+    dispatch({
+      type: ON_SIDEBAR_CHANGE,
+      payload: {
+        mode: "project",
+        dir,
+      },
+    });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeNav);
