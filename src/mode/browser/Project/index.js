@@ -6,17 +6,14 @@ import reducer from "./reducer";
 import initValue from "./initValue";
 import saveConfig from "./saveConfig";
 import createFolder from "./createFolder";
-import { Box, Typography, TextField, Button } from "@material-ui/core";
-import title from "../../utils/title";
+import { Box, Typography, TextField } from "@material-ui/core";
 import getFolderList from "./getFolderList";
 import loadConfig from "./loadConfig";
+import title from "../../../utils/title";
 
-/**
- * @param {{ project: { projectName: string; }; }} props
- */
+
 const Project = (props) => {
-  const { projectName } = props.project;
-  const projectDir = process.cwd() + "/projects/" + projectName;
+  const { fullDir } = props.browser;
   const classes = useStyles();
   // for adding new collection
   const [collectionName, setCollectionName] = useState("");
@@ -26,8 +23,8 @@ const Project = (props) => {
   const [state, dispatch] = useReducer(reducer, initValue);
 
   useEffect(() => {
-    getFolderList(projectDir, collectionList, setCollectionList);
-    loadConfig(projectDir, state, dispatch);
+    getFolderList(fullDir, collectionList, setCollectionList);
+    loadConfig(fullDir, state, dispatch);
     return () => {
       console.log("unmounted");
     };
@@ -48,7 +45,7 @@ const Project = (props) => {
             title: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, projectDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <TextField
         label="Description"
@@ -61,7 +58,7 @@ const Project = (props) => {
             description: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, projectDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <TextField
         label="Tags"
@@ -73,7 +70,7 @@ const Project = (props) => {
             tags: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, projectDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <TextField
         label="Genre"
@@ -85,7 +82,7 @@ const Project = (props) => {
             genre: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, projectDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <TextField
         label="Audience"
@@ -97,7 +94,7 @@ const Project = (props) => {
             audience: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, projectDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <Box className={classes.content}>
         <Typography component="h2" className={classes.header}>
@@ -124,7 +121,7 @@ const Project = (props) => {
               else if (!collectionName) setError("Field is empty");
               else
                 createFolder(
-                  projectDir,
+                  fullDir,
                   collectionName,
                   setCollectionList,
                   setCollectionName
@@ -142,17 +139,12 @@ const Project = (props) => {
   );
 };
 
-/**
- * @param {{ screen: string; project: { projectName: string }; }} state
- */
+
 const mapStateToProps = (state) => ({
-  screen: state.screen,
-  project: state.project,
+  browser: state.browser,
 });
 
-/**
- * @param {any} dispatch
- */
+
 const mapDispatchToProps = (dispatch) => ({
   // props
 });

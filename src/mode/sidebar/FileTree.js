@@ -1,28 +1,13 @@
 //@ts-check
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TreeView from "@material-ui/lab/TreeView";
-import TreeItem from "@material-ui/lab/TreeItem";
+import { TreeView, TreeItem } from "@material-ui/lab";
 import dirTree from "directory-tree";
 import chokidar from "chokidar";
 import { FaFolder, FaFile, FaFolderOpen } from "react-icons/fa";
 import { connect } from "react-redux";
-import { OPEN_COLLECTION, OPEN_PROJECT, OPEN_ITEM } from "../redux/constant";
 import path from "path";
-
-// TODO: Move to ./section
-/**
- * Since this is to be used only once
- */
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-    maxWidth: 400,
-    marginBottom: 30,
-    userSelect: "none",
-  },
-});
+import useStyles from "../../components/useStyles";
+import { ON_BROWSER_CHANGE } from "../../redux/constant";
 
 /**
  * This is for placing directories on top, and files below
@@ -34,24 +19,20 @@ const compareDir = (objA, objB) => {
   else return 1;
 };
 
-/**
- * @param {{ project?: any; activeFile: string; openFolder?: (arg0: string)=> void; openFile?: (arg0: string)=> void; openProject?: (arg0: string)=> void; }} props
- */
 const FileTree = (props) => {
-  const { activeFile, openFolder, openFile, openProject } = props;
-  const { itemDir } = props.project;
+  const { changeBrowser } = props;
+  const { dir } = props.sidebar;
+  const { mode } = props.browser;
   const classes = useStyles();
-  const projectDir = `${process.cwd()}/projects/${activeFile}`;
-  // To trigger re-render
   const [projectTree, setProjectTree] = useState(
-    dirTree(projectDir, {
+    dirTree(dir, {
       extensions: /\.scrb$/,
       exclude: /node_modules/,
     })
   );
 
   const updateProjectTree = () => {
-    const currentTree = dirTree(projectDir, {
+    const currentTree = dirTree(dir, {
       extensions: /\.scrb$/,
       exclude: /node_modules/,
     });
@@ -61,21 +42,21 @@ const FileTree = (props) => {
 
   useEffect(() => {
     // Now watch out for changes
-    const treeMonitor = chokidar.watch(projectDir, {
+    const treeMonitor = chokidar.watch(dir, {
       ignored: /(^|[\/\\])\../, // ignore .config, .template & .generator
     });
 
     treeMonitor //new folder
-      .on("addDir", (path, stats) => {
+      .on("addDir", () => {
         updateProjectTree();
       }) // new file
-      .on("add", (path, stats) => {
+      .on("add", () => {
         updateProjectTree();
       }) // delete file
-      .on("unlink", (path, stats) => {
+      .on("unlink", () => {
         updateProjectTree();
       }) // delete folder
-      .on("unlinkDir", (path, stats) => {
+      .on("unlinkDir", () => {
         updateProjectTree();
       });
     return () => {
@@ -116,29 +97,51 @@ const FileTree = (props) => {
       }
       onClick={(e) => {
         e.stopPropagation();
-        if (nodes.type === "directory") {
-          // require double click to move away from file to folder
-          if (itemDir) console.log("can't move away");
-          else if (nodes.name === activeFile)
-            console.log("no need to navigate");
-          else {
-            console.log("folder opened");
-            openFolder(`${nodes.path}`);
-          }
-        } else {
-          console.log("file opened");
-          openFile(`${nodes.path}`);
-        }
+        // console.log(nodes);
+        // if this is a file, navigage
+        if (nodes.type === "file")
+          changeBrowser({
+            name: path.basename(nodes.path, ".scrb"),
+            fullDir: nodes.path,
+            mode: "document",
+          });
+        // if the active dir is not a file
+        else if (mode !== "document") {
+          // if the root path == this folder
+          if (nodes.path === dir)
+            changeBrowser({
+              name: path.basename(nodes.path),
+              fullDir: nodes.path,
+              mode: "project",
+            });
+          //any other folder
+          else
+            changeBrowser({
+              name: path.basename(nodes.path),
+              fullDir: nodes.path,
+              mode: "collection",
+            });
+        } else console.log("Double click to navigate");
       }}
       onDoubleClick={(e) => {
         e.stopPropagation();
-        // require double click to move away from file to folder
-        if (nodes.type === "file") {
-          console.log("don't need double click to open file");
-        } else {
-          if (nodes.name === activeFile) openProject(activeFile);
-          else openFolder(nodes.path);
-        }
+        // should only work on folders
+        if (nodes.type === "directory") {
+          // if the root path == this folder
+          if (nodes.path === dir)
+            changeBrowser({
+              name: path.basename(nodes.path),
+              fullDir: nodes.path,
+              mode: "project",
+            });
+          //any other folder
+          else
+            changeBrowser({
+              name: path.basename(nodes.path),
+              fullDir: nodes.path,
+              mode: "collection",
+            });
+        } else console.log("Doesn't work on file");
       }}
     >
       {Array.isArray(nodes.children)
@@ -150,48 +153,24 @@ const FileTree = (props) => {
   );
 
   return (
-    <TreeView className={classes.root} defaultExpanded={["0"]}>
+    <TreeView className={classes.tree} defaultExpanded={["0"]}>
       {renderTree(projectTree)}
     </TreeView>
   );
 };
 
-/**
- * @param {{ project: {projectName: string, collectionDir: string, itemDir: string}; }} state
- */
 const mapStateToProps = (state) => ({
-  project: state.project,
+  sidebar: state.sidebar,
+  browser: state.browser,
 });
 
-/**
- * @param {(arg0: { type: string; collectionDir?: string; itemDir?: string; projectName?: string; }) => any} dispatch
- */
 const mapDispatchToProps = (dispatch) => ({
-  /**
-   * @param {string} collectionDir
-   */
-  openFolder: (collectionDir) =>
+  changeBrowser: (payload) =>
     dispatch({
-      type: OPEN_COLLECTION,
-      collectionDir,
-    }),
-
-  /**
-   * @param {string} itemDir
-   */
-  openFile: (itemDir) =>
-    dispatch({
-      type: OPEN_ITEM,
-      itemDir,
-    }),
-
-  /**
-   * @param {string} projectName
-   */
-  openProject: (projectName) =>
-    dispatch({
-      type: OPEN_PROJECT,
-      projectName,
+      type: ON_BROWSER_CHANGE,
+      payload: {
+        ...payload,
+      },
     }),
 });
 

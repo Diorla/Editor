@@ -1,8 +1,7 @@
 //@ts-check
 import fs from "fs";
-import title from "../../utils/title";
 import jsonfile from "jsonfile";
-import generateHash from "../../utils/generateHash";
+import generateHash from "../../../utils/generateHash";
 
 /**
  * @param {fs.PathLike} projectDir
