@@ -23,6 +23,20 @@ import KeybindingFn from "./KeybindingFn";
  * This includes stuff like multiple selection and edition, like managing more than
  * one cursor like I do on VsCode using alt + click
  */
+// TODO: Add search and replace
+/**
+ * Basic editor search and replace.
+ * Ctrl + F: it will open two inputs, two icons and a button. The first input will be the text that is being searched, the second inputs will serve as the replacer text. The two icons will be up and down, navigating to the next or previous matched text while the replace button will replace the matched text with the content of the second input. If the second input is empty, the button is disabled.
+ * Also, there will be a badge indicating the number of matches.
+ */
+// TODO: Highlight keywords
+/**
+ * To be honest, I don't know how I will implement this feature but this is basically what it does.
+ * Certain keywords will be automatically be highlighted whenever you typed them in, similar to the way IDE applies different styles to different keywords. User may use it to keep track e.g. the number of characters that are present in a chapter.
+ * Implementation 1: At the project level, user can add keywords, I could have a simple inputs or an array of inputs, each one has its own label e.g. charaacters or locations etc. Now, any file inside this project will have the keyword highlighted, and in case of array of inputs, user can toggle which set of keywords that they want to see.
+ * Auto indexing: whenever a user opens a project or create a new file, all the names of the file is indexed like some store.index or store.keywords and this will automatically serves as the keywords. I could provide array of keywords by separating them based on folders. The only problem with this is that file name may not be semantic enough e.g. the name of the file may not equal the name of the item e.g. the name of a character file is "Waiter", but the name of the waiter may be John Doe, he may have the nickname JD, his uncle may call him Johny Boy etc.
+ * And perhaps, this feature is to far reaching?
+ */
 /**
  * @param {{ itemDir: string; }} props
  */

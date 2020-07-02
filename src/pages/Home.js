@@ -93,7 +93,7 @@ const Home = (props) => {
           </Link>
         ))}
       </div>
-      <div className={classes.projects}>
+      {/*<div className={classes.projects}>
         <h2>Help</h2>
         {helpList.map((helpItem, idx) => (
           <HelpBar
@@ -102,7 +102,7 @@ const Home = (props) => {
             content={helpItem.description}
           />
         ))}
-      </div>
+        </div>*/}
     </div>
   );
 };
