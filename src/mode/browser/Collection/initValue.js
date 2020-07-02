@@ -1,5 +1,5 @@
 //@ts-check
-import generateHash from "../../utils/generateHash";
+import generateHash from "../../../utils/generateHash";
 
 export default {
   id: generateHash(),

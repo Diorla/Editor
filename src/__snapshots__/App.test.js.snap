@@ -5,196 +5,14 @@ Array [
   <div
     className="makeStyles-root-1"
   >
-    <div
-      className="makeStyles-appBar-2"
-    >
-      <div
-        className="makeStyles-appSection-5"
-      >
-        <button
-          className="MuiTypography-root MuiLink-root MuiLink-underlineHover makeStyles-link-4 MuiLink-button MuiTypography-colorPrimary"
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-        >
-          Home
-        </button>
-      </div>
-      <div
-        className="makeStyles-appSection-5"
-      >
-         - Tome Editor
-      </div>
-      <div
-        className="makeStyles-iconBar-3"
-      >
-        <svg
-          fill="currentColor"
-          height="1em"
-          onClick={[Function]}
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 512 512"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>
-            Dark mode
-          </title>
-          <path
-            d="M253.125 18.563c-131.53 0-238.375 106.813-238.375 238.343 0 131.53 106.846 238.344 238.375 238.344 131.53 0 238.344-106.815 238.344-238.344 0-131.528-106.816-238.344-238.345-238.344zm-23.938 52.093c40.517 0 77.988 12.904 108.532 34.813-5.597-.624-11.302-.97-17.064-.97-84.157 0-152.375 68.25-152.375 152.406 0 84.157 68.22 152.375 152.376 152.375 5.762 0 11.467-.313 17.063-.936-30.545 21.91-68.016 34.812-108.533 34.812-102.98 0-186.28-83.272-186.28-186.25 0-102.977 83.3-186.25 186.28-186.25z"
-          />
-        </svg>
-        <svg
-          fill="currentColor"
-          height="1em"
-          onClick={[Function]}
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 448 512"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>
-            Add note
-          </title>
-          <path
-            d="M448 348.106V80c0-26.51-21.49-48-48-48H48C21.49 32 0 53.49 0 80v351.988c0 26.51 21.49 48 48 48h268.118a48 48 0 0 0 33.941-14.059l83.882-83.882A48 48 0 0 0 448 348.106zm-128 80v-76.118h76.118L320 428.106zM400 80v223.988H296c-13.255 0-24 10.745-24 24v104H48V80h352z"
-          />
-        </svg>
-        <svg
-          fill="currentColor"
-          height="1em"
-          onClick={[Function]}
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 512 512"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>
-            Get help
-          </title>
-          <path
-            d="M289 448h-66v-65h66v65zm-1-98h-64c0-101 96-95.1 96-159 0-35.2-28.8-63.4-64-63.4S192 158 192 192h-64c0-71 57.3-128 128-128s128 56.4 128 127c0 79.9-96 89-96 159z"
-          />
-        </svg>
-        <svg
-          fill="currentColor"
-          height="1em"
-          onClick={[Function]}
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 512 512"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>
-            Get preferences
-          </title>
-          <path
-            d="M413.967 276.8c1.06-6.235 1.06-13.518 1.06-20.8s-1.06-13.518-1.06-20.8l44.667-34.318c4.26-3.118 5.319-8.317 2.13-13.518L418.215 115.6c-2.129-4.164-8.507-6.235-12.767-4.164l-53.186 20.801c-10.638-8.318-23.394-15.601-36.16-20.801l-7.448-55.117c-1.06-4.154-5.319-8.318-10.638-8.318h-85.098c-5.318 0-9.577 4.164-10.637 8.318l-8.508 55.117c-12.767 5.2-24.464 12.482-36.171 20.801l-53.186-20.801c-5.319-2.071-10.638 0-12.767 4.164L49.1 187.365c-2.119 4.153-1.061 10.399 2.129 13.518L96.97 235.2c0 7.282-1.06 13.518-1.06 20.8s1.06 13.518 1.06 20.8l-44.668 34.318c-4.26 3.118-5.318 8.317-2.13 13.518L92.721 396.4c2.13 4.164 8.508 6.235 12.767 4.164l53.187-20.801c10.637 8.318 23.394 15.601 36.16 20.801l8.508 55.117c1.069 5.2 5.318 8.318 10.637 8.318h85.098c5.319 0 9.578-4.164 10.638-8.318l8.518-55.117c12.757-5.2 24.464-12.482 36.16-20.801l53.187 20.801c5.318 2.071 10.637 0 12.767-4.164l42.549-71.765c2.129-4.153 1.06-10.399-2.13-13.518l-46.8-34.317zm-158.499 52c-41.489 0-74.46-32.235-74.46-72.8s32.971-72.8 74.46-72.8 74.461 32.235 74.461 72.8-32.972 72.8-74.461 72.8z"
-          />
-        </svg>
-        <svg
-          fill="currentColor"
-          height="1em"
-          onClick={[Function]}
-          stroke="currentColor"
-          strokeWidth="0"
-          style={
-            Object {
-              "color": undefined,
-            }
-          }
-          viewBox="0 0 1024 1024"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>
-            Delete
-          </title>
-          <path
-            d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div
-      className="MuiDrawer-root MuiDrawer-docked makeStyles-drawer-6"
-    >
-      <div
-        className="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0"
-      >
-        <div
-          className="MuiBox-root MuiBox-root-8 makeStyles-drawerContainer-7"
-        >
-          <div
-            className="makeStyles-input-9"
-          >
-            <div
-              className="MuiFormControl-root MuiTextField-root"
-              onKeyDown={[Function]}
-            >
-              <label
-                className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-                data-shrink={false}
-              >
-                New project
-              </label>
-              <div
-                className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-                onClick={[Function]}
-              >
-                <input
-                  aria-invalid={false}
-                  autoFocus={false}
-                  className="MuiInputBase-input MuiInput-input"
-                  disabled={false}
-                  onAnimationStart={[Function]}
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  placeholder="Click enter to add project"
-                  required={false}
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
     <main
-      className="makeStyles-content-12"
+      className="makeStyles-browser-2"
     >
       <div
-        className="makeStyles-home-13"
+        className="makeStyles-browserHome-3"
       >
         <div
-          className="makeStyles-projects-14"
+          className="makeStyles-projects-4"
         >
           <h2
             style={
@@ -206,17 +24,10 @@ Array [
             Projects
           </h2>
         </div>
-        <div
-          className="makeStyles-projects-14"
-        >
-          <h2>
-            Help
-          </h2>
-        </div>
       </div>
     </main>
     <div
-      className="makeStyles-appBar-16"
+      className="makeStyles-appBar-6"
     >
       <div>
         Word count

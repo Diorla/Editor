@@ -3,19 +3,16 @@ import React, { useReducer, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import reducer from "./reducer";
 import initValue from "./initValue";
-import useStyles from "./useStyles";
 import onFileInputChange from "./onFileInputChange";
 import saveConfig from "./saveConfig";
 import fs from "fs";
-import {
-  Box,
-  Typography,
-  TextField,
-  FormControl,
-} from "@material-ui/core";
+import { Box, Typography, TextField, FormControl } from "@material-ui/core";
 import loadConfig from "./loadConfig";
 import createFile from "./createFile";
 import detail from "./detail";
+import createFolder from "./createFolder";
+import onFolderInputChange from "./onFolderInputChange";
+import useStyles from "../../../components/useStyles";
 
 // TODO: Make the options dynamic by parsing the template folder.
 
@@ -28,37 +25,36 @@ import detail from "./detail";
  * So each template will have the following keys: template, content and description.
  * All preloaded template will have template keys like character, stories etc because my app will
  * parse them differently but user generated templates will all be parsed by editor, so no need for
- * "template" key. The description will also be loaded and be presented the same way we are 
+ * "template" key. The description will also be loaded and be presented the same way we are
  * "detail.js" now.
  * "content" is the part that will be rendered and updated via Editor.
  * Hence the edit page logic will go like this=
  * if file has template and the template is one of the special page, load special page hence load generic page.
- * Also, I could change the dropdown to input with datalist (this will prevents long dropdowns), and in 
+ * Also, I could change the dropdown to input with datalist (this will prevents long dropdowns), and in
  * case user types in an text that is not on the template, it will show error feedback ie. input is
  * red and error message. It may also prevent the creation of new documents or create new elements
  * using no template (default ie. empty document)
  */
-/**
- * @param {{ project: { collectionDir: string; }; }} props
- */
-const Folder = (props) => {
-  const { collectionDir } = props.project;
+
+const Collection = (props) => {
+  const { fullDir } = props.browser;
   const [state, dispatch] = useReducer(reducer, initValue);
   const classes = useStyles();
   const [fileName, setFileName] = useState("");
+  const [folderName, setFolderName] = useState("");
   const [error, setError] = useState("");
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
     // get the list of all the files in the folder
-    fs.readdir(collectionDir, (err, data) => {
+    fs.readdir(fullDir, (err, data) => {
       if (err) throw err;
       // No need to update and re-render if the source == destination. This prevents infinite loop
       if (JSON.stringify(fileList) !== JSON.stringify(data)) setFileList(data);
     });
 
     loadConfig(
-      collectionDir,
+      fullDir,
       (err) => {
         console.log(err);
       },
@@ -78,7 +74,7 @@ const Folder = (props) => {
     return () => {
       console.log("unmounted");
     };
-  }, [collectionDir]);
+  }, [fullDir]);
 
   return (
     <Box className={classes.content}>
@@ -95,7 +91,7 @@ const Folder = (props) => {
             title: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, collectionDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <TextField
         label="Description"
@@ -108,7 +104,7 @@ const Folder = (props) => {
             description: e.target.value,
           })
         }
-        onBlur={() => saveConfig(state, collectionDir)}
+        onBlur={() => saveConfig(state, fullDir)}
       />
       <FormControl>
         <Typography component="h3" className={classes.header}>
@@ -124,7 +120,7 @@ const Folder = (props) => {
               template: e.target.value,
             })
           }
-          onBlur={(e) => saveConfig(state, collectionDir)}
+          onBlur={(e) => saveConfig(state, fullDir)}
         >
           <option value="Default">No template</option>
           <option value="Character">Character</option>
@@ -138,39 +134,68 @@ const Folder = (props) => {
           <option value="World">World</option>
         </select>
       </FormControl>
-      <Box className={classes.content}>
-        <Typography component="h2" className={classes.header}>
-          Create document
-        </Typography>
-        <TextField
-          label="New document"
-          value={fileName}
-          placeholder="Click enter to add document"
-          onChange={(e) =>
-            onFileInputChange(e, setFileName, setError, fileList)
-          }
-          onKeyDown={(e) => {
-            if (e.keyCode === 13) {
-              // Can't disable enter, so I did the next best thing
-              if (error) setError(`Can't add document, ${error}`);
-              else if (!fileName) setError("Field is empty");
-              else
-                createFile(
-                  fileName,
-                  collectionDir,
-                  fileList,
-                  setFileList,
-                  setFileName,
-                  setError,
-                  {
-                    template: state.template,
-                  }
-                );
+      <Box style={{ display: "flex" }}>
+        <Box className={classes.content}>
+          <Typography component="h2" className={classes.header}>
+            Create document
+          </Typography>
+          <TextField
+            label="New document"
+            value={fileName}
+            placeholder="Click enter to add document"
+            onFocus={() =>
+              onFileInputChange(fileName, setFileName, setError, fileList)
             }
-          }}
-        />
+            onChange={(e) =>
+              onFileInputChange(e.target.value, setFileName, setError, fileList)
+            }
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                // Can't disable enter, so I did the next best thing
+                if (error) setError(`Can't create new document. ${error}`);
+                else if (!fileName) setError("Field is empty");
+                else
+                  createFile(fileName, fullDir, setFileList, setFileName, {
+                    template: state.template,
+                  });
+              }
+            }}
+          />
+        </Box>
+        <Box className={classes.content}>
+          <Typography component="h2" className={classes.header}>
+            Create sub collection
+          </Typography>
+          <TextField
+            label="New collection"
+            value={folderName}
+            placeholder="Click enter to add collection"
+            onFocus={() =>
+              onFolderInputChange(folderName, setFolderName, setError, fileList)
+            }
+            onChange={(e) =>
+              onFolderInputChange(
+                e.target.value,
+                setFolderName,
+                setError,
+                fileList
+              )
+            }
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                // Can't disable enter, so I did the next best thing
+                if (error) setError(`Can't add collection. ${error}`);
+                else if (!folderName) setError("Field is empty");
+                else
+                  createFolder(folderName, fullDir, setFileList, setFolderName);
+              }
+            }}
+          />
+        </Box>
       </Box>
-      <Box className={classes.help}>{detail[state.template] || detail.Default}</Box>
+      <Box className={classes.info}>
+        {detail[state.template] || detail.Default}
+      </Box>
       {error && (
         <Typography variant="subtitle1" color="error">
           {error}
@@ -180,11 +205,8 @@ const Folder = (props) => {
   );
 };
 
-/**
- * @param {{ project: {projectName: string, collectionDir: string, itemDir: string}; }} state
- */
 const mapStateToProps = (state) => ({
-  project: state.project,
+  browser: state.browser,
 });
 
 // @ts-ignore
@@ -192,4 +214,4 @@ const mapDispatchToProps = (dispatch) => ({
   // props
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Folder);
+export default connect(mapStateToProps, mapDispatchToProps)(Collection);
