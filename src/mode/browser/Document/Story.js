@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Typography } from "@material-ui/core";
 import useStyles from "./useStyles";
-import Accordion from "../../components/Accordion";
-import { SimpleInput } from "../../components/Input";
-import Editor from "../../components/Editor";
+import Accordion from "../../../components/Accordion";
+import { SimpleInput } from "../../../components/Input";
+import Editor from "../../../components/Editor";
 import jsonfile from "jsonfile";
 
 const Story = (props) => {

@@ -12,8 +12,8 @@ import {
 } from "@material-ui/lab";
 import useStyles from "./useStyles";
 import { MdColorLens } from "react-icons/md";
-import Accordion from "../../components/Accordion";
-import Editor from "../../components/Editor";
+import Accordion from "../../../components/Accordion";
+import Editor from "../../../components/Editor";
 import jsonfile from "jsonfile";
 
 /**

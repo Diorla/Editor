@@ -4,11 +4,9 @@ import { connect } from "react-redux";
 import init from "./init";
 import Plot from "./Plot";
 import Location from "./Location";
-import Organisation from "./Organisation";
-import World from "./World";
 import useStyles from "./useStyles";
 import Story from "./Story";
-import Editor from "../../components/Editor";
+import Editor from "../../../components/Editor";
 
 // TODO: More on <Note />
 /**
@@ -27,10 +25,10 @@ import Editor from "../../components/Editor";
  * For example character.js will contain "randomise icon"
  */
 
-const Page = ({ project }) => {
+const Page = (props) => {
   const classes = useStyles();
   const [state, setState] = useState({ template: "", content: "" });
-  const { itemDir } = project;
+  const { fullDir } = props.browser;
   const isEditor = [
     "Character",
     "Creature",
@@ -41,21 +39,21 @@ const Page = ({ project }) => {
     "World",
   ];
   useEffect(() => {
-    init(itemDir, setState);
+    init(fullDir, setState);
     return () => {
       console.log("unmounting");
     };
-  }, [itemDir]);
+  }, [fullDir]);
   if (state.template)
     return (
       <main className={classes.content}>
-        {isEditor.includes(state.template) && <Editor itemDir={itemDir} />}
-        {state.template === "Location" && <Location itemDir={itemDir} />}
+        {isEditor.includes(state.template) && <Editor itemDir={fullDir} />}
+        {state.template === "Location" && <Location itemDir={fullDir} />}
         {state.template === "Plot" && (
-          <Plot state={state} setState={setState} itemDir={itemDir} />
+          <Plot state={state} setState={setState} itemDir={fullDir} />
         )}
         {state.template === "Story" && (
-          <Story state={state} setState={setState} itemDir={itemDir} />
+          <Story state={state} setState={setState} itemDir={fullDir} />
         )}
       </main>
     );
@@ -63,7 +61,7 @@ const Page = ({ project }) => {
 };
 
 const mapStateToProps = (state) => ({
-  project: state.project,
+  browser: state.browser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
