@@ -1,15 +1,70 @@
 //@ts-check
 import { makeStyles } from "@material-ui/core";
 
-//TODO: Use one useStyles.js file(this one) to style the app
-/**
- * So I will delete all other useStyles
- * Also, I intend to reduce my reliance on material-ui and replace
- * most of the components with styled-jsx or styled-components
- * I will only keep essential modules like fileTree component
- * Perhaps, I could update the <input/> too
- */
 export default makeStyles((theme) => ({
+  browser: {
+    flexGrow: 1,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    padding: 8,
+  },
+  browserHome: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  projects: {
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    alignItems: "flex-start",
+  },
+  link: {
+    padding: 4,
+  },
+  input: {
+    display: "flex",
+    flexDirection: "column",
+    padding: 8,
+  },
+  drawer: {
+    minWidth: 240,
+    flexShrink: 0,
+  },
+  drawerContainer: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    width: 240,
+  },
+  tree: {
+    flexGrow: 1,
+    maxWidth: 400,
+    marginBottom: 30,
+    userSelect: "none",
+    padding: 4,
+  },
+  content: {
+    flexGrow: 1,
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+  },
+  select: {
+    background: theme.palette.background.default,
+    color: theme.palette.text.primary,
+    fontSize: 16,
+    borderRight: 0,
+    padding: 4,
+    borderColor: theme.palette.primary.dark,
+    outline: "none",
+  },
+  info: {
+    color: theme.palette.success.main,
+    textAlign: "center",
+  },
   header: {
     textAlign: "center",
     color: theme.palette.primary.main,
@@ -96,5 +151,11 @@ export default makeStyles((theme) => ({
     flexDirection: "row",
     top: 36,
     zIndex: 10,
+  },
+  row: {
+    display: "flex",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
   },
 }));
