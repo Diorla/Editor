@@ -1,12 +1,13 @@
 //@ts-check
 import {
+  ON_SIDEBAR_CHANGE,
   CHANGE_THEME,
-  CLOSE_PROJECT,
-  OPEN_PROJECT,
-  OPEN_COLLECTION,
-  OPEN_ITEM,
-  OPEN_BLOG,
+  ON_BROWSER_OPEN,
+  ON_BROWSER_CLOSE,
+  ON_BROWSER_CHANGE,
+  ON_BROWSER_UPDATE,
 } from "./constant";
+import generateHash from "../utils/generateHash";
 
 /**
  * @param {boolean} state
@@ -23,57 +24,58 @@ export const manageTheme = (state, action) => {
 };
 
 /**
- * @param {{ screen: string, projectName: string, collectionDir: string, itemDir: string, activeBlog: string }} state
- * @param {{ type: any; projectName: any; collectionDir: any; itemDir: any; activeBlog: any; }} action
+ * @param {{name: string, fullDir: string, data: object, mode: string, tempKey: string, isChanged: boolean}} state
+ * - name: the basename of the file
+ * - fullDir: the full directory of the file
+ * - data: The complete representation of the contents of the file
+ * - mode: e.g. document, collectionConfig, projectConfig, home or blog.
+ * - tempKey: the localforage key where all the data are backed up temporarily
+ * - isChanged: If the file has changed is last time it was saved
+ * @param {{ type: string; payload: {name: string, fullDir: string, data: object, mode: string}}} action
  */
-export const manageProject = (state, action) => {
+export const manageBrowser = (state, action) => {
   if (state === undefined)
     return {
-      screen: "",
-      projectName: "",
-      collectionDir: "",
-      itemDir: "",
-      activeBlog: "",
+      mode: "home",
+      onChanged: false,
     };
+  const { payload } = action;
   switch (action.type) {
-    case OPEN_PROJECT:
+    case ON_BROWSER_OPEN: {
       return {
-        screen: "Project",
-        projectName: action.projectName,
-        collectionDir: "",
-        itemDir: "",
-        activeBlog: "",
+        ...payload,
+        tempKey: generateHash(),
+        onChanged: false,
       };
-    case CLOSE_PROJECT:
+    }
+    case ON_BROWSER_CLOSE: {
       return {
-        screen: "",
-        projectName: "",
-        collectionDir: "",
-        itemDir: "",
-        activeBlog: "",
+        mode: "home",
       };
-    case OPEN_COLLECTION:
+    }
+    case ON_BROWSER_CHANGE: {
+      return { ...state, ...payload };
+    }
+    case ON_BROWSER_UPDATE:
+      return { ...state, ...payload, isChanged: true };
+    default:
+      return state;
+  }
+};
+
+// /**
+//  * This will not update the content of the sidebar but merely serve as navigation means to determine which sidebar to render.
+export const manageSidebar = (state, action) => {
+  if (state === undefined)
+    return {
+      mode: "home", //| "project" | "blog"
+      dir: "",
+    };
+  const { type, payload } = action;
+  switch (type) {
+    case ON_SIDEBAR_CHANGE:
       return {
-        ...state, // projectName
-        screen: "Folder",
-        collectionDir: action.collectionDir,
-        itemDir: "",
-        activeBlog: "",
-      };
-    case OPEN_ITEM:
-      return {
-        ...state, // projectName & collectionDir
-        screen: "Page",
-        itemDir: action.itemDir,
-        activeBlog: "",
-      };
-    case OPEN_BLOG:
-      return {
-        screen: "Blog",
-        projectName: "",
-        collectionDir: "",
-        itemDir: "",
-        activeBlog: action.activeBlog,
+        ...payload,
       };
     default:
       return state;

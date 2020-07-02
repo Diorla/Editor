@@ -1,10 +1,11 @@
 //@ts-check
 import { combineReducers, createStore } from "redux";
-import { manageTheme, manageProject } from "./reducers";
+import { manageTheme, manageBrowser, manageSidebar } from "./reducers";
 
 const reducers = combineReducers({
   isDarkMode: manageTheme,
-  project: manageProject,
+  browser: manageBrowser,
+  sidebar: manageSidebar,
 });
 
 export default createStore(reducers);
