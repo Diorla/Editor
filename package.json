@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "compile": "./node_modules/.bin/babel src -w --out-dir scripts",
-    "test": "jest"
+    "test": "jest",
+    "build": "electron-packager . --ignore=src/ --icon=assets/books.ico"
   },
   "repository": "",
   "keywords": [
