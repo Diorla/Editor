@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
 function createWindow() {
@@ -11,7 +11,7 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
     },
-    title: "Scribble",
+    title: "Tome editor",
     devTools: false,
     show: false,
     minWidth: 800,
@@ -27,11 +27,6 @@ function createWindow() {
   // Display app only after all the components is loaded
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
-  });
-
-  // Change the title
-  ipcMain.on("changeTitle", (event, title) => {
-    mainWindow.setTitle(title);
   });
 }
 
