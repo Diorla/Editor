@@ -1,5 +1,5 @@
 //@ts-check
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "@material-ui/core";
 import fs from "fs";
@@ -25,13 +25,21 @@ const Home = (props) => {
   const { openProject } = props;
   const [projectList, setProjectList] = useState([]);
 
-  fs.readdir(projectDir, (err, data) => {
-    if (err) throw err;
-    // prevent infinite loop of update and re-render
-    if (JSON.stringify(projectList) !== JSON.stringify(data))
-      setProjectList(data);
-  });
+  const loadDir = () =>
+    fs.readdir(projectDir, (err, data) => {
+      if (err) throw err;
+      // prevent infinite loop of update and re-render
+      if (JSON.stringify(projectList) !== JSON.stringify(data))
+        setProjectList(data);
+    });
 
+  useEffect(() => {
+    console.log("home mounted");
+    loadDir();
+    return () => {
+      console.log("home unmounted");
+    };
+  });
   return (
     <div className={classes.browserHome}>
       <div className={classes.projects}>
