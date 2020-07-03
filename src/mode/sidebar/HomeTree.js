@@ -1,5 +1,5 @@
 //@ts-check
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { TextField, Typography, Link } from "@material-ui/core";
 import fs from "fs";
@@ -18,6 +18,17 @@ const HomeNav = (props) => {
   const [projectList, setProjectList] = useState([]);
   const projectDir = `${process.cwd()}/projects`;
 
+  const manageList = () => {
+    fs.readdir(projectDir, (err, data) => {
+      if (err) throw err;
+      // prevent infinite loop of update and re-render
+      if (JSON.stringify(projectList) !== JSON.stringify(data)) {
+        setProjectList(data);
+        setRecentList([projectName, ...recentList]);
+        setProjectName("");
+      }
+    });
+  };
   const addNewProject = (projectName) => {
     fs.mkdir(`${projectDir}/${projectName}`, { recursive: true }, (err) => {
       if (err) console.log(err);
@@ -31,19 +42,16 @@ const HomeNav = (props) => {
           genre: "",
           audience: "",
         });
-        fs.readdir(projectDir, (err, data) => {
-          if (err) throw err;
-          // prevent infinite loop of update and re-render
-          if (JSON.stringify(projectList) !== JSON.stringify(data)) {
-            setProjectList(data);
-            setRecentList([projectName, ...recentList]);
-            setProjectName("");
-          }
-        });
+        manageList();
       }
     });
   };
-
+  useEffect(() => {
+    manageList();
+    return () => {
+      console.log("unmounting home tree");
+    };
+  }, []);
   return (
     <div className={classes.input}>
       <TextField
@@ -85,7 +93,7 @@ const HomeNav = (props) => {
                 openProject(
                   {
                     name: project,
-                    fullDir: `./projects/${project}/.config`,
+                    fullDir: `./projects/${project}`,
                     data: {},
                   },
                   `./projects/${project}`
