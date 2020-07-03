@@ -10,7 +10,11 @@ import {
   CHANGE_THEME,
   ON_BROWSER_CLOSE,
   ON_SIDEBAR_CHANGE,
+  ON_BROWSER_CHANGE,
 } from "./../redux/constant";
+import fs from "fs";
+import { remote } from "electron";
+import Confirm from "./Confirm";
 // TODO: Complete toolbars
 /**
  * There are three types of icons on the titlebar
@@ -57,8 +61,37 @@ const useStyles = makeStyles((theme) => ({
 
 const TitleBar = (props) => {
   const classes = useStyles();
-  const { changeTheme, closeProject, browser } = props;
+  const { changeTheme, closeProject, browser, changeBrowser } = props;
   console.log("titlebar:", browser);
+  const deleter = () => {
+    if (browser.mode === "document") {
+      fs.unlink(browser.fullDir, (err) => {
+        if (err) console.log(err);
+        else {
+          changeBrowser({
+            mode: "empty",
+          });
+        }
+      });
+    } else if (browser.mode === "collection") {
+      fs.rmdir(browser.fullDir, { recursive: true }, (err) => {
+        if (err) console.log(err);
+        else {
+          changeBrowser({
+            mode: "empty",
+          });
+        }
+      });
+    } else {
+      fs.rmdir(browser.fullDir, { recursive: true }, (err) => {
+        if (err) console.log(err);
+        else {
+          closeProject();
+          console.log("Project deleted");
+        }
+      });
+    }
+  };
   return (
     <div className={classes.appBar}>
       <div className={classes.appSection}>
@@ -85,10 +118,16 @@ const TitleBar = (props) => {
           title="Get preferences"
           onClick={() => console.log("settings")}
         />
-        <AiOutlineDelete
-          title="Delete"
-          onClick={() => console.log("deleted")}
-        />
+        {["project", "collection", "document"].includes(browser.mode) ? (
+          <Confirm
+            title={`Delete ${browser.name}`}
+            message="This process is irrevesible"
+            acceptFn={() => deleter()}
+            cancelFn={() => console.log("Cancelling delete")}
+          >
+            <AiOutlineDelete />
+          </Confirm>
+        ) : null}
       </div>
     </div>
   );
@@ -113,6 +152,13 @@ const mapDispatchToProps = (dispatch) => ({
       dir: "",
     });
   },
+  changeBrowser: (payload) =>
+    dispatch({
+      type: ON_BROWSER_CHANGE,
+      payload: {
+        ...payload,
+      },
+    }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);
