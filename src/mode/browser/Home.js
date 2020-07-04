@@ -6,6 +6,13 @@ import fs from "fs";
 import useStyles from "../../components/useStyles";
 import { ON_BROWSER_OPEN, ON_SIDEBAR_CHANGE } from "../../redux/constant";
 
+// TODO: Create 3 sections on the screen
+/**
+ * 1. The list of all the projects.
+ * 2. The list of current templates, click it will open template list
+ * 3. Help: 3 or more highlighted help
+ */
+
 //TODO: Add templates creator.
 /**
  * This will basically lead to page where there will list of default/created templates

@@ -36,6 +36,7 @@ export const manageTheme = (state, action) => {
 export const manageBrowser = (state, action) => {
   if (state === undefined)
     return {
+      //home, project, collection, document, blog, settings, empty, template
       mode: "home",
       onChanged: false,
     };
@@ -63,12 +64,12 @@ export const manageBrowser = (state, action) => {
   }
 };
 
-// /**
-//  * This will not update the content of the sidebar but merely serve as navigation means to determine which sidebar to render.
+// This will not update the content of the sidebar but merely serve as navigation means to determine which sidebar to render.
 export const manageSidebar = (state, action) => {
   if (state === undefined)
     return {
-      mode: "home", //| "project" | "blog"
+      //home, project, blog, settings, template
+      mode: "home",
       dir: "",
     };
   const { type, payload } = action;

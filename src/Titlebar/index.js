@@ -61,8 +61,16 @@ const useStyles = makeStyles((theme) => ({
 
 const TitleBar = (props) => {
   const classes = useStyles();
-  const { changeTheme, closeProject, browser, changeBrowser } = props;
-  console.log("titlebar:", browser);
+  const {
+    changeTheme,
+    closeProject,
+    browser,
+    sidebar,
+    changeBrowser,
+    changeSidebar,
+  } = props;
+  console.log("browser:", browser);
+  console.log("sidebar:", sidebar);
   const deleter = () => {
     if (browser.mode === "document") {
       fs.unlink(browser.fullDir, (err) => {
@@ -113,7 +121,15 @@ const TitleBar = (props) => {
       <div className={classes.iconBar}>
         <GiMoon title="Dark mode" onClick={() => changeTheme()} />
         <FaRegStickyNote title="Add note" onClick={() => console.log("note")} />
-        <IoMdHelp title="Get help" onClick={() => console.log("help")} />
+        <IoMdHelp
+          title="Get help"
+          onClick={() => {
+            changeBrowser({
+              mode: "empty",
+            });
+            changeSidebar("blog");
+          }}
+        />
         <IoMdSettings
           title="Get preferences"
           onClick={() => console.log("settings")}
@@ -135,6 +151,7 @@ const TitleBar = (props) => {
 
 const mapStateToProps = (state) => ({
   browser: state.browser,
+  sidebar: state.sidebar,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -157,6 +174,13 @@ const mapDispatchToProps = (dispatch) => ({
       type: ON_BROWSER_CHANGE,
       payload: {
         ...payload,
+      },
+    }),
+  changeSidebar: (mode) =>
+    dispatch({
+      type: ON_SIDEBAR_CHANGE,
+      payload: {
+        mode,
       },
     }),
 });

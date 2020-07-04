@@ -1,0 +1,1 @@
+This is the list of templates available and how to use it.
