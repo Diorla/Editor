@@ -6,6 +6,7 @@ import title from "../../utils/title";
 import path from "path";
 import { makeStyles } from "@material-ui/core";
 import { ON_BROWSER_CHANGE } from "../../redux/constant";
+import { AiOutlineFileExclamation } from "react-icons/ai";
 
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -17,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
   roll: {
     padding: "2px 8px",
     cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
     "&:hover": {
       background: "rgba(0, 0, 0, 0.1)",
     },
@@ -24,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
   rollActive: {
     padding: "2px 8px",
     cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
     background: "rgba(0, 0, 0, 0.1)",
   },
 }));
@@ -61,6 +66,7 @@ const Blog = (props) => {
             }}
             className={cls}
           >
+            <AiOutlineFileExclamation style={{ color: "#2196F3", marginRight: 4 }} />
             {path.basename(item, ".md")}
           </div>
         );

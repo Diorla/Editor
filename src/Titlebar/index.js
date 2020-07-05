@@ -115,7 +115,12 @@ const TitleBar = (props) => {
         />
         <AiOutlineProfile
           title="Manage templates"
-          onClick={() => console.log("templates")}
+          onClick={() => {
+            changeBrowser({
+              mode: "template",
+            });
+            changeSidebar("template");
+          }}
         />
         {["project", "collection", "document"].includes(browser.mode) ? (
           <Confirm

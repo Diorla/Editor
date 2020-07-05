@@ -70,7 +70,6 @@ const HomeNav = (props) => {
         }}
         onKeyDown={(e) => {
           if (e.keyCode === 13) {
-            // Can't disable enter, so I did the next best thing
             if (error) setError(title(`Can't add project, ${error}`));
             else if (!projectName) setError("Field is empty");
             else addNewProject(projectName);

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import FileTree from "../mode/sidebar/FileTree";
 import BlogTree from "../mode/sidebar/BlogTree";
 import HomeTree from "../mode/sidebar/HomeTree";
+import TemplateTree from "../mode/sidebar/TemplateTree";
 /**
  * @param {{ mode: string; }} props
  */
@@ -11,6 +12,7 @@ const Router = (props) => {
   const { mode } = props;
   if (mode === "project") return <FileTree />;
   else if (mode === "blog") return <BlogTree />;
+  else if (mode === "template") return <TemplateTree />;
   else return <HomeTree />;
 };
 

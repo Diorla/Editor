@@ -2,18 +2,6 @@ TODO: Settings
 
 - Change colour palette
 
-TODO: Update character template
-
-- Add the following to character templates
-- Pets
-- Allergies
-
-TODO: Update magic template
-
-- Add subheaders under moves
-- Basic: Techniques that most users can use with little or no training
-- Intermediate: Techniques that requires some level of training and dedication
-- Advanced: Techniques that only strong, superior and very minute percentage of the users can do
 
 TODO: Hook it up with store.browser.data
 

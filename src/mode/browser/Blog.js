@@ -4,6 +4,7 @@ import ReactMd from "react-markdown";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import fs from "fs";
+import Empty from "./Empty";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -23,7 +24,7 @@ const Blog = (props) => {
   });
   return (
     <main className={classes.content}>
-      {md ? <ReactMd source={md} escapeHtml={false} /> : <div> Empty file</div>}
+      {md ? <ReactMd source={md} escapeHtml={false} /> : <Empty />}
     </main>
   );
 };

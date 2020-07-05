@@ -7,6 +7,7 @@ import Document from "../mode/browser/Document";
 import Blog from "../mode/browser/Blog";
 import Home from "../mode/browser/Home";
 import Empty from "../mode/browser/Empty";
+import Template from "../mode/browser/Template";
 
 /**
  * @param {{ mode: string; }} props
@@ -18,6 +19,7 @@ const Router = (props) => {
   else if (mode === "document") return <Document />;
   else if (mode === "blog") return <Blog />;
   else if (mode === "empty") return <Empty />;
+  else if (mode === "template") return <Template />;
   else return <Home />;
 };
 
