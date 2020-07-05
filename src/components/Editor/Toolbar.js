@@ -74,6 +74,7 @@ const inlineButtons = [
 ];
 
 /**
+ * A generic toolbar item renderer for inline or block style
  * @param {{ item: {style: string, description: string, label: any}; active: boolean; toggleBlock: (arg0: string)=>void; }} props
  */
 const ToolbarItem = (props) => {
@@ -102,7 +103,8 @@ const ToolbarItem = (props) => {
 };
 
 /**
- * @param {{ toggleBlock: any; editorState: any;  }} props
+ * Returns the toolbar for block style
+ * @param {{ toggleBlock: (arg0: string)=>void; editorState: import("draft-js").EditorState; }} props
  */
 export const BlockTools = (props) => {
   const { toggleBlock, editorState } = props;
@@ -126,7 +128,8 @@ export const BlockTools = (props) => {
 };
 
 /**
- * @param {{ toggleBlock: any; editorState: any; }} props
+ * Returns the inline style part of the toolbar
+ * @param {{ toggleBlock: any; editorState: import("draft-js").EditorState; }} props
  */
 export const InlineTools = (props) => {
   const { toggleBlock, editorState } = props;

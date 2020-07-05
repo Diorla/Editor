@@ -3,10 +3,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 
-// TODO: Hook it up with store.browser.data
-/**
- * This would allow me to update stuff like template, word length, full directory etc.
- */
 const useStyles = makeStyles((theme) => ({
   appBar: {
     display: "flex",
@@ -19,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.contrastText,
     bottom: 0,
-  }
+  },
 }));
 
 const StatusBar = () => {

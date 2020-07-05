@@ -7,6 +7,5 @@
       }
     ]
   ],
-  "ignore": ["**/*.test.js"],
   "plugins": ["@babel/plugin-transform-modules-commonjs"]
 }

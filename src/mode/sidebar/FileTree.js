@@ -19,15 +19,6 @@ const compareDir = (objA, objB) => {
   else return 1;
 };
 
-// TODO: Change root icon
-/**
- * The icon at the root level, indicating the project should be something like a "collection" not a folder, and it should be different from all the folders under it.
- * I could choose a book, a reel of something similar to indicate the root, and if possible, something that changes on expand and collapse. This will separate the root folder from any other folder in the project
- */
-// TODO: Expand on state change
-/**
- * Trigger a folder to open when new file is just added to it
- */
 /**
  * @param {{ sidebar?: {dir: string}; browser?: {mode: string}; changeBrowser?: (arg0: {name: string, fullDir: string, mode: string})=> void; }} props
  */

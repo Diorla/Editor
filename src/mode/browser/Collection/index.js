@@ -14,28 +14,6 @@ import createFolder from "./createFolder";
 import onFolderInputChange from "./onFolderInputChange";
 import useStyles from "../../../components/useStyles";
 
-// TODO: Make the options dynamic by parsing the template folder.
-
-/**
- * This means the number of templates will determine the list and not the other way around
- * It will also make it easily extendable by allowing the options to add new template
- * on the home page.
- * Adding new template will use markdown format which will in turn be parsed into html strings
- * and saved into templateName.json
- * So each template will have the following keys: template, content and description.
- * All preloaded template will have template keys like character, stories etc because my app will
- * parse them differently but user generated templates will all be parsed by editor, so no need for
- * "template" key. The description will also be loaded and be presented the same way we are
- * "detail.js" now.
- * "content" is the part that will be rendered and updated via Editor.
- * Hence the edit page logic will go like this=
- * if file has template and the template is one of the special page, load special page hence load generic page.
- * Also, I could change the dropdown to input with datalist (this will prevents long dropdowns), and in
- * case user types in an text that is not on the template, it will show error feedback ie. input is
- * red and error message. It may also prevent the creation of new documents or create new elements
- * using no template (default ie. empty document)
- */
-
 const Collection = (props) => {
   const { fullDir } = props.browser;
   const [state, dispatch] = useReducer(reducer, initValue);

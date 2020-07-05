@@ -6,10 +6,6 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     minHeight: 600,
     minWidth: 800,
-    // TODO: Change icon
-    /**
-     * An icon that scales very well and clearly visible in small sizes. Preferably a pen on a paper
-     */
     icon: path.join(__dirname, "./assets/books.ico"),
     webPreferences: {
       nodeIntegration: true,
