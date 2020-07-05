@@ -9,10 +9,11 @@ import fs from "fs";
 import { Box, Typography, TextField, FormControl } from "@material-ui/core";
 import loadConfig from "./loadConfig";
 import createFile from "./createFile";
-import detail from "./detail";
 import createFolder from "./createFolder";
 import onFolderInputChange from "./onFolderInputChange";
 import useStyles from "../../../components/useStyles";
+import jsonfile from "jsonfile";
+import { FaFileMedical, FaFolderPlus } from "react-icons/fa";
 
 const Collection = (props) => {
   const { fullDir } = props.browser;
@@ -22,8 +23,16 @@ const Collection = (props) => {
   const [folderName, setFolderName] = useState("");
   const [error, setError] = useState("");
   const [fileList, setFileList] = useState([]);
+  const [templateList, setTemplateList] = useState({});
 
   useEffect(() => {
+    jsonfile.readFile("./data/templates.json", (err, data) => {
+      if (err) console.log(err);
+      else {
+        // console.log(data);
+        setTemplateList(data);
+      }
+    });
     // get the list of all the files in the folder
     fs.readdir(fullDir, (err, data) => {
       if (err) throw err;
@@ -100,22 +109,18 @@ const Collection = (props) => {
           }
           onBlur={(e) => saveConfig(state, fullDir)}
         >
-          <option value="Default">No template</option>
-          <option value="Character">Character</option>
-          <option value="Creature">Creature</option>
-          <option value="Location">Location</option>
-          <option value="Magic">Magic</option>
-          <option value="Objects">Object</option>
-          <option value="Organisation">Organisation</option>
-          <option value="Plot">Plot</option>
-          <option value="Story">Story</option>
-          <option value="World">World</option>
+          {Object.keys(templateList).map((item, idx) => (
+            <option value={item} key={idx}>
+              {item}
+            </option>
+          ))}
         </select>
       </FormControl>
       <Box style={{ display: "flex" }}>
         <Box className={classes.content}>
           <Typography component="h2" className={classes.header}>
-            Create document
+            Create document{" "}
+            <FaFileMedical style={{ marginLeft: 4, color: "#2196F3" }} />
           </Typography>
           <TextField
             label="New document"
@@ -142,7 +147,8 @@ const Collection = (props) => {
         </Box>
         <Box className={classes.content}>
           <Typography component="h2" className={classes.header}>
-            Create sub collection
+            Create sub collection{" "}
+            <FaFolderPlus style={{ marginLeft: 4, color: "#FF9800" }} />
           </Typography>
           <TextField
             label="New collection"
@@ -172,7 +178,7 @@ const Collection = (props) => {
         </Box>
       </Box>
       <Box className={classes.info}>
-        {detail[state.template] || detail.Default}
+        {templateList[state.template] || "A blank document"}
       </Box>
       {error && (
         <Typography variant="subtitle1" color="error">

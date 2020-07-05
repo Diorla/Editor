@@ -1,0 +1,12 @@
+{
+  "Blank": "A blank document",
+  "Character": "One of the people portrayed in a book, play, or movie",
+  "Creature": "Non sentient living being",
+  "Location": "A place where an event happens",
+  "Magic": "A supernatural ability or a system of special, mysterious, or inexplicable quality, talent, or skill",
+  "Objects": "A tangible substance",
+  "Organisation": "A group of people identified by a shared interest or purpose",
+  "Plot": "The story or sequence of events and timelines",
+  "Story": "Each chapter in your book",
+  "World": "Details about a sentient specie or race, including their biology and society"
+}

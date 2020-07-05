@@ -62,7 +62,7 @@ export default makeStyles((theme) => ({
     outline: "none",
   },
   info: {
-    color: theme.palette.success.main,
+    color: theme.palette.secondary.main,
     textAlign: "center",
   },
   header: {
@@ -70,6 +70,9 @@ export default makeStyles((theme) => ({
     color: theme.palette.primary.main,
     fontWeight: "bold",
     marginTop: 8,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   fullWidth: {
     width: "100%",
