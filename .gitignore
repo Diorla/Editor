@@ -6,3 +6,5 @@ projects
 temp
 *.test.js
 error-log
+tome-editor*
+__TEST__
