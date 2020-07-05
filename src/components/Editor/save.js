@@ -15,12 +15,7 @@ export default (editorState, itemDir) => {
   const html = draftToHtml(raw);
   //Load the current file before updating it
   jsonfile.readFile(itemDir, (err, data) => {
-    if (err)
-      ErrorLog({
-        source: "Editor",
-        location: "save.js",
-        err,
-      });
+    if (err) ErrorLog(err);
     else
       jsonfile.writeFile(
         itemDir,

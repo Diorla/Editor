@@ -10,9 +10,8 @@ import { convertFromHTML, ContentState, EditorState } from "draft-js";
  */
 export default (itemDir, setEditorState) => {
   jsonfile.readFile(itemDir).then((val, err) => {
-    if (err) {
-      ErrorLog({ source: "Editor", location: "load.js", err });
-    } else {
+    if (err) ErrorLog(err);
+    else {
       const { content } = val;
       const blocksFromHTML = convertFromHTML(content);
       const state = ContentState.createFromBlockArray(
