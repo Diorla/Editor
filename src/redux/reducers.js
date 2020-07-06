@@ -38,7 +38,6 @@ export const manageBrowser = (state, action) => {
     return {
       //home, project, collection, document, blog, settings, empty, template
       mode: "home",
-      onChanged: false,
     };
   const { payload } = action;
   switch (action.type) {
@@ -65,6 +64,10 @@ export const manageBrowser = (state, action) => {
 };
 
 // This will not update the content of the sidebar but merely serve as navigation means to determine which sidebar to render.
+/**
+ * @param {any} state
+ * @param {{ type?: any; payload?: any; }} action
+ */
 export const manageSidebar = (state, action) => {
   if (state === undefined)
     return {
