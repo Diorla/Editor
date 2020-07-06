@@ -11,6 +11,7 @@ import Confirm from "./Confirm";
 import { changeTheme } from "../redux/theme";
 import { closeProject, openBrowser } from "../redux/browser";
 import { goHome, openSidebar } from "../redux/sidebar";
+import truncate from "../utils/truncate";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -19,23 +20,39 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     position: "fixed",
     justifyContent: "space-between",
-    padding: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
   },
-  iconBar: {
-    justifyContent: "space-around",
-    display: "flex",
-    alignItems: "center",
-    fontSize: "large",
+  icon: {
+    padding: 8,
+    fontSize: 32,
     flex: 1,
+    transition: "background linear 0.25s",
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.2)",
+    },
+  },
+  iconActive: {
+    padding: 8,
+    fontSize: 32,
+    flex: 1,
+    background: "rgba(0, 0, 0, 0.2)",
   },
   link: {
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.contrastText,
+    padding: "0 8px",
   },
   appSection: {
     display: "flex",
     flex: 1,
+    justifyContent: "space-between",
+    marginLeft: 4,
+  },
+  appTitle: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 }));
 
@@ -88,21 +105,30 @@ const TitleBar = (props) => {
         </Link>
       </div>
       {browser.name ? (
-        <div className={classes.appSection}>{`${
-          browser.name || ""
-        } - Tome Editor`}</div>
+        <div className={classes.appTitle}>{`${truncate(browser.name, 16)} - Tome Editor`}</div>
       ) : (
-        <div className={classes.appSection}>Tome Editor</div>
+        <div className={classes.appTitle}>Tome Editor</div>
       )}
-      <div className={classes.iconBar}>
-        <GiMoon title="Dark mode" onClick={() => changeTheme()} />
-        <FaRegStickyNote title="Add note" onClick={() => console.log("note")} />
+      <div className={classes.appSection}>
+        <GiMoon
+          title="Dark mode"
+          onClick={() => changeTheme()}
+          className={classes.icon}
+        />
+        <FaRegStickyNote
+          title="Add note"
+          onClick={() => console.log("note")}
+          className={classes.icon}
+        />
         <IoMdHelp
           title="Get help"
           onClick={() => {
             if (browser.mode !== "blogs") openBrowser();
             changeSidebar("blogs");
           }}
+          className={
+            sidebar.mode === "blogs" ? classes.iconActive : classes.icon
+          }
         />
         <AiOutlineProfile
           title="Manage templates"
@@ -110,6 +136,9 @@ const TitleBar = (props) => {
             if (browser.mode !== "templates") openBrowser();
             changeSidebar("templates");
           }}
+          className={
+            sidebar.mode === "templates" ? classes.iconActive : classes.icon
+          }
         />
         {["projects", "collection", "document"].includes(browser.mode) ? (
           <Confirm
@@ -118,7 +147,7 @@ const TitleBar = (props) => {
             acceptFn={() => deleter()}
             cancelFn={() => console.log("Cancelling delete")}
           >
-            <AiOutlineDelete />
+            <AiOutlineDelete className={classes.icon} />
           </Confirm>
         ) : null}
       </div>

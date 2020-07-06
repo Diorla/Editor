@@ -21,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
  */
 function Layout(props) {
   const classes = useStyles();
+  const theme = props.isDarkMode ? darkTheme : lightTheme;
   return (
-    <ThemeProvider theme={props.isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <CssBaseline />
         <TitleBar />
@@ -30,6 +31,22 @@ function Layout(props) {
         <Browser />
         <Statusbar />
       </div>
+      <style>
+        {`
+          ::-webkit-scrollbar {
+            width: 6px;
+            background: #232323;
+          }
+          ::-webkit-scrollbar-thumb {
+            background-color: ${theme.palette.secondary.light};
+            height: 36px;
+            border-radius: 4px
+          }
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: ${theme.palette.secondary.main};
+          }
+        `}
+      </style>
     </ThemeProvider>
   );
 }

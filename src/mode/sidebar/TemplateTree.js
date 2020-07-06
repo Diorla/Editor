@@ -21,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     textTransform: "uppercase",
+    transition: "background linear 0.25s",
     "&:hover": {
-      background: "rgba(0, 0, 0, 0.1)",
+      background: "rgba(0, 0, 0, 0.2)",
     },
   },
   rollActive: {

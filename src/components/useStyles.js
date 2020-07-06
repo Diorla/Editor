@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
-    padding: 8,
+    marginLeft: 8,
   },
   browserHome: {
     display: "flex",
@@ -28,8 +28,7 @@ export default makeStyles((theme) => ({
     padding: 8,
   },
   drawer: {
-    minWidth: 240,
-    flexShrink: 0,
+    width: 240,
   },
   drawerContainer: {
     marginTop: theme.spacing(4),
@@ -152,7 +151,7 @@ export default makeStyles((theme) => ({
     display: "flex",
     position: "sticky",
     flexDirection: "row",
-    top: 36,
+    top: 32,
     zIndex: 10,
   },
   row: {

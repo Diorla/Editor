@@ -20,8 +20,9 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
+    transition: "background linear 0.25s",
     "&:hover": {
-      background: "rgba(0, 0, 0, 0.1)",
+      background: "rgba(0, 0, 0, 0.2)",
     },
   },
   rollActive: {
