@@ -6,14 +6,11 @@ import { AiOutlineDelete, AiOutlineProfile } from "react-icons/ai";
 import { GiMoon } from "react-icons/gi";
 import { IoMdHelp } from "react-icons/io";
 import { FaRegStickyNote } from "react-icons/fa";
-import {
-  CHANGE_THEME,
-  ON_BROWSER_CLOSE,
-  ON_SIDEBAR_CHANGE,
-  ON_BROWSER_CHANGE,
-} from "./../redux/constant";
 import fs from "fs";
 import Confirm from "./Confirm";
+import { changeTheme } from "../redux/theme";
+import { closeProject, openBrowser } from "../redux/browser";
+import { goHome, openSidebar } from "../redux/sidebar";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -49,7 +46,7 @@ const TitleBar = (props) => {
     closeProject,
     browser,
     sidebar,
-    changeBrowser,
+    openBrowser,
     changeSidebar,
   } = props;
   console.log("browser:", browser);
@@ -59,18 +56,14 @@ const TitleBar = (props) => {
       fs.unlink(browser.fullDir, (err) => {
         if (err) console.log(err);
         else {
-          changeBrowser({
-            mode: "empty",
-          });
+          openBrowser();
         }
       });
     } else if (browser.mode === "collection") {
       fs.rmdir(browser.fullDir, { recursive: true }, (err) => {
         if (err) console.log(err);
         else {
-          changeBrowser({
-            mode: "empty",
-          });
+          openBrowser();
         }
       });
     } else {
@@ -107,22 +100,18 @@ const TitleBar = (props) => {
         <IoMdHelp
           title="Get help"
           onClick={() => {
-            changeBrowser({
-              mode: "empty",
-            });
-            changeSidebar("blog");
+            if (browser.mode !== "blogs") openBrowser();
+            changeSidebar("blogs");
           }}
         />
         <AiOutlineProfile
           title="Manage templates"
           onClick={() => {
-            changeBrowser({
-              mode: "template",
-            });
-            changeSidebar("template");
+            if (browser.mode !== "templates") openBrowser();
+            changeSidebar("templates");
           }}
         />
-        {["project", "collection", "document"].includes(browser.mode) ? (
+        {["projects", "collection", "document"].includes(browser.mode) ? (
           <Confirm
             title={`Delete ${browser.name}`}
             message="This process is irrevesible"
@@ -143,34 +132,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeTheme: () =>
-    dispatch({
-      type: CHANGE_THEME,
-    }),
+  changeTheme: () => dispatch(changeTheme()),
   closeProject: () => {
-    dispatch({
-      type: ON_BROWSER_CLOSE,
-    });
-    dispatch({
-      type: ON_SIDEBAR_CHANGE,
-      mode: "home",
-      dir: "",
-    });
+    dispatch(closeProject());
+    dispatch(goHome());
   },
-  changeBrowser: (payload) =>
-    dispatch({
-      type: ON_BROWSER_CHANGE,
-      payload: {
-        ...payload,
-      },
-    }),
-  changeSidebar: (mode) =>
-    dispatch({
-      type: ON_SIDEBAR_CHANGE,
-      payload: {
-        mode,
-      },
-    }),
+  openBrowser: () => dispatch(openBrowser()),
+  changeSidebar: (mode) => dispatch(openSidebar(mode)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);

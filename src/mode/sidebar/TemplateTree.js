@@ -5,9 +5,9 @@ import fs from "fs";
 import title from "../../utils/title";
 import path from "path";
 import { makeStyles, TextField, Divider, Typography } from "@material-ui/core";
-import { ON_BROWSER_CHANGE } from "../../redux/constant";
 import { AiOutlineProfile } from "react-icons/ai";
 import jsonfile from "jsonfile";
+import { openFile } from "../../redux/browser";
 
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -101,7 +101,7 @@ const TemplateTree = (props) => {
             key={idx}
             onClick={() => {
               changeBrowser({
-                mode: "template",
+                mode: "templates",
                 fullDir: `${process.cwd()}/templates/${item}.json`,
                 name: item,
               });
@@ -123,7 +123,7 @@ const TemplateTree = (props) => {
             key={idx}
             onClick={() => {
               changeBrowser({
-                mode: "template",
+                mode: "templates",
                 fullDir: `${process.cwd()}/templates/${item}`,
                 name: path.basename(item, ".json"),
               });
@@ -148,13 +148,8 @@ const mapStateToProps = (state) => ({
  * @param {any} dispatch
  */
 const mapDispatchToProps = (dispatch) => ({
-  changeBrowser: (payload) =>
-    dispatch({
-      type: ON_BROWSER_CHANGE,
-      payload: {
-        ...payload,
-      },
-    }),
+  changeBrowser: ({ name, mode, fullDir }) =>
+    dispatch(openFile({ name, mode, fullDir })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TemplateTree);

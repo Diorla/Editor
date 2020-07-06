@@ -10,9 +10,9 @@ import TemplateTree from "../mode/sidebar/TemplateTree";
  */
 const Router = (props) => {
   const { mode } = props;
-  if (mode === "project") return <FileTree />;
-  else if (mode === "blog") return <BlogTree />;
-  else if (mode === "template") return <TemplateTree />;
+  if (mode === "projects") return <FileTree />;
+  else if (mode === "blogs") return <BlogTree />;
+  else if (mode === "templates") return <TemplateTree />;
   else return <HomeTree />;
 };
 

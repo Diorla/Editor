@@ -5,8 +5,8 @@ import fs from "fs";
 import title from "../../utils/title";
 import path from "path";
 import { makeStyles } from "@material-ui/core";
-import { ON_BROWSER_CHANGE } from "../../redux/constant";
 import { AiOutlineFileExclamation } from "react-icons/ai";
+import { openFile } from "../../redux/browser";
 
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -37,7 +37,8 @@ const Blog = (props) => {
   const [dirList, setDirList] = useState([]);
   const classes = useStyles();
   const [activeItem, setActiveItem] = useState("");
-  const { browser, changeBrowser } = props;
+  const { changeBrowser } = props;
+
   useEffect(() => {
     fs.readdir("./blogs", (err, data) => {
       if (err) console.log(err);
@@ -58,7 +59,7 @@ const Blog = (props) => {
             key={idx}
             onClick={() => {
               changeBrowser({
-                mode: "blog",
+                mode: "blogs",
                 fullDir: `${process.cwd()}/blogs/${item}`,
                 name: path.basename(item, ".md"),
               });
@@ -66,7 +67,9 @@ const Blog = (props) => {
             }}
             className={cls}
           >
-            <AiOutlineFileExclamation style={{ color: "#2196F3", marginRight: 4 }} />
+            <AiOutlineFileExclamation
+              style={{ color: "#2196F3", marginRight: 4 }}
+            />
             {path.basename(item, ".md")}
           </div>
         );
@@ -83,13 +86,8 @@ const mapStateToProps = (state) => ({
  * @param {any} dispatch
  */
 const mapDispatchToProps = (dispatch) => ({
-  changeBrowser: (payload) =>
-    dispatch({
-      type: ON_BROWSER_CHANGE,
-      payload: {
-        ...payload,
-      },
-    }),
+  changeBrowser: ({ mode, fullDir, name }) =>
+    dispatch(openFile({ name, mode, fullDir })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

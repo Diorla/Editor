@@ -14,12 +14,12 @@ import Template from "../mode/browser/Template";
  */
 const Router = (props) => {
   const { mode } = props;
-  if (mode === "project") return <Project />;
+  if (mode === "projects") return <Project />;
   else if (mode === "collection") return <Collection />;
   else if (mode === "document") return <Document />;
-  else if (mode === "blog") return <Blog />;
+  else if (mode === "blogs") return <Blog />;
   else if (mode === "empty") return <Empty />;
-  else if (mode === "template") return <Template />;
+  else if (mode === "templates") return <Template />;
   else return <Home />;
 };
 

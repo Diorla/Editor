@@ -7,7 +7,7 @@ import { FaFolder, FaFile, FaFolderOpen } from "react-icons/fa";
 import { connect } from "react-redux";
 import path from "path";
 import useStyles from "../../components/useStyles";
-import { ON_BROWSER_CHANGE } from "../../redux/constant";
+import { openFile } from "../../redux/browser";
 
 /**
  * This is for placing directories on top, and files below
@@ -115,7 +115,7 @@ const FileTree = (props) => {
             changeBrowser({
               name: path.basename(nodes.path),
               fullDir: nodes.path,
-              mode: "project",
+              mode: "projects",
             });
           //any other folder
           else
@@ -135,7 +135,7 @@ const FileTree = (props) => {
             changeBrowser({
               name: path.basename(nodes.path),
               fullDir: nodes.path,
-              mode: "project",
+              mode: "projects",
             });
           //any other folder
           else
@@ -168,13 +168,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeBrowser: (payload) =>
-    dispatch({
-      type: ON_BROWSER_CHANGE,
-      payload: {
-        ...payload,
-      },
-    }),
+  changeBrowser: ({ name, mode, fullDir }) =>
+    dispatch(openFile({ name, mode, fullDir })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FileTree);

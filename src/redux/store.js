@@ -1,11 +1,14 @@
 //@ts-check
-import { combineReducers, createStore } from "redux";
-import { manageTheme, manageBrowser, manageSidebar } from "./reducers";
+import browser from "./browser";
+import theme from "./theme";
+import sidebar from "./sidebar";
 
-const reducers = combineReducers({
-  isDarkMode: manageTheme,
-  browser: manageBrowser,
-  sidebar: manageSidebar,
+import { configureStore } from "@reduxjs/toolkit";
+
+export default configureStore({
+  reducer: {
+    browser,
+    sidebar,
+    isDarkMode: theme,
+  },
 });
-
-export default createStore(reducers);

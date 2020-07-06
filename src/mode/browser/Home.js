@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Link } from "@material-ui/core";
 import fs from "fs";
 import useStyles from "../../components/useStyles";
-import { ON_BROWSER_OPEN, ON_SIDEBAR_CHANGE } from "../../redux/constant";
+import { openProject } from "../../redux/browser";
+import { openTree } from "../../redux/sidebar";
 
 const Home = (props) => {
   const classes = useStyles();
@@ -58,21 +59,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  openProject: (payload) => {
-    dispatch({
-      type: ON_BROWSER_OPEN,
-      payload: {
-        ...payload,
-        mode: "project",
-      },
-    });
-    dispatch({
-      type: ON_SIDEBAR_CHANGE,
-      payload: {
-        mode: "project",
-        dir: payload.fullDir,
-      },
-    });
+  openProject: ({ name, mode, fullDir }) => {
+    dispatch(openProject({ name, mode, fullDir }));
+    dispatch(openTree(fullDir));
   },
 });
 
