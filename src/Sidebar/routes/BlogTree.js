@@ -1,6 +1,6 @@
 //@ts-check
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import fs from "fs";
 import title from "../../utils/title";
 import path from "path";
@@ -38,7 +38,7 @@ const Blog = (props) => {
   const [dirList, setDirList] = useState([]);
   const classes = useStyles();
   const [activeItem, setActiveItem] = useState("");
-  const { changeBrowser } = props;
+  // const { changeBrowser } = props;
 
   useEffect(() => {
     fs.readdir("./blogs", (err, data) => {
@@ -50,7 +50,8 @@ const Blog = (props) => {
       console.log("blog tree unmounted");
     };
   }, []);
-  console.log("dirlist:", dirList);
+  const dispatch = useDispatch();
+
   return (
     <div className={classes.column}>
       {dirList.map(title).map((item, idx) => {
@@ -59,11 +60,13 @@ const Blog = (props) => {
           <div
             key={idx}
             onClick={() => {
-              changeBrowser({
-                mode: "blogs",
-                fullDir: `${process.cwd()}/blogs/${item}`,
-                name: path.basename(item, ".md"),
-              });
+              dispatch(
+                openFile({
+                  mode: "blogs",
+                  fullDir: `${process.cwd()}/blogs/${item}`,
+                  name: path.basename(item, ".md"),
+                })
+              );
               setActiveItem(item);
             }}
             className={cls}
@@ -86,9 +89,9 @@ const mapStateToProps = (state) => ({
 /**
  * @param {any} dispatch
  */
-const mapDispatchToProps = (dispatch) => ({
-  changeBrowser: ({ mode, fullDir, name }) =>
-    dispatch(openFile({ name, mode, fullDir })),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   changeBrowser: ({ mode, fullDir, name }) =>
+//     dispatch(openFile({ name, mode, fullDir })),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Blog);
+export default connect(mapStateToProps, null)(Blog);

@@ -1,13 +1,13 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import Project from "../mode/browser/Project";
-import Collection from "../mode/browser/Collection";
-import Document from "../mode/browser/Document";
-import Blog from "../mode/browser/Blog";
-import Home from "../mode/browser/Home";
-import Empty from "../mode/browser/Empty";
-import Template from "../mode/browser/Template";
+import Project from "./routes/Project";
+import Collection from "./routes/Collection";
+import Document from "./routes/Document";
+import Blog from "./routes/Blog";
+import Home from "./routes/Home";
+import Empty from "./routes/Empty";
+import Template from "./routes/Template";
 
 /**
  * @param {{ mode: string; }} props

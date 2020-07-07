@@ -1,10 +1,10 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import FileTree from "../mode/sidebar/FileTree";
-import BlogTree from "../mode/sidebar/BlogTree";
-import HomeTree from "../mode/sidebar/HomeTree";
-import TemplateTree from "../mode/sidebar/TemplateTree";
+import FileTree from "./routes/FileTree";
+import BlogTree from "./routes/BlogTree";
+import HomeTree from "./routes/HomeTree";
+import TemplateTree from "./routes/TemplateTree";
 /**
  * @param {{ mode: string; }} props
  */
