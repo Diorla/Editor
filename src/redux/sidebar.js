@@ -4,20 +4,20 @@ import { createSlice } from "@reduxjs/toolkit";
 const sidebarSlice = createSlice({
   name: "changeSidebar",
   initialState: {
-    mode: "home",
+    route: "home",
     dir: "",
   },
   reducers: {
     goHome(state) {
-      state.mode = "home";
+      state.route = "home";
       state.dir = "";
     },
     openSidebar(state, { payload }) {
-      state.mode = payload;
+      state.route = payload;
       state.dir = "";
     },
     openTree(state, { payload }) {
-      state.mode = "projects";
+      state.route = "projects";
       state.dir = payload;
     },
   },

@@ -20,12 +20,12 @@ const compareDir = (objA, objB) => {
 };
 
 /**
- * @param {{ sidebar?: {dir: string}; browser?: {mode: string}; changeBrowser?: (arg0: {name: string, fullDir: string, mode: string})=> void; }} props
+ * @param {{ sidebar?: {dir: string}; browser?: {route: string}; changeBrowser?: (arg0: {name: string, fullDir: string, route: string})=> void; }} props
  */
 const FileTree = (props) => {
   const { changeBrowser } = props;
   const { dir } = props.sidebar;
-  const { mode } = props.browser;
+  const { route } = props.browser;
   const classes = useStyles();
   const [projectTree, setProjectTree] = useState(
     dirTree(dir, {
@@ -106,23 +106,23 @@ const FileTree = (props) => {
           changeBrowser({
             name: path.basename(nodes.path, ".scrb"),
             fullDir: nodes.path,
-            mode: "document",
+            route: "document",
           });
         // if the active dir is not a file
-        else if (mode !== "document") {
+        else if (route !== "document") {
           // if the root path == this folder
           if (nodes.path === dir)
             changeBrowser({
               name: path.basename(nodes.path),
               fullDir: nodes.path,
-              mode: "projects",
+              route: "projects",
             });
           //any other folder
           else
             changeBrowser({
               name: path.basename(nodes.path),
               fullDir: nodes.path,
-              mode: "collection",
+              route: "collection",
             });
         } else console.log("Double click to navigate");
       }}
@@ -135,14 +135,14 @@ const FileTree = (props) => {
             changeBrowser({
               name: path.basename(nodes.path),
               fullDir: nodes.path,
-              mode: "projects",
+              route: "projects",
             });
           //any other folder
           else
             changeBrowser({
               name: path.basename(nodes.path),
               fullDir: nodes.path,
-              mode: "collection",
+              route: "collection",
             });
         } else console.log("Doesn't work on file");
       }}
@@ -168,8 +168,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeBrowser: ({ name, mode, fullDir }) =>
-    dispatch(openFile({ name, mode, fullDir })),
+  changeBrowser: ({ name, route, fullDir }) =>
+    dispatch(openFile({ name, route, fullDir })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FileTree);

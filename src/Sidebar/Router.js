@@ -6,18 +6,18 @@ import BlogTree from "./routes/BlogTree";
 import HomeTree from "./routes/HomeTree";
 import TemplateTree from "./routes/TemplateTree";
 /**
- * @param {{ mode: string; }} props
+ * @param {{ route: string; }} props
  */
 const Router = (props) => {
-  const { mode } = props;
-  if (mode === "projects") return <FileTree />;
-  else if (mode === "blogs") return <BlogTree />;
-  else if (mode === "templates") return <TemplateTree />;
+  const { route } = props;
+  if (route === "projects") return <FileTree />;
+  else if (route === "blogs") return <BlogTree />;
+  else if (route === "templates") return <TemplateTree />;
   else return <HomeTree />;
 };
 
 const mapStateToProps = (state) => ({
-  mode: state.sidebar.mode,
+  route: state.sidebar.route,
 });
 
 /**

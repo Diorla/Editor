@@ -69,14 +69,14 @@ const TitleBar = (props) => {
   console.log("browser:", browser);
   console.log("sidebar:", sidebar);
   const deleter = () => {
-    if (browser.mode === "document") {
+    if (browser.route === "document") {
       fs.unlink(browser.fullDir, (err) => {
         if (err) console.log(err);
         else {
           openBrowser();
         }
       });
-    } else if (browser.mode === "collection") {
+    } else if (browser.route === "collection") {
       fs.rmdir(browser.fullDir, { recursive: true }, (err) => {
         if (err) console.log(err);
         else {
@@ -123,24 +123,24 @@ const TitleBar = (props) => {
         <IoMdHelp
           title="Get help"
           onClick={() => {
-            if (browser.mode !== "blogs") openBrowser();
+            if (browser.route !== "blogs") openBrowser();
             changeSidebar("blogs");
           }}
           className={
-            sidebar.mode === "blogs" ? classes.iconActive : classes.icon
+            sidebar.route === "blogs" ? classes.iconActive : classes.icon
           }
         />
         <AiOutlineProfile
           title="Manage templates"
           onClick={() => {
-            if (browser.mode !== "templates") openBrowser();
+            if (browser.route !== "templates") openBrowser();
             changeSidebar("templates");
           }}
           className={
-            sidebar.mode === "templates" ? classes.iconActive : classes.icon
+            sidebar.route === "templates" ? classes.iconActive : classes.icon
           }
         />
-        {["projects", "collection", "document"].includes(browser.mode) ? (
+        {["projects", "collection", "document"].includes(browser.route) ? (
           <Confirm
             title={`Delete ${browser.name}`}
             message="This process is irrevesible"
@@ -167,7 +167,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(goHome());
   },
   openBrowser: () => dispatch(openBrowser()),
-  changeSidebar: (mode) => dispatch(openSidebar(mode)),
+  changeSidebar: (route) => dispatch(openSidebar(route)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);

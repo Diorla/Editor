@@ -59,8 +59,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  openProject: ({ name, mode, fullDir }) => {
-    dispatch(openProject({ name, mode, fullDir }));
+  openProject: ({ name, route, fullDir }) => {
+    dispatch(openProject({ name, route, fullDir }));
     dispatch(openTree(fullDir));
   },
 });

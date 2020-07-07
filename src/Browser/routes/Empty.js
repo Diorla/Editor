@@ -41,7 +41,7 @@ const Empty = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  mode: state.browser.mode,
+  route: state.browser.route,
 });
 
 /**

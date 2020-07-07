@@ -62,7 +62,7 @@ const Blog = (props) => {
             onClick={() => {
               dispatch(
                 openFile({
-                  mode: "blogs",
+                  route: "blogs",
                   fullDir: `${process.cwd()}/blogs/${item}`,
                   name: path.basename(item, ".md"),
                 })
@@ -83,15 +83,15 @@ const Blog = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  mode: state.browser.mode,
+  route: state.browser.route,
 });
 
 /**
  * @param {any} dispatch
  */
 // const mapDispatchToProps = (dispatch) => ({
-//   changeBrowser: ({ mode, fullDir, name }) =>
-//     dispatch(openFile({ name, mode, fullDir })),
+//   changeBrowser: ({ route, fullDir, name }) =>
+//     dispatch(openFile({ name, route, fullDir })),
 // });
 
 export default connect(mapStateToProps, null)(Blog);

@@ -102,7 +102,7 @@ const TemplateTree = (props) => {
             key={idx}
             onClick={() => {
               changeBrowser({
-                mode: "templates",
+                route: "templates",
                 fullDir: `${process.cwd()}/templates/${item}.json`,
                 name: item,
               });
@@ -124,7 +124,7 @@ const TemplateTree = (props) => {
             key={idx}
             onClick={() => {
               changeBrowser({
-                mode: "templates",
+                route: "templates",
                 fullDir: `${process.cwd()}/templates/${item}`,
                 name: path.basename(item, ".json"),
               });
@@ -142,15 +142,15 @@ const TemplateTree = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  mode: state.browser.mode,
+  route: state.browser.route,
 });
 
 /**
  * @param {any} dispatch
  */
 const mapDispatchToProps = (dispatch) => ({
-  changeBrowser: ({ name, mode, fullDir }) =>
-    dispatch(openFile({ name, mode, fullDir })),
+  changeBrowser: ({ name, route, fullDir }) =>
+    dispatch(openFile({ name, route, fullDir })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TemplateTree);

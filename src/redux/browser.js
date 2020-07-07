@@ -5,7 +5,7 @@ import generateHash from "../utils/generateHash";
 const browserSlice = createSlice({
   name: "manageBrowser",
   initialState: {
-    mode: "home",
+    route: "home",
     name: "",
     fullDir: "",
     data: {},
@@ -14,7 +14,7 @@ const browserSlice = createSlice({
   },
   reducers: {
     closeProject(state) {
-      state.mode = "home";
+      state.route = "home";
       state.name = "";
       state.fullDir = "";
       state.data = {};
@@ -22,7 +22,7 @@ const browserSlice = createSlice({
       state.onChanged = false;
     },
     openProject(state, { payload }) {
-      state.mode = "projects";
+      state.route = "projects";
       state.name = payload.name;
       state.fullDir = payload.fullDir;
       state.data = {};
@@ -30,7 +30,7 @@ const browserSlice = createSlice({
       state.onChanged = false;
     },
     openCollection(state, { payload }) {
-      state.mode = "collection";
+      state.route = "collection";
       state.name = payload.name;
       state.fullDir = payload.fullDir;
       state.data = {};
@@ -38,7 +38,7 @@ const browserSlice = createSlice({
       state.onChanged = false;
     },
     openDocument(state, { payload }) {
-      state.mode = "document";
+      state.route = "document";
       state.name = payload.name;
       state.fullDir = payload.fullDir;
       state.data = {};
@@ -47,7 +47,7 @@ const browserSlice = createSlice({
     },
     // blogs, templates etc before the content is loaded
     openBrowser(state) {
-      state.mode = "empty";
+      state.route = "empty";
       state.name = "";
       state.fullDir = "";
       state.data = {};
@@ -56,7 +56,7 @@ const browserSlice = createSlice({
     },
     //blog.md, template.json etc
     openFile(state, { payload }) {
-      state.mode = payload.mode;
+      state.route = payload.route;
       state.name = payload.name;
       state.fullDir = payload.fullDir;
     },

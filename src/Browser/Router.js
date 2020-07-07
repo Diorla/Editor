@@ -10,24 +10,24 @@ import Empty from "./routes/Empty";
 import Template from "./routes/Template";
 
 /**
- * @param {{ mode: string; }} props
+ * @param {{ route: string; }} props
  */
 const Router = (props) => {
-  const { mode } = props;
-  if (mode === "projects") return <Project />;
-  else if (mode === "collection") return <Collection />;
-  else if (mode === "document") return <Document />;
-  else if (mode === "blogs") return <Blog />;
-  else if (mode === "empty") return <Empty />;
-  else if (mode === "templates") return <Template />;
+  const { route } = props;
+  if (route === "projects") return <Project />;
+  else if (route === "collection") return <Collection />;
+  else if (route === "document") return <Document />;
+  else if (route === "blogs") return <Blog />;
+  else if (route === "empty") return <Empty />;
+  else if (route === "templates") return <Template />;
   else return <Home />;
 };
 
 /**
- * @param {{ browser: { mode: string; }; }} state
+ * @param {{ browser: { route: string; }; }} state
  */
 const mapStateToProps = (state) => ({
-  mode: state.browser.mode,
+  route: state.browser.route,
 });
 
 /**
