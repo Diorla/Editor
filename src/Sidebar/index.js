@@ -1,18 +1,15 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import { Drawer, Box } from "@material-ui/core";
 import Router from "./Router";
-import useStyles from "../components/useStyles";
+import layoutStyles from "../components/layoutStyles";
 
 const SideBar = (props) => {
-  const classes = useStyles();
+  const layout = layoutStyles();
   return (
-    <Drawer className={classes.drawer} variant="permanent">
-      <Box className={classes.drawerContainer}>
-        <Router />
-      </Box>
-    </Drawer>
+    <main className={layout.sidebar}>
+      <Router />
+    </main>
   );
 };
 

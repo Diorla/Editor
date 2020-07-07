@@ -2,7 +2,6 @@ TODO: Settings
 
 - Change colour palette
 
-
 TODO: Hook it up with store.browser.data
 
 - This would allow me to update stuff like template, word length, full directory etc.
@@ -19,53 +18,53 @@ TODO: Complete Aside
 - Generator: At the top, there will be a dropdown of all the list of generators available. This will make it easier to add data from the generator straight into their editor. Each inputs on the generator will have freeze icon to prevent changes and a copy icon to copy the content of the inputs
 - Reader: It will return a flat list of all the files inside the current project. All the files will be accessible via inputs with datalist, and whenever you select a file, it will load the content of the file that is not editable. The goal of this is so that you can copy into another file or perform lookup e.g. you are writing about a character and you want to see the information about that character or you're writing a story and you want to see what should be in your next chapter. Note, if user doesn't select any file or it doesn't match any file(since users will be using inputs), we don't render any file. At the top of the reader, there will be a copy icon, in case user wants to copy the entire contents (and user may copy manually by selecting the parts that they want.)
 
-// TODO: Enable editor focus after clicking toolbar
-// TODO: Add more to toolbars
-/\*\*
+TODO: Enable editor focus after clicking toolbar
+TODO: Add more to toolbars
+
 
 - Indent: increase or decrease the indentation, in case of list, it would either
 - create a child list or bring it out to parent list or even remove the list
 - Image: image will be saved as imageData, so no physical files needed, also there
 - will be a way to change the image dimension, perhaps I will start by setting
 - a standard dimension at the beginning to prevent too big an image (ht < 300px)
-  \*/
-  // TODO: Advanced tools
-  /\*\*
+
+  TODO: Advanced tools
+  
 - This includes stuff like multiple selection and edition, like managing more than
 - one cursor like I do on VsCode using alt + click
-  \*/
-  // TODO: Add search and replace
-  /\*\*
+
+  TODO: Add search and replace
+  
 - Basic editor search and replace.
 - Ctrl + F: it will open two inputs, two icons and a button. The first input will be the text that is being searched, the second inputs will serve as the replacer text. The two icons will be up and down, navigating to the next or previous matched text while the replace button will replace the matched text with the content of the second input. If the second input is empty, the button is disabled.
 - Also, there will be a badge indicating the number of matches.
-  \*/
-  // TODO: Highlight keywords
-  /\*\*
+
+  TODO: Highlight keywords
+  
 - To be honest, I don't know how I will implement this feature but this is basically what it does.
 - Certain keywords will be automatically be highlighted whenever you typed them in, similar to the way IDE applies different styles to different keywords. User may use it to keep track e.g. the number of characters that are present in a chapter.
 - Implementation 1: At the project level, user can add keywords, I could have a simple inputs or an array of inputs, each one has its own label e.g. charaacters or locations etc. Now, any file inside this project will have the keyword highlighted, and in case of array of inputs, user can toggle which set of keywords that they want to see.
 - Auto indexing: whenever a user opens a project or create a new file, all the names of the file is indexed like some store.index or store.keywords and this will automatically serves as the keywords. I could provide array of keywords by separating them based on folders. The only problem with this is that file name may not be semantic enough e.g. the name of the file may not equal the name of the item e.g. the name of a character file is "Waiter", but the name of the waiter may be John Doe, he may have the nickname JD, his uncle may call him Johny Boy etc.
 - And perhaps, this feature is to far reaching?
-  \*/
+
 
 // BUG: Editor cursor is erratic
-/\*\*
+
 
 - Whenever I call the function inside useEffect(which should enable autofocus on page load)
 - It works at first, and then cursor starts jumping around on the editor
 - For turning focus to the editor
-  \*/
+
 
 //FIXME: onTab is deprecated
-/\*\*
+
 
 - So I need to fix it, by replacing it with KeybindingFn
 - @param {React.KeyboardEvent<{}>} e
-  \*/
+
 
 //TODO: Use store.form to handle different forms
-/\*\*
+
 
 - I've been passing around a lot of state management ie. setState, state, config etc
 - I need to add this to the store, like load .config or .scrb content straight into
@@ -81,11 +80,11 @@ TODO: Complete Aside
 - 1.  reset: state = {}
 - 2.  update: state = {...state, ...action.payload}
 - 3.  create: state = {...action.payload}
-      \*/
+    
 
-// TODO: Make the options dynamic by parsing the template folder.
+TODO: Make the options dynamic by parsing the template folder.
 
-/\*\*
+
 
 - This means the number of templates will determine the list and not the other way around
 - It will also make it easily extendable by allowing the options to add new template
@@ -104,10 +103,10 @@ TODO: Complete Aside
 - case user types in an text that is not on the template, it will show error feedback ie. input is
 - red and error message. It may also prevent the creation of new documents or create new elements
 - using no template (default ie. empty document)
-  \*/
+
 
 // TODO Add map
-/\*\*
+
 
 - This will be a pretty advanced feature. I will add the ability to draw or generate geographic map.
 - This map will have all the features of a standard map like distance calculation, zooming, calculate time it will take to move from one place to another
@@ -122,9 +121,9 @@ TODO: Complete Aside
 - As your map grows, we will give you the size and the perspective in real life e.g. Size: 10km-square, about the size of Abuja, Lagos, Ibadan, Benin republic.
 - The locations will be close approximate of course e.g. above I assume, Abuja is like 9.8, Lagos is like 10.1, Ibadan is like 10.18, Benin is like 10.04. So I will set the range(e.g. +- 0.2) and pre add the list of cities, countries, continents and planets.
 - This map will be flat, regardless of the size or intention.
-  \*/
-  // TODO: More on <Note />
-  /\*\*
+
+  TODO: More on <Note />
+  
 - Note will be provided via the titlebar and accessible from anywhere
 - in the app.
 - And the default template will serve as purpose of generic no-format
@@ -132,16 +131,16 @@ TODO: Complete Aside
 - In the note, I will add "clipboard icon" to each textinput, so that user
 - can just copy the content of that textfield.
 - So, I will have to create a store.clipboard(string) as well as store.notes(an array)
-  \*/
-  // TODO: Add specific icon to each page
-  /\*\*
+
+  TODO: Add specific icon to each page
+  
 - I should reduce the icons on the titlebar and render it based on the page.
 - Each page should have different icon.
 - For example character.js will contain "randomise icon"
-  \*/
 
-// TODO: Create modal help
-/\*\*
+
+TODO: Create modal help
+
 
 - Whenever a user clicks the help button from home page, we will lead the user to an editor like help with all the blogs on the sidebar and the browser rendering them
 - But whenever the user is doing something else, like managing a project or templates, I should prevent navigating away to blogs.
@@ -156,7 +155,7 @@ TODO: Complete Aside
 - Documents
 - Templates
 - Generators
-  \*/
+
 
 TODO Make help extendable
 
@@ -165,16 +164,16 @@ TODO Make help extendable
 - If a help file is created by user, there will be a delete icon at the top of the app
 - Of course, you can delete or edit default help files
 
-// TODO: Create 3 sections on the screen
-/\*\*
+TODO: Create 3 sections on the screen
+
 
 - 1.  The list of all the projects.
 - 2.  The list of current templates, click it will open template list
 - 3.  Help: 3 or more highlighted help
-      \*/
+    
 
 //TODO: Add templates creator.
-/\*\*
+
 
 - This will basically lead to page where there will list of default/created templates
 - on the sidebar. At the top of the sidebar, there will be a text input to enable
@@ -185,22 +184,22 @@ TODO Make help extendable
 - The template editor will basically be like any other editor, and will be available as
 - a dropdown whenever a user wants to create a new document.
 - Note, users may be able to edit default templates, but they can't delete it.
-  \*/
 
-// TODO: Change root icon
-/\*\*
+
+TODO: Change root icon
+
 
 - The icon at the root level, indicating the project should be something like a "collection" not a folder, and it should be different from all the folders under it.
 - I could choose a book, a reel of something similar to indicate the root, and if possible, something that changes on expand and collapse. This will separate the root folder from any other folder in the project
 - Suggested files: BsFiles for root folder and FaFileSignature for the files. Search "files" under react-icons. Or RiFoldersLine, one of the results from searching for "folder"
-  \*/
-  // TODO: Expand on state change
-  /\*\*
+
+  TODO: Expand on state change
+  
 - Trigger a folder to open when new file is just added to it
-  \*/
+
 
 //TODO: Generator
-/\*\*
+
 
 - The dice icon at the titlebar will open another panel at the side of screen.
 - It will contain dropdown at the top for different possible template that
@@ -219,12 +218,12 @@ TODO Make help extendable
 - There will also be a freeze icon on each input to prevent it from being cleared in case
 - the user wants to retain this information which will in turn influence any new generated
 - information e.g. if all the characters are from the same country, just freeze the country.
-  \*/
+
 
 //TODO: Add unique context menu to different pages
 
 //TODO: Add help menu
-/\*\*
+
 
 - I will add a help icon at the to titlebar, which will toggle store.showHelp
 - On each browser, there will be a modal/boolean page that will render based
@@ -232,10 +231,10 @@ TODO Make help extendable
 - For example, store.showHelp ? <Help/> : <Project>.
 - This will enable tailored help especially for the documents e.g.
 - <Character />, <Creature /> etc.
-  \*/
+
 
 //TODO: Delete
-/\*\*
+
 
 - This will be similar to help icon above. It will check for active directory from
 - store.project in the following order and determine which one to delete
@@ -243,18 +242,18 @@ TODO Make help extendable
 - CollectionDir: Delete the collection and change screen to "Project"
 - Project: Delete the project and go to home screen
 - Blog: Nothing to delete here
-  \*/
+
 
 //TODO: Notes
-/\*\*
+
 
 - Similar to all those above, a modal with one or more <TextField/>. I will use it
 - like a clipboard that is accessible anywhere in the program.
 - This will allow user to copy details from one document, collection or project to another.
-  \*/
+
 
 //TODO: Help and blogs
-/\*\*
+
 
 - The help and blogs on the side of the home project will be in normal .scrb files that will loaded
 - with a readonly editor(ie. no toolbars) and will be saved inside ./help folder.
@@ -271,10 +270,10 @@ TODO Make help extendable
 - version- In case it's help, so only help that matches the version of the app will be loaded
 - thus excluding possibly obsolete help. So I will ensure that even if the content of help.scrb
 - doesn't change, the version must change to match that of the app.
-  \*/
+
 
 //TODO: Add settings to title bar
-/\*\*
+
 
 - Note, stuff like settings, help and blogs will be rendered via modal or drawers, which will
 - not affect tthe workflow of the app, so when you close it, it will return you to where you
@@ -286,6 +285,38 @@ TODO Make help extendable
 - a section of the browser that is hidden and displayed, like half of it or standard size e.g.
 - 300px width
 
-// TODO: Change icon
+TODO: Change icon
 
 - An icon that scales very well and clearly visible in small sizes. Preferably a pen on a paper
+
+TODO: Aside
+
+
+- It will contain the following
+- Clipboard
+- Generator
+- Compare
+
+
+TODO: Create clipboard
+
+
+- Clipboard: I will add clipboard sign to each document, so if you click it, it would saved inside ./clipboard which maybe perused afterwards by opening the aside(click clipboard icon).
+- Also, you may add new clipboard via the aside (new clippy button)
+- To prevent abuse, I will limit the number of clipboards to like 10 so that users don't just avoid the app and use the clipboard all the time.
+- Help(Clipboard): Clipboard should only be used to store information temporarily and be used sparsely. If you realise that you are re-using certain information alot, perhaps it's time for you to create a new template using these information.
+- Also, if you want to check out information from one document to another, use the compare part except if they don't belong to the same project, then you may copy
+- If possible, you copy miscellaneous information into one file. This will reduce the number of copy
+
+
+TODO: Create generator
+
+
+- Generator: This was the main goal of the app, auto populate values. It will only support default templates of course
+
+
+TODO: Compare
+
+
+- Compare: Whenever you open a project, I will add all the list of the files that are inside it(fullDir and name) as a flat list, no nesting. So user can use dropdown or input with data list to view the content of a particular document, either to copy from it or compare with what they already have.
+

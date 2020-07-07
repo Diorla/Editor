@@ -8,3 +8,14 @@
   justify-content: space-around;
   font-size: 40px;
 }
+main {
+  display: flex;
+  position: absolute;
+}
+#app {
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}

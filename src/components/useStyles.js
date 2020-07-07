@@ -2,12 +2,12 @@
 import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
-  browser: {
-    flexGrow: 1,
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-    marginLeft: 8,
-  },
+  // browser: {
+  //   flexGrow: 1,
+  //   marginTop: theme.spacing(4),
+  //   marginBottom: theme.spacing(2),
+  //   marginLeft: 8,
+  // },
   browserHome: {
     display: "flex",
     flexDirection: "row",
@@ -27,15 +27,15 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     padding: 8,
   },
-  drawer: {
-    width: 240,
-  },
-  drawerContainer: {
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    width: 240,
-  },
+  // drawer: {
+  //   width: 240,
+  // },
+  // drawerContainer: {
+  //   marginTop: theme.spacing(4),
+  //   marginBottom: theme.spacing(2),
+  //   paddingBottom: theme.spacing(2),
+  //   width: 240,
+  // },
   tree: {
     flexGrow: 1,
     maxWidth: 400,
@@ -159,5 +159,11 @@ export default makeStyles((theme) => ({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
+  },
+  aside: {
+    display: "flex",
+    minWidth: 500,
+    minHeight: "100vh",
+    paddingTop: 32,
   },
 }));

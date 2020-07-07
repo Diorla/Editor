@@ -2,22 +2,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import Router from "./Router";
-import useStyles from "../components/useStyles";
+import layoutStyles from "../components/layoutStyles";
 
-const Browser = () => {
-  const classes = useStyles();
+const Browser = (props) => {
+  const layout = layoutStyles();
+  const cls = props.route === "home" ? layout.browserFull : layout.browser;
   return (
-    <main className={classes.browser}>
+    <main className={cls}>
       <Router />
     </main>
   );
 };
 
-/**
- * @param {{ screen: string; }} state
- */
 const mapStateToProps = (state) => ({
-  // state
+  route: state.aside.route,
 });
 
 /**

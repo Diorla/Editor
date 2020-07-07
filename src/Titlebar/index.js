@@ -2,9 +2,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles, Link } from "@material-ui/core";
-import { AiOutlineDelete, AiOutlineProfile } from "react-icons/ai";
-import { GiMoon } from "react-icons/gi";
-import { IoMdHelp } from "react-icons/io";
+import {
+  AiOutlineDelete,
+  AiOutlineProfile,
+  AiOutlineCopy,
+} from "react-icons/ai";
+import { GiMoon, GiInvertedDice3 } from "react-icons/gi";
+import { IoMdHelp, IoMdGitCompare } from "react-icons/io";
 import { FaRegStickyNote } from "react-icons/fa";
 import fs from "fs";
 import Confirm from "./Confirm";
@@ -12,17 +16,9 @@ import { changeTheme } from "../redux/theme";
 import { closeProject, openBrowser } from "../redux/browser";
 import { goHome, openSidebar } from "../redux/sidebar";
 import truncate from "../utils/truncate";
+import layoutStyles from "../components/layoutStyles";
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    display: "flex",
-    zIndex: 10001,
-    width: "100%",
-    position: "fixed",
-    justifyContent: "space-between",
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-  },
   icon: {
     padding: 8,
     fontSize: 32,
@@ -58,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TitleBar = (props) => {
   const classes = useStyles();
+  const layout = layoutStyles();
   const {
     changeTheme,
     closeProject,
@@ -94,7 +91,7 @@ const TitleBar = (props) => {
     }
   };
   return (
-    <div className={classes.appBar}>
+    <main className={layout.top}>
       <div className={classes.appSection}>
         <Link
           component="button"
@@ -105,7 +102,10 @@ const TitleBar = (props) => {
         </Link>
       </div>
       {browser.name ? (
-        <div className={classes.appTitle}>{`${truncate(browser.name, 16)} - Tome Editor`}</div>
+        <div className={classes.appTitle}>{`${truncate(
+          browser.name,
+          16
+        )} - Tome Editor`}</div>
       ) : (
         <div className={classes.appTitle}>Tome Editor</div>
       )}
@@ -141,17 +141,29 @@ const TitleBar = (props) => {
           }
         />
         {["projects", "collection", "document"].includes(browser.route) ? (
-          <Confirm
-            title={`Delete ${browser.name}`}
-            message="This process is irrevesible"
-            acceptFn={() => deleter()}
-            cancelFn={() => console.log("Cancelling delete")}
-          >
-            <AiOutlineDelete className={classes.icon} />
-          </Confirm>
+          <>
+            <Confirm
+              title={`Delete ${browser.name}`}
+              message="This process is irrevesible"
+              acceptFn={() => deleter()}
+              cancelFn={() => console.log("Cancelling delete")}
+            >
+              <AiOutlineDelete className={classes.icon} />
+            </Confirm>
+            <IoMdGitCompare title="Compare value" className={classes.icon} />
+          </>
         ) : null}
+        <AiOutlineCopy
+          className={classes.icon}
+          onClick={() => console.log("open clipboard")}
+          title="Open clipboard"
+        />
+        <GiInvertedDice3
+          className={classes.icon}
+          title="Open random generator"
+        />
       </div>
-    </div>
+    </main>
   );
 };
 

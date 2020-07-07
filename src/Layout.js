@@ -1,6 +1,5 @@
 //@ts-check
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TitleBar from "./TitleBar";
 import Sidebar from "./Sidebar";
@@ -9,33 +8,31 @@ import Statusbar from "./Statusbar";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { lightTheme, darkTheme } from "./themeMode";
 import { connect } from "react-redux";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-}));
+import Aside from "./Aside";
+import layoutStyles from "./components/layoutStyles";
 
 /**
  * @param {{ isDarkMode: boolean; }} props
  */
 function Layout(props) {
-  const classes = useStyles();
+  const layout = layoutStyles();
   const theme = props.isDarkMode ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <TitleBar />
+      <CssBaseline />
+      <TitleBar />
+      <main className={layout.middle}>
         <Sidebar />
         <Browser />
-        <Statusbar />
-      </div>
+        <Aside />
+      </main>
+      <Statusbar />
       <style>
         {`
           ::-webkit-scrollbar {
             width: 6px;
-            background: #232323;
+            height: 6px;
+            background: transparent;
           }
           ::-webkit-scrollbar-thumb {
             background-color: ${theme.palette.secondary.light};
