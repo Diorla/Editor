@@ -1,0 +1,52 @@
+{
+  "template": "World",
+  "type": "",
+  "description": "",
+  "association": "",
+  "size": "",
+  "notableRegion": [{ "name": "", "description": "" }],
+  "climate": "",
+  "naturalWonders": "",
+  "naturalResources": "",
+  "naturalSites": "",
+  "topograhpy": "",
+  "created": "",
+  "timeline": [
+    {
+      "name": "",
+      "event": ""
+    }
+  ],
+  "education": "",
+  "technology": "",
+  "urbanisation": "",
+  "art": "",
+  "business": "",
+  "economy": "",
+  "infrastructures": "",
+  "magic": "",
+  "government": "",
+  "laws": [""],
+  "governmentHistory": "",
+  "opposition": "",
+  "antiGovernment": "",
+  "perception": "",
+  "foreignRelationship": "",
+  "beliefs": "",
+  "culture": "",
+  "ethics": "",
+  "class": "",
+  "communication": "",
+  "race": [
+    {
+      "name": "",
+      "description": ""
+    }
+  ],
+  "creatures": [
+    {
+      "name": "",
+      "description": ""
+    }
+  ]
+}
