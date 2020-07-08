@@ -1,0 +1,24 @@
+{
+  "template": "Location",
+  "type": "",
+  "category": "",
+  "composition": "",
+  "sight": "",
+  "smell": "",
+  "sound": "",
+  "feeling": "",
+  "esp": "",
+  "importance": "",
+  "environment": "",
+  "creatures": "",
+  "landmark": "",
+  "more": "",
+  "scenes": [
+    {
+      "date": "",
+      "event": "",
+      "changes": "",
+      "colour": "inherit"
+    }
+  ]
+}

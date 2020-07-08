@@ -1,0 +1,19 @@
+{
+  "template": "Organisation",
+  "type": "",
+  "created": "",
+  "history": "",
+  "purpose": "",
+  "goal": "",
+  "founders": [""],
+  "headquarter": "",
+  "leaders": [{ "name": "", "role": "" }],
+  "importantMember": [{ "name": "", "role": "" }],
+  "notableMember": [{ "name": "", "role": "" }],
+  "oppositions": [{ "name": "", "why": "" }],
+  "arc": [""],
+  "requirement": "",
+  "promotion": "",
+  "financing": "",
+  "more": ""
+}
