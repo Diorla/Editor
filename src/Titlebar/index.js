@@ -15,7 +15,7 @@ import Confirm from "./Confirm";
 import { changeTheme } from "../redux/theme";
 import { closeProject, openBrowser } from "../redux/browser";
 import { goHome, openSidebar } from "../redux/sidebar";
-import truncate from "../utils/truncate";
+import { truncate } from "string-007";
 import layoutStyles from "../components/layoutStyles";
 import {
   openGenerator,
