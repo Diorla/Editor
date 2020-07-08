@@ -5,7 +5,7 @@ import { TextField, Typography, Link } from "@material-ui/core";
 import fs from "fs";
 import jsonfile from "jsonfile";
 import generateHash from "../../utils/generateHash";
-import title from "../../utils/title";
+import { title } from "string-007";
 import useStyles from "../../components/useStyles";
 import { openProject } from "../../redux/browser";
 import { openTree } from "../../redux/sidebar";

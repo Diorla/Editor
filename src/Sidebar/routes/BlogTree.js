@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import fs from "fs";
-import title from "../../utils/title";
+import { title } from "string-007";
 import path from "path";
 import { makeStyles } from "@material-ui/core";
 import { AiOutlineFileExclamation } from "react-icons/ai";

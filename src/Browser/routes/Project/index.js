@@ -9,7 +9,7 @@ import createFolder from "./createFolder";
 import { Box, Typography, TextField } from "@material-ui/core";
 import getFolderList from "./getFolderList";
 import loadConfig from "./loadConfig";
-import title from "../../../utils/title";
+import { title } from "string-007";
 
 
 const Project = (props) => {

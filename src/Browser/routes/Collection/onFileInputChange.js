@@ -1,5 +1,5 @@
 //@ts-check
-import title from "../../../utils/title";
+import { title } from "string-007";
 
 /**
  * This will listen to changes in input and respond appropriately. It may disable input and set error message
