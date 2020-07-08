@@ -17,6 +17,12 @@ import { closeProject, openBrowser } from "../redux/browser";
 import { goHome, openSidebar } from "../redux/sidebar";
 import truncate from "../utils/truncate";
 import layoutStyles from "../components/layoutStyles";
+import {
+  openGenerator,
+  openClipboard,
+  openCompare,
+  closeAside,
+} from "../redux/aside";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -62,9 +68,15 @@ const TitleBar = (props) => {
     sidebar,
     openBrowser,
     changeSidebar,
+    openGenerator,
+    openClipboard,
+    openCompare,
+    closeAside,
+    aside,
   } = props;
   console.log("browser:", browser);
   console.log("sidebar:", sidebar);
+  console.log("aside:", aside);
   const deleter = () => {
     if (browser.route === "document") {
       fs.unlink(browser.fullDir, (err) => {
@@ -150,17 +162,31 @@ const TitleBar = (props) => {
             >
               <AiOutlineDelete className={classes.icon} />
             </Confirm>
-            <IoMdGitCompare title="Compare value" className={classes.icon} />
+            <IoMdGitCompare
+              title="Compare value"
+              className={classes.icon}
+              onClick={() => {
+                if (aside.dir && !aside.file) closeAside();
+                else openCompare(sidebar.dir);
+              }}
+            />
           </>
         ) : null}
         <AiOutlineCopy
           className={classes.icon}
-          onClick={() => console.log("open clipboard")}
+          onClick={() => {
+            if (aside.dir && !aside.file) closeAside();
+            else openClipboard();
+          }}
           title="Open clipboard"
         />
         <GiInvertedDice3
           className={classes.icon}
           title="Open random generator"
+          onClick={() => {
+            if (aside.dir && !aside.file) closeAside();
+            else openGenerator();
+          }}
         />
       </div>
     </main>
@@ -170,6 +196,7 @@ const TitleBar = (props) => {
 const mapStateToProps = (state) => ({
   browser: state.browser,
   sidebar: state.sidebar,
+  aside: state.aside,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -180,6 +207,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   openBrowser: () => dispatch(openBrowser()),
   changeSidebar: (route) => dispatch(openSidebar(route)),
+  openGenerator: () => dispatch(openGenerator("")),
+  openClipboard: () => dispatch(openClipboard("")),
+  openCompare: (dir) => dispatch(openCompare({ dir })),
+  closeAside: () => dispatch(closeAside()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TitleBar);

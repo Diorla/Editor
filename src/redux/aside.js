@@ -4,31 +4,35 @@ import { createSlice } from "@reduxjs/toolkit";
 const asideSlice = createSlice({
   name: "changeAside",
   initialState: {
-    route: "home",
-    dir: "",
+    route: "home", //generator, clipboard, project
+    dir: "", //./generator, .clipboard or ./projects/:project-name
+    file: "", //the file name for generator or clipboard, and the fullDir of document
   },
   reducers: {
-    goHome(state) {
+    closeAside(state) {
       state.route = "home";
       state.dir = "";
     },
     openGenerator(state, { payload }) {
       state.route = "generator";
-      state.dir = payload;
+      state.dir = "./generator";
+      state.file = payload;
     },
     openClipboard(state, { payload }) {
       state.route = "clipboard";
-      state.dir = payload;
+      state.dir = "./clipboard";
+      state.file = payload;
     },
     openCompare(state, { payload }) {
       state.route = "compare";
-      state.dir = payload;
+      state.dir = payload.dir || state.dir;
+      state.file = payload.file;
     },
   },
 });
 
 export const {
-  goHome,
+  closeAside,
   openGenerator,
   openClipboard,
   openCompare,
