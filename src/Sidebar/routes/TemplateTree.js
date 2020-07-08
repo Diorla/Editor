@@ -8,6 +8,7 @@ import { makeStyles, TextField, Divider, Typography } from "@material-ui/core";
 import { AiOutlineProfile } from "react-icons/ai";
 import jsonfile from "jsonfile";
 import { openFile } from "../../redux/browser";
+import FileItem from "../../components/FileItem";
 
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -98,8 +99,10 @@ const TemplateTree = (props) => {
       {recentList.map(title).map((item, idx) => {
         const cls = activeItem === item ? classes.rollActive : classes.roll;
         return (
-          <div
+          <FileItem
             key={idx}
+            name={item}
+            ext=".json"
             onClick={() => {
               changeBrowser({
                 route: "templates",
@@ -108,11 +111,10 @@ const TemplateTree = (props) => {
               });
               setActiveItem(item);
             }}
-            className={cls}
-          >
-            <AiOutlineProfile style={{ color: "#2196F3", marginRight: 4 }} />
-            {item}
-          </div>
+            icon={<AiOutlineProfile />}
+            active={activeItem === item}
+            type="file"
+          />
         );
       })}
       <Divider />

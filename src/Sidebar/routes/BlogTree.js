@@ -1,12 +1,13 @@
 //@ts-check
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import fs from "fs";
 import title from "../../utils/title";
 import path from "path";
 import { makeStyles } from "@material-ui/core";
 import { AiOutlineFileExclamation } from "react-icons/ai";
 import { openFile } from "../../redux/browser";
+import FileItem from "../../components/FileItem";
 
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -38,12 +39,10 @@ const Blog = (props) => {
   const [dirList, setDirList] = useState([]);
   const classes = useStyles();
   const [activeItem, setActiveItem] = useState("");
-  // const { changeBrowser } = props;
 
   useEffect(() => {
     fs.readdir("./blogs", (err, data) => {
       if (err) console.log(err);
-      //console.log("loaded:", data);
       else setDirList(data);
     });
     return () => {
@@ -57,8 +56,10 @@ const Blog = (props) => {
       {dirList.map(title).map((item, idx) => {
         const cls = activeItem === item ? classes.rollActive : classes.roll;
         return (
-          <div
+          <FileItem
             key={idx}
+            name={item}
+            ext=".md"
             onClick={() => {
               dispatch(
                 openFile({
@@ -69,13 +70,10 @@ const Blog = (props) => {
               );
               setActiveItem(item);
             }}
-            className={cls}
-          >
-            <AiOutlineFileExclamation
-              style={{ color: "#2196F3", marginRight: 4 }}
-            />
-            {path.basename(item, ".md")}
-          </div>
+            icon={<AiOutlineFileExclamation />}
+            active={activeItem === item}
+            type="file"
+          />
         );
       })}
     </div>
