@@ -23,6 +23,7 @@ import {
   openCompare,
   closeAside,
 } from "../redux/aside";
+import ErrorLog from "../components/ErrorLog";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -80,24 +81,23 @@ const TitleBar = (props) => {
   const deleter = () => {
     if (browser.route === "document") {
       fs.unlink(browser.fullDir, (err) => {
-        if (err) console.log(err);
+        if (err) ErrorLog(err);
         else {
           openBrowser();
         }
       });
     } else if (browser.route === "collection") {
       fs.rmdir(browser.fullDir, { recursive: true }, (err) => {
-        if (err) console.log(err);
+        if (err) ErrorLog(err);
         else {
           openBrowser();
         }
       });
     } else {
       fs.rmdir(browser.fullDir, { recursive: true }, (err) => {
-        if (err) console.log(err);
+        if (err) ErrorLog(err);
         else {
           closeProject();
-          console.log("Project deleted");
         }
       });
     }
@@ -108,7 +108,10 @@ const TitleBar = (props) => {
         <Link
           component="button"
           className={classes.link}
-          onClick={() => closeProject()}
+          onClick={() => {
+            closeProject();
+            if (aside.route === "compare") closeAside();
+          }}
         >
           Home
         </Link>
@@ -166,8 +169,9 @@ const TitleBar = (props) => {
               title="Compare value"
               className={classes.icon}
               onClick={() => {
-                if (aside.dir && !aside.file) closeAside();
-                else openCompare(sidebar.dir);
+                if (aside.route !== "compare" || aside.file)
+                  openCompare(sidebar.dir);
+                else closeAside();
               }}
             />
           </>
@@ -175,8 +179,8 @@ const TitleBar = (props) => {
         <AiOutlineCopy
           className={classes.icon}
           onClick={() => {
-            if (aside.dir && !aside.file) closeAside();
-            else openClipboard();
+            if (aside.route !== "clipboard" || aside.file) openClipboard();
+            else closeAside();
           }}
           title="Open clipboard"
         />
@@ -184,8 +188,8 @@ const TitleBar = (props) => {
           className={classes.icon}
           title="Open random generator"
           onClick={() => {
-            if (aside.dir && !aside.file) closeAside();
-            else openGenerator();
+            if (aside.route !== "generator" || aside.file) openGenerator();
+            else closeAside();
           }}
         />
       </div>
