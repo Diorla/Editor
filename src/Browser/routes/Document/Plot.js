@@ -38,7 +38,7 @@ const Plot = (props) => {
     };
   }, [state]);
   return (
-    <main className={classes.content}>
+    <div className={classes.content}>
       <TextField
         value={state.name}
         multiline
@@ -181,7 +181,7 @@ const Plot = (props) => {
           </TimelineItem>
         )
       )}
-    </main>
+    </div>
   );
 };
 

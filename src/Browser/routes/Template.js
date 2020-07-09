@@ -24,7 +24,7 @@ const Template = (props) => {
     });
   };
   return (
-    <main className={classes.content}>
+    <div className={classes.content}>
       {browser.name ? (
         <TextField
           value={templates[browser.name] || ""}
@@ -43,7 +43,7 @@ const Template = (props) => {
         />
       ) : null}
       {browser.fullDir ? <Editor itemDir={browser.fullDir} /> : <Empty />}
-    </main>
+    </div>
   );
 };
 

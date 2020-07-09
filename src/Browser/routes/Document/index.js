@@ -29,7 +29,7 @@ const Page = (props) => {
   }, [fullDir]);
   if (state.template)
     return (
-      <main className={classes.content}>
+      <div className={classes.content}>
         {isEditor.includes(state.template) && <Editor itemDir={fullDir} />}
         {state.template === "Location" && <Location itemDir={fullDir} />}
         {state.template === "Plot" && (
@@ -38,9 +38,9 @@ const Page = (props) => {
         {state.template === "Story" && (
           <Story state={state} setState={setState} itemDir={fullDir} />
         )}
-      </main>
+      </div>
     );
-  return <main className={classes.content}></main>;
+  return <div className={classes.content}></div>;
 };
 
 const mapStateToProps = (state) => ({

@@ -6,7 +6,6 @@ export default makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
-    flex: 1,
   },
   header: {
     textAlign: "center",

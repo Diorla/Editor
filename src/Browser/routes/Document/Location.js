@@ -58,7 +58,7 @@ const Location = (props) => {
   };
   if (scenes)
     return (
-      <main className={classes.content}>
+      <div className={classes.content}>
         <Accordion
           header={<Typography className={classes.header}>Location</Typography>}
         >
@@ -200,7 +200,7 @@ const Location = (props) => {
             )
           )}
         </Accordion>
-      </main>
+      </div>
     );
   else return null;
 };

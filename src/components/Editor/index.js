@@ -10,10 +10,10 @@ import load from "./load";
 import KeybindingFn from "./KeybindingFn";
 
 /**
- * @param {{ itemDir: string; }} props
+ * @param {{ itemDir: string; readonly?: boolean}} props
  */
 export default (props) => {
-  const { itemDir } = props;
+  const { itemDir, readonly } = props;
   const classes = useStyles();
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
@@ -83,6 +83,7 @@ export default (props) => {
           onBlur={() => save(editorState, itemDir)}
           onTab={onTab}
           keyBindingFn={(e) => KeybindingFn(e)}
+          readOnly={readonly}
         />
       </div>
     </div>

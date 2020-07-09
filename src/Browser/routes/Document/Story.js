@@ -41,7 +41,7 @@ const Story = (props) => {
     });
   };
   return (
-    <main className={classes.content}>
+    <div className={classes.content}>
       <Accordion
         header={<Typography className={classes.header}>Basics</Typography>}
         onBlur={save}
@@ -93,7 +93,7 @@ const Story = (props) => {
       </Accordion>
       <Typography className={classes.header}>Content</Typography>
       <Editor itemDir={itemDir} />
-    </main>
+    </div>
   );
 };
 

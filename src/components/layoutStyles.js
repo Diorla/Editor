@@ -32,6 +32,7 @@ export default makeStyles((theme) => ({
     height: "100%",
     flexDirection: "column",
     overflowY: "scroll",
+    backgroundColor: theme.palette.background.paper,
   },
   browser: {
     flex: 1,
@@ -55,6 +56,7 @@ export default makeStyles((theme) => ({
     height: "100%",
     flexDirection: "column",
     overflowY: "scroll",
+    backgroundColor: theme.palette.background.paper,
   },
   hide: {
     display: "none",

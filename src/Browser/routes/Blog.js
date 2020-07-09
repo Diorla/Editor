@@ -23,9 +23,9 @@ const Blog = (props) => {
     setMd(data);
   });
   return (
-    <main className={classes.content}>
+    <div className={classes.content}>
       {md ? <ReactMd source={md} escapeHtml={false} /> : <Empty />}
-    </main>
+    </div>
   );
 };
 
