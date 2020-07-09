@@ -24,6 +24,7 @@ import {
   closeAside,
 } from "../redux/aside";
 import ErrorLog from "../components/ErrorLog";
+import jsonfile from "jsonfile";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -74,10 +75,12 @@ const TitleBar = (props) => {
     openCompare,
     closeAside,
     aside,
+    allData,
   } = props;
-  console.log("browser:", browser);
-  console.log("sidebar:", sidebar);
-  console.log("aside:", aside);
+  console.log("All data:", allData);
+  jsonfile.writeFile("tmp", allData, (err) => {
+    if (err) ErrorLog(err);
+  });
   const deleter = () => {
     if (browser.route === "document") {
       fs.unlink(browser.fullDir, (err) => {
@@ -201,6 +204,7 @@ const mapStateToProps = (state) => ({
   browser: state.browser,
   sidebar: state.sidebar,
   aside: state.aside,
+  allData: state,
 });
 
 const mapDispatchToProps = (dispatch) => ({

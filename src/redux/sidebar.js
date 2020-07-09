@@ -20,8 +20,17 @@ const sidebarSlice = createSlice({
       state.route = "projects";
       state.dir = payload;
     },
+    loadSidebar(state, { payload }) {
+      state.route = payload.route;
+      state.dir = payload.dir;
+    },
   },
 });
 
-export const { goHome, openSidebar, openTree } = sidebarSlice.actions;
+export const {
+  goHome,
+  openSidebar,
+  openTree,
+  loadSidebar,
+} = sidebarSlice.actions;
 export default sidebarSlice.reducer;

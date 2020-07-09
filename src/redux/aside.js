@@ -29,6 +29,11 @@ const asideSlice = createSlice({
       state.dir = payload.dir || state.dir;
       state.file = payload.file;
     },
+    loadAside(state, { payload }) {
+      state.route = payload.route;
+      state.dir = payload.dir;
+      state.file = payload.file;
+    },
   },
 });
 
@@ -37,5 +42,6 @@ export const {
   openGenerator,
   openClipboard,
   openCompare,
+  loadAside,
 } = asideSlice.actions;
 export default asideSlice.reducer;

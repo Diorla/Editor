@@ -6,8 +6,9 @@ const themeSlice = createSlice({
   initialState: false,
   reducers: {
     changeTheme: (state) => !state,
+    loadTheme: (state, { payload }) => payload,
   },
 });
 
-export const { changeTheme } = themeSlice.actions;
+export const { changeTheme, loadTheme } = themeSlice.actions;
 export default themeSlice.reducer;

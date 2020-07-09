@@ -60,6 +60,14 @@ const browserSlice = createSlice({
       state.name = payload.name;
       state.fullDir = payload.fullDir;
     },
+    loadBrowser(state, { payload }) {
+      state.route = payload.route;
+      state.name = payload.name;
+      state.fullDir = payload.fullDir;
+      state.data = payload.data;
+      state.tempKey = payload.tempKey;
+      state.modified = payload.modified;
+    },
   },
 });
 
@@ -70,6 +78,7 @@ export const {
   openDocument,
   openBrowser,
   openFile,
+  loadBrowser,
 } = browserSlice.actions;
 
 export default browserSlice.reducer;
