@@ -2,12 +2,6 @@
 import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
-  // browser: {
-  //   flexGrow: 1,
-  //   marginTop: theme.spacing(4),
-  //   marginBottom: theme.spacing(2),
-  //   marginLeft: 8,
-  // },
   browserHome: {
     display: "flex",
     flexDirection: "row",
@@ -120,7 +114,6 @@ export default makeStyles((theme) => ({
   },
   editor: {
     borderBottom: "1px solid silver",
-    marginTop: 30,
     padding: 4,
     fontFamily: "arial",
     "& h1": {
@@ -151,8 +144,8 @@ export default makeStyles((theme) => ({
     display: "flex",
     position: "sticky",
     flexDirection: "row",
-    top: 32,
     zIndex: 10,
+    top: 0,
   },
   row: {
     display: "flex",

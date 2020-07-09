@@ -13,9 +13,9 @@ const Page = (props) => {
   const [state, setState] = useState({ template: "", content: "" });
   const { fullDir } = props.browser;
   const isEditor = [
+    "Blank",
     "Character",
     "Creature",
-    "Default",
     "Magic",
     "Objects",
     "Organisation",

@@ -13,9 +13,9 @@ const Page = (props) => {
   const [state, setState] = useState({ template: "", content: "" });
   const { file } = props.aside;
   const isEditor = [
+    "Blank",
     "Character",
     "Creature",
-    "Default",
     "Magic",
     "Objects",
     "Organisation",
@@ -30,7 +30,9 @@ const Page = (props) => {
   if (state.template)
     return (
       <div className={classes.content}>
-        {isEditor.includes(state.template) && <Editor itemDir={file} readonly/>}
+        {isEditor.includes(state.template) && (
+          <Editor itemDir={file} readonly />
+        )}
         {state.template === "Location" && <Location itemDir={file} />}
         {state.template === "Plot" && (
           <Plot state={state} setState={setState} itemDir={file} />
