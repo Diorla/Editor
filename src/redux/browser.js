@@ -10,7 +10,7 @@ const browserSlice = createSlice({
     fullDir: "",
     data: {},
     tempKey: "",
-    onChanged: false,
+    modified: false,
   },
   reducers: {
     closeProject(state) {
@@ -19,7 +19,7 @@ const browserSlice = createSlice({
       state.fullDir = "";
       state.data = {};
       state.tempKey = "";
-      state.onChanged = false;
+      state.modified = false;
     },
     openProject(state, { payload }) {
       state.route = "projects";
@@ -27,7 +27,7 @@ const browserSlice = createSlice({
       state.fullDir = payload.fullDir;
       state.data = {};
       state.tempKey = generateHash();
-      state.onChanged = false;
+      state.modified = false;
     },
     openCollection(state, { payload }) {
       state.route = "collection";
@@ -35,7 +35,7 @@ const browserSlice = createSlice({
       state.fullDir = payload.fullDir;
       state.data = {};
       state.tempKey = generateHash();
-      state.onChanged = false;
+      state.modified = false;
     },
     openDocument(state, { payload }) {
       state.route = "document";
@@ -43,7 +43,7 @@ const browserSlice = createSlice({
       state.fullDir = payload.fullDir;
       state.data = {};
       state.tempKey = generateHash();
-      state.onChanged = false;
+      state.modified = false;
     },
     // blogs, templates etc before the content is loaded
     openBrowser(state) {
@@ -52,7 +52,7 @@ const browserSlice = createSlice({
       state.fullDir = "";
       state.data = {};
       state.tempKey = "";
-      state.onChanged = false;
+      state.modified = false;
     },
     //blog.md, template.json etc
     openFile(state, { payload }) {

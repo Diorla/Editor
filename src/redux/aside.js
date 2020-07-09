@@ -12,6 +12,7 @@ const asideSlice = createSlice({
     closeAside(state) {
       state.route = "home";
       state.dir = "";
+      state.file = "";
     },
     openGenerator(state, { payload }) {
       state.route = "generator";
