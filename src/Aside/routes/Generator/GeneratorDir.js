@@ -34,6 +34,9 @@ const Dir = (props) => {
   );
 };
 
+/**
+ * @param {{ aside: {dir: string} }} state
+ */
 const mapStateToProps = (state) => ({
   aside: state.aside,
 });
@@ -42,6 +45,9 @@ const mapStateToProps = (state) => ({
  * @param {any} dispatch
  */
 const mapDispatchToProps = (dispatch) => ({
+  /**
+   * @param {string} fullDir
+   */
   openGenerator: (fullDir) => dispatch(openGenerator(fullDir)),
 });
 

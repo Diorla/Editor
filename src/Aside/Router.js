@@ -14,7 +14,7 @@ const Router = (props) => {
   if (route === "generator") return <Generator />;
   else if (route === "clipboard") return <Clipboard />;
   else if (route === "compare") return <Compare />;
-  else return <Home />;
+  else return null;
 };
 
 /**

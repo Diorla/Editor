@@ -2,12 +2,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import Router from "./Router";
-import layoutStyles from "../components/layoutStyles";
+import useStyles from "./useStyles";
 
+/**
+ * @param {{ route: string; }} props
+ */
 const Aside = (props) => {
-  const layout = layoutStyles();
-  console.log("aside:", props.route);
-  const cls = props.route === "home" ? layout.hide : layout.aside;
+  const classes = useStyles();
+  const cls = props.route === "home" ? classes.hide : classes.aside;
   return (
     <main className={cls}>
       <Router />
@@ -15,6 +17,9 @@ const Aside = (props) => {
   );
 };
 
+/**
+ * @param {{ aside: { route: any; }; }} state
+ */
 const mapStateToProps = (state) => ({
   route: state.aside.route,
 });

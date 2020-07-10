@@ -50,15 +50,4 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     overflowY: "scroll",
   },
-  aside: {
-    width: 500,
-    right: 0,
-    height: "100%",
-    flexDirection: "column",
-    overflowY: "scroll",
-    backgroundColor: theme.palette.background.paper,
-  },
-  hide: {
-    display: "none",
-  },
 }));

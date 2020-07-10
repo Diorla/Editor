@@ -21,15 +21,6 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     padding: 8,
   },
-  // drawer: {
-  //   width: 240,
-  // },
-  // drawerContainer: {
-  //   marginTop: theme.spacing(4),
-  //   marginBottom: theme.spacing(2),
-  //   paddingBottom: theme.spacing(2),
-  //   width: 240,
-  // },
   tree: {
     flexGrow: 1,
     maxWidth: 400,
