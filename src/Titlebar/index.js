@@ -133,11 +133,6 @@ const TitleBar = (props) => {
           onClick={() => changeTheme()}
           className={classes.icon}
         />
-        <FaRegStickyNote
-          title="Add note"
-          onClick={() => console.log("note")}
-          className={classes.icon}
-        />
         <IoMdHelp
           title="Get help"
           onClick={() => {
