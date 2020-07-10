@@ -7,8 +7,13 @@ import Location from "./Location";
 import useStyles from "./useStyles";
 import Story from "./Story";
 import Editor from "../../../components/Editor";
+import path from "path";
+import HeaderOne from "../../../components/HeaderOne";
 
-const Page = (props) => {
+/**
+ * @param {{ aside: { file: string; }; }} props
+ */
+const ParseCompare = (props) => {
   const classes = useStyles();
   const [state, setState] = useState({ template: "", content: "" });
   const { file } = props.aside;
@@ -30,6 +35,7 @@ const Page = (props) => {
   if (state.template)
     return (
       <div className={classes.content}>
+        <HeaderOne>{path.basename(file, ".scrb")}</HeaderOne>
         {isEditor.includes(state.template) && (
           <Editor itemDir={file} readonly />
         )}
@@ -45,12 +51,18 @@ const Page = (props) => {
   return <div className={classes.content}></div>;
 };
 
+/**
+ * @param {{ aside: { file: string; }; }} state
+ */
 const mapStateToProps = (state) => ({
   aside: state.aside,
 });
 
+/**
+ * @param {any} dispatch
+ */
 const mapDispatchToProps = (dispatch) => ({
   // dispatch
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Page);
+export default connect(mapStateToProps, mapDispatchToProps)(ParseCompare);

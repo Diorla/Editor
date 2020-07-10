@@ -60,13 +60,19 @@ export default (props) => {
 
   return (
     <div>
-      <Box className={classes.nav}>
-        <Box alignItems="center" className={classes.toolbar}>
-          <BlockTools toggleBlock={toggleBlock} editorState={editorState} />
-          <Divider orientation="vertical" flexItem className={classes.white} />
-          <InlineTools toggleBlock={toggleInline} editorState={editorState} />
+      {readonly ? null : (
+        <Box className={classes.nav}>
+          <Box alignItems="center" className={classes.toolbar}>
+            <BlockTools toggleBlock={toggleBlock} editorState={editorState} />
+            <Divider
+              orientation="vertical"
+              flexItem
+              className={classes.white}
+            />
+            <InlineTools toggleBlock={toggleInline} editorState={editorState} />
+          </Box>
         </Box>
-      </Box>
+      )}
       <div className={className}>
         <Editor
           ref={editorRef}

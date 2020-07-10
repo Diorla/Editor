@@ -2,6 +2,10 @@
 import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
+  headerOne: {
+    textAlign: "center",
+    borderBottom: `1px solid ${theme.palette.secondary.main}`,
+  },
   browserHome: {
     display: "flex",
     flexDirection: "row",
