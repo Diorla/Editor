@@ -67,12 +67,12 @@ function Layout(props) {
     jsonfile.readFile("tmp", (err, data) => {
       if (err) ErrorLog(err);
       else {
-        loadTheme(data.isDarkMode);
-        loadAside(data.aside);
-        loadBrowser(data.browser);
-        loadSidebar(data.sidebar);
-        loadApp();
+        data.isDarkMode && loadTheme(data.isDarkMode);
+        data.aside && loadAside(data.aside);
+        data.browser && loadBrowser(data.browser);
+        data.sidebar && loadSidebar(data.sidebar);
       }
+      loadApp();
     });
   }
   return null;
