@@ -1,33 +1,29 @@
 //@ts-check
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { TextField, Typography, Link } from "@material-ui/core";
+import { Typography, Link } from "@material-ui/core";
 import fs from "fs";
 import jsonfile from "jsonfile";
 import generateHash from "../../utils/generateHash";
-import { title } from "string-007";
 import useStyles from "../../components/useStyles";
 import { openProject } from "../../redux/browser";
 import { openTree } from "../../redux/sidebar";
+import { FileInput } from "../../components/Input";
+import ErrorLog from "../../components/ErrorLog";
 
 const HomeNav = (props) => {
   const classes = useStyles();
   const { openProject } = props;
-  const [projectName, setProjectName] = useState("");
-  const [error, setError] = useState("");
   const [recentList, setRecentList] = useState([]);
   const [projectList, setProjectList] = useState([]);
   const projectDir = `${process.cwd()}/projects`;
 
   const manageList = () => {
     fs.readdir(projectDir, (err, data) => {
-      if (err) throw err;
+      if (err) ErrorLog(err);
       // prevent infinite loop of update and re-render
-      if (JSON.stringify(projectList) !== JSON.stringify(data)) {
+      if (JSON.stringify(projectList) !== JSON.stringify(data))
         setProjectList(data);
-        setRecentList([projectName, ...recentList]);
-        setProjectName("");
-      }
     });
   };
   const addNewProject = (projectName) => {
@@ -43,7 +39,8 @@ const HomeNav = (props) => {
           genre: "",
           audience: "",
         });
-        manageList();
+        setRecentList([projectName, ...recentList]);
+        setProjectList([projectName, ...projectList]);
       }
     });
   };
@@ -52,36 +49,14 @@ const HomeNav = (props) => {
     return () => {
       console.log("unmounting home tree");
     };
-  }, []);
+  }, [projectList]);
   return (
-    <div className={classes.input}>
-      <TextField
+    <div className={classes.hometree}>
+      <FileInput
         label="New project"
-        value={projectName}
-        placeholder="Click enter to add project"
-        onChange={(e) => {
-          setProjectName(e.target.value);
-          // No input, no error
-          if (!e.target.value.length) setError("");
-          // Input too short or name already exist
-          else if (e.target.value.length < 2) setError("Name is too short");
-          else if (projectList.map(title).includes(title(e.target.value)))
-            setError("Name already exist");
-          else setError("");
-        }}
-        onKeyDown={(e) => {
-          if (e.keyCode === 13) {
-            if (error) setError(title(`Can't add project, ${error}`));
-            else if (!projectName) setError("Field is empty");
-            else addNewProject(projectName);
-          }
-        }}
+        list={projectList}
+        saveItem={addNewProject}
       />
-      {error && (
-        <Typography variant="subtitle1" color="error">
-          {error}
-        </Typography>
-      )}
       {recentList.length ? (
         <Typography className={classes.projects} component="div">
           <Typography variant="h6">Recently added</Typography>

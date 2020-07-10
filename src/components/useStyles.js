@@ -6,6 +6,10 @@ export default makeStyles((theme) => ({
     textAlign: "center",
     borderBottom: `1px solid ${theme.palette.secondary.main}`,
   },
+  fullWidth: {
+    width: "100%",
+  },
+  // anything above here is added
   browserHome: {
     display: "flex",
     flexDirection: "row",
@@ -20,7 +24,7 @@ export default makeStyles((theme) => ({
   link: {
     padding: 4,
   },
-  input: {
+  hometree: {
     display: "flex",
     flexDirection: "column",
     padding: 8,
@@ -61,9 +65,6 @@ export default makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
-  fullWidth: {
-    width: "100%",
   },
   successButton: {
     color: theme.palette.success.main,
