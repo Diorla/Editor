@@ -2,9 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import fs from "fs";
-import FileItem from "../../../components/FileItem";
+import Item from "../../../components/Item";
 import { openGenerator } from "../../../redux/aside";
 import ErrorLog from "../../../components/ErrorLog";
+import basename from "../../../utils/basename";
+import { GiInvertedDice3 } from "react-icons/gi";
 
 /**
  * @param {{ aside: {dir: string}; openGenerator: (fullDir: string)=> void; }} props
@@ -21,13 +23,12 @@ const Dir = (props) => {
   return (
     <div>
       <h2>Generators</h2>
-      {dirList.map((item, idx) => (
-        <FileItem
+      {dirList.map(basename).map((item, idx) => (
+        <Item
           key={idx}
           name={item}
-          ext=".json"
-          onClick={() => openGenerator(item)}
-          type="file"
+          icon={<GiInvertedDice3 />}
+          onClick={() => openGenerator(`${item}.json`)}
         />
       ))}
     </div>

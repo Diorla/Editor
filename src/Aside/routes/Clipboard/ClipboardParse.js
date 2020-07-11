@@ -3,14 +3,14 @@ import React from "react";
 import { connect } from "react-redux";
 import Editor from "../../../components/Editor";
 import HeaderOne from "../../../components/HeaderOne";
-import path from "path";
+import basename from "../../../utils/basename";
 
 const Clipboard = (props) => {
   const { aside } = props;
   const { dir, file } = aside;
   return (
     <div>
-      <HeaderOne>{path.basename(aside.file, ".json")}</HeaderOne>
+      <HeaderOne>{basename(aside.file)}</HeaderOne>
       <Editor itemDir={`${dir}/${file}`} />
     </div>
   );

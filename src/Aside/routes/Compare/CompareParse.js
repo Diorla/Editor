@@ -7,8 +7,8 @@ import Location from "./Location";
 import useStyles from "./useStyles";
 import Story from "./Story";
 import Editor from "../../../components/Editor";
-import path from "path";
 import HeaderOne from "../../../components/HeaderOne";
+import basename from "../../../utils/basename";
 
 /**
  * @param {{ aside: { file: string; }; }} props
@@ -35,7 +35,7 @@ const ParseCompare = (props) => {
   if (state.template)
     return (
       <div className={classes.content}>
-        <HeaderOne>{path.basename(file, ".scrb")}</HeaderOne>
+        <HeaderOne>{basename(file)}</HeaderOne>
         {isEditor.includes(state.template) && (
           <Editor itemDir={file} readonly />
         )}

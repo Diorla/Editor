@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import path from "path";
 import useStyles from "../../components/useStyles";
 import { openFile } from "../../redux/browser";
+import basename from "../../utils/basename";
 
 /**
  * This is for placing directories on top, and files below
@@ -104,7 +105,7 @@ const FileTree = (props) => {
         // if this is a file, navigage
         if (nodes.type === "file")
           changeBrowser({
-            name: path.basename(nodes.path, ".scrb"),
+            name: basename(nodes.path),
             fullDir: nodes.path,
             route: "document",
           });
@@ -113,14 +114,14 @@ const FileTree = (props) => {
           // if the root path == this folder
           if (nodes.path === dir)
             changeBrowser({
-              name: path.basename(nodes.path),
+              name: basename(nodes.path),
               fullDir: nodes.path,
               route: "projects",
             });
           //any other folder
           else
             changeBrowser({
-              name: path.basename(nodes.path),
+              name: basename(nodes.path),
               fullDir: nodes.path,
               route: "collection",
             });
@@ -133,14 +134,14 @@ const FileTree = (props) => {
           // if the root path == this folder
           if (nodes.path === dir)
             changeBrowser({
-              name: path.basename(nodes.path),
+              name: basename(nodes.path),
               fullDir: nodes.path,
               route: "projects",
             });
           //any other folder
           else
             changeBrowser({
-              name: path.basename(nodes.path),
+              name: basename(nodes.path),
               fullDir: nodes.path,
               route: "collection",
             });

@@ -3,13 +3,26 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import fs from "fs";
 import { title } from "string-007";
-import path from "path";
-import { makeStyles, TextField, Divider, Typography } from "@material-ui/core";
+import { makeStyles, TextField, Typography } from "@material-ui/core";
 import { AiOutlineProfile } from "react-icons/ai";
 import jsonfile from "jsonfile";
-import { openFile } from "../../redux/browser";
-import FileItem from "../../components/FileItem";
-
+import { openFile, openBrowser } from "../../redux/browser";
+import Item from "../../components/Item";
+import ErrorLog from "../../components/ErrorLog";
+import path from "path";
+import basename from "../../utils/basename";
+const defaults = [
+  "Blank.json",
+  "Character.json",
+  "Creature.json",
+  "Location.json",
+  "Magic.json",
+  "Objects.json",
+  "Organisation.json",
+  "Plot.json",
+  "Story.json",
+  "World.json",
+];
 const useStyles = makeStyles((theme) => ({
   column: {
     display: "flex",
@@ -42,25 +55,35 @@ const TemplateTree = (props) => {
   const classes = useStyles();
   const [activeItem, setActiveItem] = useState("");
   const [error, setError] = useState("");
-  const { browser, changeBrowser } = props;
+  const { changeBrowser, openBrowser } = props;
+  const deleter = (file) => {
+    fs.unlink(file, (err) => {
+      if (err) ErrorLog(err);
+      else {
+        openBrowser();
+        fs.readdir("./templates", (err, data) => {
+          if (err) ErrorLog(err);
+          else setDirList(data);
+        });
+      }
+    });
+  };
   useEffect(() => {
     fs.readdir("./templates", (err, data) => {
-      if (err) console.log(err);
-      //console.log("loaded:", data);
-      else setDirList(data);
+      if (err) ErrorLog(err);
+      else {
+        if (JSON.stringify(dirList) !== JSON.stringify(data)) setDirList(data);
+      }
     });
     return () => {
       console.log("blog tree unmounted");
     };
-  }, []);
-  console.log("dirlist:", dirList);
+  }, [dirList]);
+
   const [template, setTemplate] = useState("");
-  const [recentList, setRecentList] = useState([]);
   const checkError = () => {
     if (!template) setError("");
     else if (dirList.map(title).includes(title(template)))
-      setError("Template already exist");
-    else if (recentList.map(title).includes(title(template)))
       setError("Template already exist");
     else setError("");
   };
@@ -68,9 +91,15 @@ const TemplateTree = (props) => {
     jsonfile.writeFile(
       `./templates/${title(template)}.json`,
       { template: title(template), content: "" },
-      (err) => console.log(err)
+      (err) => {
+        if (err) ErrorLog(err);
+        else
+          fs.readdir("./templates", (err, data) => {
+            if (err) ErrorLog(err);
+            else setDirList(data);
+          });
+      }
     );
-    setRecentList([title(template), ...recentList]);
     setTemplate("");
   };
   return (
@@ -96,55 +125,37 @@ const TemplateTree = (props) => {
           {error}
         </Typography>
       )}
-      {recentList.map(title).map((item, idx) => {
-        const cls = activeItem === item ? classes.rollActive : classes.roll;
-        return (
-          <FileItem
-            key={item}
-            name={item}
-            ext=".json"
-            onClick={() => {
-              changeBrowser({
-                route: "templates",
-                fullDir: `${process.cwd()}/templates/${item}.json`,
-                name: item,
-              });
-              setActiveItem(item);
-            }}
-            icon={<AiOutlineProfile />}
-            active={activeItem === item}
-            type="file"
-          />
-        );
-      })}
-      <Divider />
-      {dirList.map(title).map((item, idx) => {
-        const cls = activeItem === item ? classes.rollActive : classes.roll;
-        if (item === "Plot.json") return null;
-        return (
-          <div
-            key={item}
-            onClick={() => {
-              changeBrowser({
-                route: "templates",
-                fullDir: `${process.cwd()}/templates/${item}`,
-                name: path.basename(item, ".json"),
-              });
-              setActiveItem(item);
-            }}
-            className={cls}
-          >
-            <AiOutlineProfile style={{ color: "#2196F3", marginRight: 4 }} />
-            {path.basename(item, ".json")}
-          </div>
-        );
-      })}
+      {dirList
+        .filter((i) => !defaults.includes(i))
+        .map(basename)
+        .map(title)
+        .map((item) => {
+          return (
+            <Item
+              key={item}
+              name={item}
+              onClick={() => {
+                changeBrowser({
+                  route: "templates",
+                  fullDir: `${process.cwd()}/templates/${item}.json`,
+                  name: item,
+                });
+                setActiveItem(item);
+              }}
+              onDelete={() =>
+                deleter(`${process.cwd()}/templates/${item}.json`)
+              }
+              icon={<AiOutlineProfile />}
+              active={activeItem === item}
+            />
+          );
+        })}
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  route: state.browser.route,
+  browser: state.browser,
 });
 
 /**
@@ -153,6 +164,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeBrowser: ({ name, route, fullDir }) =>
     dispatch(openFile({ name, route, fullDir })),
+  openBrowser: () => dispatch(openBrowser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TemplateTree);

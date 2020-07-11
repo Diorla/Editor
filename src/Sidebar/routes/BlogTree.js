@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import fs from "fs";
 import { title } from "string-007";
-import path from "path";
 import { makeStyles } from "@material-ui/core";
 import { AiOutlineFileExclamation } from "react-icons/ai";
 import { openFile } from "../../redux/browser";
-import FileItem from "../../components/FileItem";
+import Item from "../../components/Item";
+import basename from "../../utils/basename";
 
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -53,29 +53,29 @@ const Blog = (props) => {
 
   return (
     <div className={classes.column}>
-      {dirList.map(title).map((item, idx) => {
-        const cls = activeItem === item ? classes.rollActive : classes.roll;
-        return (
-          <FileItem
-            key={idx}
-            name={item}
-            ext=".md"
-            onClick={() => {
-              dispatch(
-                openFile({
-                  route: "blogs",
-                  fullDir: `${process.cwd()}/blogs/${item}`,
-                  name: path.basename(item, ".md"),
-                })
-              );
-              setActiveItem(item);
-            }}
-            icon={<AiOutlineFileExclamation />}
-            active={activeItem === item}
-            type="file"
-          />
-        );
-      })}
+      {dirList
+        .map(title)
+        .map(basename)
+        .map((item, idx) => {
+          return (
+            <Item
+              name={item}
+              key={idx}
+              icon={<AiOutlineFileExclamation />}
+              active={activeItem === item}
+              onClick={() => {
+                dispatch(
+                  openFile({
+                    route: "blogs",
+                    fullDir: `${process.cwd()}/blogs/${item}.md`,
+                    name: item,
+                  })
+                );
+                setActiveItem(item);
+              }}
+            />
+          );
+        })}
     </div>
   );
 };

@@ -5,9 +5,10 @@ import fs from "fs";
 import { openClipboard } from "../../../redux/aside";
 import ErrorLog from "../../../components/ErrorLog";
 import { FileInput } from "../../../components/Input";
-import path from "path";
 import jsonfile from "jsonfile";
-import Item from "./Item";
+import Item from "../../../components/Item";
+import basename from "../../../utils/basename";
+import { AiOutlineCopy } from "react-icons/ai";
 
 /**
  * @param {{ aside: {dir: string}; openClipboard: (fullDir: string)=> void; }} props
@@ -51,18 +52,17 @@ const Dir = (props) => {
     <div>
       <FileInput
         label="New note"
-        list={dirList.map((item) => path.basename(item, ".json"))}
+        list={dirList.map(basename)}
         saveItem={updateList}
       />
       <div style={{ marginBottom: 8 }} />
-      {dirList.map((item, idx) => (
+      {dirList.map(basename).map((item, idx) => (
         <Item
           key={item}
           name={item}
-          ext=".json"
-          onClick={() => openClipboard(item)}
-          type="file"
-          onDelete={() => deleteDir(`${aside.dir}/${item}`, idx)}
+          icon={<AiOutlineCopy />}
+          onClick={() => openClipboard(`${item}.json`)}
+          onDelete={() => deleteDir(`${aside.dir}/${item}.json`, idx)}
         />
       ))}
     </div>

@@ -1,11 +1,13 @@
 //@ts-check
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import FileItem from "../../../components/FileItem";
 import { openCompare } from "../../../redux/aside";
 import klaw from "klaw";
 import ErrorLog from "../../../components/ErrorLog";
 import { FilterInput } from "../../../components/Input";
+import basename from "../../../utils/basename";
+import Item from "../../../components/Item";
+import { IoMdGitCompare } from "react-icons/io";
 
 /**
  * @param {{ aside: {dir: string}; openCompare: (payload: {file: string})=> void; }} props
@@ -31,17 +33,16 @@ const Dir = (props) => {
         .filter((item) =>
           item.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
         )
-        .map((item, idx) => (
-          <FileItem
-            key={idx}
-            name={item}
-            ext=".scrb"
+        .map((item) => (
+          <Item
+            key={item}
+            name={basename(item)}
+            icon={<IoMdGitCompare />}
             onClick={() =>
               openCompare({
                 file: item,
               })
             }
-            type="file"
           />
         ))}
     </div>
