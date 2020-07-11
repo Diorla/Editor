@@ -4,6 +4,7 @@ import path from "path";
 import { makeStyles } from "@material-ui/core";
 import { AiOutlineCopy } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
+import ItemDiv from "../../../components/ItemDiv";
 const useStyles = makeStyles((theme) => ({
   item: {
     cursor: "pointer",
@@ -34,7 +35,7 @@ export default (props) => {
   const color = type === "folder" ? "yellow" : "#2196F3";
   const classes = useStyles();
   return (
-    <div className={classes.item}>
+    <ItemDiv className={classes.item}>
       <div onClick={onClick} className={classes.main}>
         <span style={{ color, marginRight: 4 }}>
           <AiOutlineCopy />
@@ -42,6 +43,6 @@ export default (props) => {
         {path.basename(name, ext)}
       </div>
       <MdCancel onClick={onDelete} className={classes.delete} />
-    </div>
+    </ItemDiv>
   );
 };

@@ -2,6 +2,7 @@
 import React from "react";
 import path from "path";
 import { makeStyles } from "@material-ui/core";
+import ItemDiv from "./ItemDiv";
 const useStyles = makeStyles((theme) => ({
   inactive: {
     padding: "2px 8px",
@@ -34,9 +35,9 @@ export default (props) => {
   const classes = useStyles();
   const cls = active ? classes.active : classes.inactive;
   return (
-    <div onClick={onClick} className={cls}>
+    <ItemDiv onClick={onClick} className={cls}>
       <span style={{ color, marginRight: 4 }}>{icon}</span>
       {path.basename(name, ext)}
-    </div>
+    </ItemDiv>
   );
 };
