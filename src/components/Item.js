@@ -1,7 +1,7 @@
 //@ts-check
 import React from "react";
-import path from "path";
 import { makeStyles } from "@material-ui/core";
+import { MdCancel } from "react-icons/md";
 import ItemDiv from "./ItemDiv";
 const useStyles = makeStyles((theme) => ({
   inactive: {
@@ -24,20 +24,30 @@ const useStyles = makeStyles((theme) => ({
       background: "rgba(0, 0, 0, 0.2)",
     },
   },
+  main: {
+    display: "flex",
+    padding: 4,
+    flex: 1,
+  },
+  delete: {
+    color: "crimson",
+  },
 }));
 
 /**
- * @param {{ active?: boolean; onClick: ()=> void; icon?: React.ReactNode; name: string; ext: string; type: string}} props
+ * @param {{ onClick: ()=>void; name: string;  onDelete?: ()=>void; icon: React.ReactNode; active?: boolean}} props
  */
 export default (props) => {
-  const { active, onClick, icon, name, ext, type } = props;
-  const color = type === "folder" ? "yellow" : "#2196F3";
+  const { onClick, name, onDelete, icon, active } = props;
   const classes = useStyles();
   const cls = active ? classes.active : classes.inactive;
   return (
-    <ItemDiv onClick={onClick} className={cls}>
-      <span style={{ color, marginRight: 4 }}>{icon}</span>
-      {path.basename(name, ext)}
+    <ItemDiv className={cls}>
+      <div onClick={onClick} className={classes.main}>
+        <span style={{ color: "#2196F3", marginRight: 4 }}>{icon}</span>
+        {name}
+      </div>
+      {onDelete && <MdCancel onClick={onDelete} className={classes.delete} />}
     </ItemDiv>
   );
 };
