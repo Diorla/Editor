@@ -57,7 +57,7 @@ const Dir = (props) => {
       <div style={{ marginBottom: 8 }} />
       {dirList.map((item, idx) => (
         <Item
-          key={idx}
+          key={item}
           name={item}
           ext=".json"
           onClick={() => openClipboard(item)}

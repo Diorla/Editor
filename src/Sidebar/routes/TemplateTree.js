@@ -100,7 +100,7 @@ const TemplateTree = (props) => {
         const cls = activeItem === item ? classes.rollActive : classes.roll;
         return (
           <FileItem
-            key={idx}
+            key={item}
             name={item}
             ext=".json"
             onClick={() => {
@@ -123,7 +123,7 @@ const TemplateTree = (props) => {
         if (item === "Plot.json") return null;
         return (
           <div
-            key={idx}
+            key={item}
             onClick={() => {
               changeBrowser({
                 route: "templates",

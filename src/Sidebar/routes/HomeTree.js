@@ -10,6 +10,7 @@ import { openProject } from "../../redux/browser";
 import { openTree } from "../../redux/sidebar";
 import { FileInput } from "../../components/Input";
 import ErrorLog from "../../components/ErrorLog";
+import ItemDiv from "../../components/ItemDiv";
 
 const HomeNav = (props) => {
   const classes = useStyles();
@@ -60,25 +61,26 @@ const HomeNav = (props) => {
       {recentList.length ? (
         <Typography className={classes.projects} component="div">
           <Typography variant="h6">Recently added</Typography>
-          {recentList.map((project, idx) => (
-            <Link
-              color="primary"
-              key={idx}
-              onClick={() =>
-                openProject(
-                  {
-                    name: project,
-                    fullDir: `./projects/${project}`,
-                    data: {},
-                  },
-                  `./projects/${project}`
-                )
-              }
-              component="button"
-              className={classes.link}
-            >
-              {project}
-            </Link>
+          {recentList.map((project) => (
+            <ItemDiv key={project}>
+              <Link
+                color="primary"
+                onClick={() =>
+                  openProject(
+                    {
+                      name: project,
+                      fullDir: `./projects/${project}`,
+                      data: {},
+                    },
+                    `./projects/${project}`
+                  )
+                }
+                component="button"
+                className={classes.link}
+              >
+                {project}
+              </Link>
+            </ItemDiv>
           ))}
         </Typography>
       ) : null}
