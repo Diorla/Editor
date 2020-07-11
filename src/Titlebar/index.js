@@ -9,7 +9,6 @@ import {
 } from "react-icons/ai";
 import { GiMoon, GiInvertedDice3 } from "react-icons/gi";
 import { IoMdHelp, IoMdGitCompare } from "react-icons/io";
-import { FaRegStickyNote } from "react-icons/fa";
 import fs from "fs";
 import Confirm from "./Confirm";
 import { changeTheme } from "../redux/theme";
@@ -153,27 +152,6 @@ const TitleBar = (props) => {
             sidebar.route === "templates" ? classes.iconActive : classes.icon
           }
         />
-        {["projects", "collection", "document"].includes(browser.route) ? (
-          <>
-            <Confirm
-              title={`Delete ${browser.name}`}
-              message="This process is irrevesible"
-              acceptFn={() => deleter()}
-              cancelFn={() => console.log("Cancelling delete")}
-            >
-              <AiOutlineDelete className={classes.icon} />
-            </Confirm>
-            <IoMdGitCompare
-              title="Compare value"
-              className={classes.icon}
-              onClick={() => {
-                if (aside.route !== "compare" || aside.file)
-                  openCompare(sidebar.dir);
-                else closeAside();
-              }}
-            />
-          </>
-        ) : null}
         <AiOutlineCopy
           className={classes.icon}
           onClick={() => {
@@ -190,6 +168,40 @@ const TitleBar = (props) => {
             else closeAside();
           }}
         />
+        {["projects", "collection", "document"].includes(browser.route) ? (
+          <>
+            <IoMdGitCompare
+              title="Compare value"
+              className={classes.icon}
+              onClick={() => {
+                if (aside.route !== "compare" || aside.file)
+                  openCompare(sidebar.dir);
+                else closeAside();
+              }}
+            />
+            <Confirm
+              title={
+                <>
+                  Delete{" "}
+                  <span style={{ color: "crimson" }}>{browser.name}</span>?
+                </>
+              }
+              message={
+                <>
+                  This process is{" "}
+                  <em style={{ textDecoration: "underline" }}>
+                    <b>irrevesible</b>
+                  </em>
+                  !
+                </>
+              }
+              acceptFn={() => deleter()}
+              cancelFn={() => console.log("Cancelling delete")}
+            >
+              <AiOutlineDelete className={classes.icon} />
+            </Confirm>
+          </>
+        ) : null}
       </div>
     </main>
   );

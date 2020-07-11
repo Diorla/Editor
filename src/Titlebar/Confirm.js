@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 
 /**
- * @param {{ children: React.ReactNode; title: string; message: string; acceptFn: ()=> void; cancelFn: ()=> void; }} props
+ * @param {{ children: React.ReactNode; title: string | React.ReactNode; message: string | React.ReactNode; acceptFn: ()=> void; cancelFn: ()=> void; }} props
  */
 export default (props) => {
   const { children, title, message, acceptFn, cancelFn } = props;
@@ -19,7 +19,7 @@ export default (props) => {
   const closeConfirm = () => setOpen(false);
 
   return (
-    <div style={{ height: 18 }}>
+    <div>
       <div onClick={openConfirm}>{children}</div>
       <Dialog
         open={open}
