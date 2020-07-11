@@ -35,12 +35,6 @@ TODO: Highlight keywords
 - Auto indexing: whenever a user opens a project or create a new file, all the names of the file is indexed like some store.index or store.keywords and this will automatically serves as the keywords. I could provide array of keywords by separating them based on folders. The only problem with this is that file name may not be semantic enough e.g. the name of the file may not equal the name of the item e.g. the name of a character file is "Waiter", but the name of the waiter may be John Doe, he may have the nickname JD, his uncle may call him Johny Boy etc.
 - And perhaps, this feature is to far reaching?
 
-BUG: Editor cursor is erratic
-
-- Whenever I call the function inside useEffect(which should enable autofocus on page load)
-- It works at first, and then cursor starts jumping around on the editor
-- For turning focus to the editor
-
 FIXME: onTab is deprecated
 
 - So I need to fix it, by replacing it with KeybindingFn
@@ -61,6 +55,7 @@ TODO Add map
 - The locations will be close approximate of course e.g. above I assume, Abuja is like 9.8, Lagos is like 10.1, Ibadan is like 10.18, Benin is like 10.04. So I will set the range(e.g. +- 0.2) and pre add the list of cities, countries, continents and planets.
 - This map will be flat, regardless of the size or intention.
 
+TODO: Complete Blogs
 TODO: Create modal help
 
 - Whenever a user clicks the help button from home page, we will lead the user to an editor like help with all the blogs on the sidebar and the browser rendering them
@@ -103,14 +98,6 @@ TODO: Complete Generator
 
 TODO: Add unique context menu to different pages
 
-TODO: Complete Blogs
-
-TODO Create modal blogs
-
-- When user has opened a project, it should render modals instead of navigating away.
-- First I will create `store.help`
-- Then I will place conditions on `?` icon to determine whether it will lead to blog or help
-
 TODO: Change icon
 
 - An icon that scales very well and clearly visible in small sizes. Preferably a pen on a paper
@@ -127,36 +114,6 @@ TODO: Create clipboard
 TODO: Create generator
 
 - Generator: This was the main goal of the app, auto populate values. It will only support default templates of course
-
-TODO: Compare
-
-- Compare: Whenever you open a project, I will add all the list of the files that are inside it(fullDir and name) as a flat list, no nesting. So user can use dropdown or input with data list to view the content of a particular document, either to copy from it or compare with what they already have.
-
-TODO: Remake oddCalculator
-
-- First, I would rename it to something like `random-select`
-- Break each functions of oddCalculator into smaller functions so I could use something like this.
-
-```js
-import { range, gaussian, choice } from "random-select";
-range(0, 100);
-gaussian(items, increment); increment is optional
-choice(items, odds);  odds is optional
-```
-
-- And finally, push it npm
-
-TODO: Decouple screen and content
-
-- This means I would have separate redux for container and the contained
-- For example the `store.browser` will only points to current routes e.g. home, blog, templates etc
-  - The same will apply to other screen section e.g. aside will only have routes that will point to compare, clipboard or generator.
-- Then I will have store.clipboard, store.generator, `store.blog` etc
-  - For example `store.blog` will have have dir on it.
-  - So whenever you open blog ie. change `store.browser.route` to blog, the `<Blog/>` element will in turn load the content of `store.blog` which means if will remember the last blog that was opened.
-  - This is especially important with `store.aside`, e.g. opening generator and then opening clipboard, if you return to the generator, the values will still be preserved
-  - In places like blogs or template, I won't have to see the `<Empty/>` all the time
-  - Of course, this type of implementation is already being used unintentionally by `store.sidebar` since it only points to home, blog, templates, and projects(& the name of the project). So I won't need to change sidebar.
 
 TODO: Create menu
 
@@ -180,3 +137,33 @@ TODO: Create menu
 }
 </div>
 ```
+
+TODO Create tabs
+
+- This will work as the primary navigation of a page
+- So whenever I click a file on sidebar, it will send it or add it to store.tabs. Something like this
+
+```js
+tabs = [
+  {
+    route: "document",
+    dir: "./projects/aether/characters/kehinde.scrb",
+    name: "kehinde",
+    active: true,
+  },
+  {
+    route: "blogs",
+    dir: "changelog.md",
+    active: false
+  },
+];
+```
+
+- So browser can also be changed from the tabs by clicking the appropriate tab(using index);
+```js
+browser = {
+  route: tabs[0].route,
+  dir: tab[0].dir,
+  name: tab[0].name, // Or simply use basename(dir, ext)
+  data: {}, // Read the file
+}
