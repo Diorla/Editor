@@ -1,7 +1,6 @@
 //@ts-check
 import React from "react";
 import { connect } from "react-redux";
-import Home from "./routes/Home";
 import Clipboard from "./routes/Clipboard";
 import Compare from "./routes/Compare";
 import Generator from "./routes/Generator";
