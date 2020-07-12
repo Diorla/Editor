@@ -27,10 +27,10 @@ const Dir = (props) => {
    * @param {string} value
    */
   const updateList = (value) => {
-    jsonfile.writeFile(`clipboard/${value}.json`, {
+    jsonfile.writeFile(`clipboard/${value}`, {
       content: "",
     });
-    setDirList([`${value}.json`, ...dirList]);
+    setDirList([`${value}`, ...dirList]);
   };
 
   /**
@@ -52,17 +52,17 @@ const Dir = (props) => {
     <div>
       <FileInput
         label="New note"
-        list={dirList.map(basename)}
+        list={dirList}
         saveItem={updateList}
       />
       <div style={{ marginBottom: 8 }} />
-      {dirList.map(basename).map((item, idx) => (
+      {dirList.map((item, idx) => (
         <Item
           key={item}
           name={item}
           icon={<AiOutlineCopy />}
-          onClick={() => openClipboard(`${item}.json`)}
-          onDelete={() => deleteDir(`${aside.dir}/${item}.json`, idx)}
+          onClick={() => openClipboard(`${item}`)}
+          onDelete={() => deleteDir(`${aside.dir}/${item}`, idx)}
         />
       ))}
     </div>
