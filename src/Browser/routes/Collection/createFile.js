@@ -12,7 +12,7 @@ import generateHash from "../../../utils/generateHash";
  */
 export default (fileName, projectDir, setFileList, setFileName, state) => {
   jsonfile.readFile(
-    `${process.cwd()}/templates/${state.template}.json`,
+    `${process.cwd()}/templates/${state.template}`,
     (err, val) => {
       if (err) console.log("template error:", err);
       else {

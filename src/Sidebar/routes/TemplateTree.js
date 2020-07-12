@@ -12,16 +12,16 @@ import ErrorLog from "../../components/ErrorLog";
 import path from "path";
 import basename from "../../utils/basename";
 const defaults = [
-  "Blank.json",
-  "Character.json",
-  "Creature.json",
-  "Location.json",
-  "Magic.json",
-  "Objects.json",
-  "Organisation.json",
-  "Plot.json",
-  "Story.json",
-  "World.json",
+  "Blank",
+  "Character",
+  "Creature",
+  "Location",
+  "Magic",
+  "Objects",
+  "Organisation",
+  "Plot",
+  "Story",
+  "World",
 ];
 const useStyles = makeStyles((theme) => ({
   column: {
@@ -89,7 +89,7 @@ const TemplateTree = (props) => {
   };
   const addNewTemplate = () => {
     jsonfile.writeFile(
-      `./templates/${title(template)}.json`,
+      `./templates/${title(template)}`,
       { template: title(template), content: "" },
       (err) => {
         if (err) ErrorLog(err);
@@ -127,7 +127,6 @@ const TemplateTree = (props) => {
       )}
       {dirList
         .filter((i) => !defaults.includes(i))
-        .map(basename)
         .map(title)
         .map((item) => {
           return (
@@ -137,13 +136,13 @@ const TemplateTree = (props) => {
               onClick={() => {
                 changeBrowser({
                   route: "templates",
-                  fullDir: `${process.cwd()}/templates/${item}.json`,
+                  fullDir: `${process.cwd()}/templates/${item}`,
                   name: item,
                 });
                 setActiveItem(item);
               }}
               onDelete={() =>
-                deleter(`${process.cwd()}/templates/${item}.json`)
+                deleter(`${process.cwd()}/templates/${item}`)
               }
               icon={<AiOutlineProfile />}
               active={activeItem === item}

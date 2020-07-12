@@ -12,15 +12,7 @@ const Page = (props) => {
   const classes = useStyles();
   const [state, setState] = useState({ template: "", content: "" });
   const { fullDir } = props.browser;
-  const isEditor = [
-    "Blank",
-    "Character",
-    "Creature",
-    "Magic",
-    "Objects",
-    "Organisation",
-    "World",
-  ];
+  const isSpecial = ["Location", "Plot", "Story"];
   useEffect(() => {
     init(fullDir, setState);
     return () => {
@@ -30,7 +22,7 @@ const Page = (props) => {
   if (state.template)
     return (
       <div className={classes.content}>
-        {isEditor.includes(state.template) && <Editor itemDir={fullDir} />}
+        {!isSpecial.includes(state.template) && <Editor itemDir={fullDir} />}
         {state.template === "Location" && <Location itemDir={fullDir} />}
         {state.template === "Plot" && (
           <Plot state={state} setState={setState} itemDir={fullDir} />

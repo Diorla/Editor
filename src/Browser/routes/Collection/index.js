@@ -14,6 +14,7 @@ import onFolderInputChange from "./onFolderInputChange";
 import useStyles from "../../../components/useStyles";
 import jsonfile from "jsonfile";
 import { FaFileMedical, FaFolderPlus } from "react-icons/fa";
+import ErrorLog from "../../../components/ErrorLog";
 
 const Collection = (props) => {
   const { fullDir } = props.browser;
@@ -23,19 +24,22 @@ const Collection = (props) => {
   const [folderName, setFolderName] = useState("");
   const [error, setError] = useState("");
   const [fileList, setFileList] = useState([]);
-  const [templateList, setTemplateList] = useState({});
+  const [templateList, setTemplateList] = useState([]);
+  const [description, setDescription] = useState({});
 
   useEffect(() => {
     jsonfile.readFile("./data/templates.json", (err, data) => {
       if (err) console.log(err);
-      else {
-        // console.log(data);
-        setTemplateList(data);
-      }
+      else setDescription(data);
+    });
+    fs.readdir("./templates", (err, data) => {
+      if (err) ErrorLog(err);
+      else setTemplateList(data);
+      console.log(data);
     });
     // get the list of all the files in the folder
     fs.readdir(fullDir, (err, data) => {
-      if (err) throw err;
+      if (err) ErrorLog(err);
       // No need to update and re-render if the source == destination. This prevents infinite loop
       if (JSON.stringify(fileList) !== JSON.stringify(data)) setFileList(data);
     });
@@ -109,7 +113,7 @@ const Collection = (props) => {
           }
           onBlur={(e) => saveConfig(state, fullDir)}
         >
-          {Object.keys(templateList).map((item, idx) => (
+          {templateList.map((item, idx) => (
             <option value={item} key={idx}>
               {item}
             </option>
@@ -178,7 +182,7 @@ const Collection = (props) => {
         </Box>
       </Box>
       <Box className={classes.info}>
-        {templateList[state.template] || "A blank document"}
+        {description[state.template] || "A blank document"}
       </Box>
       {error && (
         <Typography variant="subtitle1" color="error">

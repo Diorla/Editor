@@ -17,15 +17,7 @@ const ParseCompare = (props) => {
   const classes = useStyles();
   const [state, setState] = useState({ template: "", content: "" });
   const { file } = props.aside;
-  const isEditor = [
-    "Blank",
-    "Character",
-    "Creature",
-    "Magic",
-    "Objects",
-    "Organisation",
-    "World",
-  ];
+  const isSpecial = ["Location", "Plot", "Story"];
   useEffect(() => {
     init(file, setState);
     return () => {
@@ -36,7 +28,7 @@ const ParseCompare = (props) => {
     return (
       <div className={classes.content}>
         <HeaderOne>{basename(file)}</HeaderOne>
-        {isEditor.includes(state.template) && (
+        {!isSpecial.includes(state.template) && (
           <Editor itemDir={file} readonly />
         )}
         {state.template === "Location" && <Location itemDir={file} />}
