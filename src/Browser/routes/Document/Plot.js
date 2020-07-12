@@ -13,6 +13,8 @@ import {
 import useStyles from "./useStyles";
 import { MdColorLens } from "react-icons/md";
 import saveConfig from "./saveConfig";
+import ItemDiv from "../../../components/ItemDiv";
+import generateHash from "../../../utils/generateHash";
 
 /**
  * @param {string} colour
@@ -58,6 +60,7 @@ const Plot = (props) => {
             ...state,
             events: [
               {
+                id: generateHash(),
                 date: "",
                 content: "",
                 colour: "inherit",
@@ -71,19 +74,100 @@ const Plot = (props) => {
       </Button>
       {events.map(
         /**
-         * @param {{ date: string; content: string; colour: "primary"|"secondary"|"grey"|"inherit"; }} event
+         * @param {{id: string; date: string; content: string; colour: "primary"|"secondary"|"grey"|"inherit"; }} event
          * @param {number} idx
          */
         (event, idx) => (
-          <TimelineItem key={idx}>
-            <TimelineOppositeContent className={classes.row3}>
-              <Box className={classes.fullWidth}>
+          <ItemDiv key={event.id}>
+            <TimelineItem>
+              <TimelineOppositeContent className={classes.row3}>
+                <Box className={classes.fullWidth}>
+                  <TextField
+                    value={event.date}
+                    className={classes.fullWidth}
+                    label="Period"
+                    placeholder="5 years ago, 24th June"
+                    multiline
+                    onChange={(e) =>
+                      setState({
+                        ...state,
+                        events: [
+                          ...events.slice(0, idx),
+                          {
+                            ...event,
+                            date: e.target.value,
+                          },
+                          ...events.slice(idx + 1),
+                        ],
+                      })
+                    }
+                  />
+                  <Box className={classes.row}>
+                    <Button
+                      className={classes.successButton}
+                      onClick={(e) => {
+                        setState({
+                          ...state,
+                          events: [
+                            ...events.slice(0, idx),
+                            event,
+                            {
+                              id: generateHash(),
+                              date: "",
+                              content: "",
+                              colour: event.colour,
+                            },
+                            ...events.slice(idx + 1),
+                          ],
+                        });
+                      }}
+                    >
+                      Add
+                    </Button>
+                    <Button
+                      className={classes.dangerButton}
+                      onClick={(e) => {
+                        setState({
+                          ...state,
+                          events: [
+                            ...events.slice(0, idx),
+                            ...events.slice(idx + 1),
+                          ],
+                        });
+                      }}
+                    >
+                      Remove
+                    </Button>
+                  </Box>
+                </Box>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot color={event.colour}>
+                  <MdColorLens
+                    onClick={(e) => {
+                      setState({
+                        ...state,
+                        events: [
+                          ...events.slice(0, idx),
+                          {
+                            ...event,
+                            colour: toggleColor(event.colour),
+                          },
+                          ...events.slice(idx + 1),
+                        ],
+                      });
+                    }}
+                  />
+                </TimelineDot>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent className={classes.row7}>
                 <TextField
-                  value={event.date}
-                  className={classes.fullWidth}
-                  label="Period"
-                  placeholder="5 years ago, 24th June"
+                  value={event.content}
+                  label="Event"
                   multiline
+                  placeholder="It was his last day at Veritage academy and he was going to make the best out of it."
+                  className={classes.fullWidth}
                   onChange={(e) =>
                     setState({
                       ...state,
@@ -91,94 +175,16 @@ const Plot = (props) => {
                         ...events.slice(0, idx),
                         {
                           ...event,
-                          date: e.target.value,
+                          content: e.target.value,
                         },
                         ...events.slice(idx + 1),
                       ],
                     })
                   }
                 />
-                <Box className={classes.row}>
-                  <Button
-                    className={classes.successButton}
-                    onClick={(e) => {
-                      setState({
-                        ...state,
-                        events: [
-                          ...events.slice(0, idx),
-                          event,
-                          {
-                            date: "",
-                            content: "",
-                            colour: event.colour,
-                          },
-                          ...events.slice(idx + 1),
-                        ],
-                      });
-                    }}
-                  >
-                    Add
-                  </Button>
-                  <Button
-                    className={classes.dangerButton}
-                    onClick={(e) => {
-                      setState({
-                        ...state,
-                        events: [
-                          ...events.slice(0, idx),
-                          ...events.slice(idx + 1),
-                        ],
-                      });
-                    }}
-                  >
-                    Remove
-                  </Button>
-                </Box>
-              </Box>
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot color={event.colour}>
-                <MdColorLens
-                  onClick={(e) => {
-                    setState({
-                      ...state,
-                      events: [
-                        ...events.slice(0, idx),
-                        {
-                          ...event,
-                          colour: toggleColor(event.colour),
-                        },
-                        ...events.slice(idx + 1),
-                      ],
-                    });
-                  }}
-                />
-              </TimelineDot>
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent className={classes.row7}>
-              <TextField
-                value={event.content}
-                label="Event"
-                multiline
-                placeholder="It was his last day at Veritage academy and he was going to make the best out of it."
-                className={classes.fullWidth}
-                onChange={(e) =>
-                  setState({
-                    ...state,
-                    events: [
-                      ...events.slice(0, idx),
-                      {
-                        ...event,
-                        content: e.target.value,
-                      },
-                      ...events.slice(idx + 1),
-                    ],
-                  })
-                }
-              />
-            </TimelineContent>
-          </TimelineItem>
+              </TimelineContent>
+            </TimelineItem>
+          </ItemDiv>
         )
       )}
     </div>
