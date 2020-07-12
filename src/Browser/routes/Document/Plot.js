@@ -84,7 +84,6 @@ const Plot = (props) => {
                 <Box className={classes.fullWidth}>
                   <TextField
                     value={event.date}
-                    className={classes.fullWidth}
                     label="Period"
                     placeholder="5 years ago, 24th June"
                     multiline
@@ -96,6 +95,50 @@ const Plot = (props) => {
                           {
                             ...event,
                             date: e.target.value,
+                          },
+                          ...events.slice(idx + 1),
+                        ],
+                      })
+                    }
+                  />
+                </Box>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot color={event.colour}>
+                  <MdColorLens
+                    onClick={(e) => {
+                      setState({
+                        ...state,
+                        events: [
+                          ...events.slice(0, idx),
+                          {
+                            ...event,
+                            colour: toggleColor(event.colour),
+                          },
+                          ...events.slice(idx + 1),
+                        ],
+                      });
+                    }}
+                  />
+                </TimelineDot>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent className={classes.row7}>
+                <Box className={classes.fullWidth}>
+                  <TextField
+                    value={event.content}
+                    label="Event"
+                    multiline
+                    placeholder="It was his last day at Veritage academy and he was going to make the best out of it."
+                    className={classes.fullWidth}
+                    onChange={(e) =>
+                      setState({
+                        ...state,
+                        events: [
+                          ...events.slice(0, idx),
+                          {
+                            ...event,
+                            content: e.target.value,
                           },
                           ...events.slice(idx + 1),
                         ],
@@ -140,48 +183,6 @@ const Plot = (props) => {
                     </Button>
                   </Box>
                 </Box>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color={event.colour}>
-                  <MdColorLens
-                    onClick={(e) => {
-                      setState({
-                        ...state,
-                        events: [
-                          ...events.slice(0, idx),
-                          {
-                            ...event,
-                            colour: toggleColor(event.colour),
-                          },
-                          ...events.slice(idx + 1),
-                        ],
-                      });
-                    }}
-                  />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent className={classes.row7}>
-                <TextField
-                  value={event.content}
-                  label="Event"
-                  multiline
-                  placeholder="It was his last day at Veritage academy and he was going to make the best out of it."
-                  className={classes.fullWidth}
-                  onChange={(e) =>
-                    setState({
-                      ...state,
-                      events: [
-                        ...events.slice(0, idx),
-                        {
-                          ...event,
-                          content: e.target.value,
-                        },
-                        ...events.slice(idx + 1),
-                      ],
-                    })
-                  }
-                />
               </TimelineContent>
             </TimelineItem>
           </ItemDiv>

@@ -131,6 +131,44 @@ const Location = (props) => {
                           ])
                         }
                       />
+                    </Box>
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineDot color={event.colour}>
+                      <MdColorLens
+                        onClick={(e) => {
+                          setScenes([
+                            ...scenes.slice(0, idx),
+                            {
+                              ...event,
+                              colour: toggleColor(event.colour),
+                            },
+                            ...scenes.slice(idx + 1),
+                          ]);
+                        }}
+                      />
+                    </TimelineDot>
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent className={classes.row7}>
+                    <Box className={classes.fullWidth}>
+                      <TextField
+                        value={event.changes}
+                        label="Changes"
+                        placeholder="The painting of van Gogh was missing, the dead body of Mr John Doe was lying on the bed, and the white bed sheet now red."
+                        multiline
+                        className={classes.fullWidth}
+                        onChange={(e) =>
+                          setScenes([
+                            ...scenes.slice(0, idx),
+                            {
+                              ...event,
+                              changes: e.target.value,
+                            },
+                            ...scenes.slice(idx + 1),
+                          ])
+                        }
+                      />
                       <Box className={classes.row}>
                         <Button
                           className={classes.successButton}
@@ -164,42 +202,6 @@ const Location = (props) => {
                         </Button>
                       </Box>
                     </Box>
-                  </TimelineOppositeContent>
-                  <TimelineSeparator>
-                    <TimelineDot color={event.colour}>
-                      <MdColorLens
-                        onClick={(e) => {
-                          setScenes([
-                            ...scenes.slice(0, idx),
-                            {
-                              ...event,
-                              colour: toggleColor(event.colour),
-                            },
-                            ...scenes.slice(idx + 1),
-                          ]);
-                        }}
-                      />
-                    </TimelineDot>
-                    <TimelineConnector />
-                  </TimelineSeparator>
-                  <TimelineContent className={classes.row7}>
-                    <TextField
-                      value={event.changes}
-                      label="Changes"
-                      placeholder="The painting of van Gogh was missing, the dead body of Mr John Doe was lying on the bed, and the white bed sheet now red."
-                      multiline
-                      className={classes.fullWidth}
-                      onChange={(e) =>
-                        setScenes([
-                          ...scenes.slice(0, idx),
-                          {
-                            ...event,
-                            changes: e.target.value,
-                          },
-                          ...scenes.slice(idx + 1),
-                        ])
-                      }
-                    />
                   </TimelineContent>
                 </TimelineItem>
               </ItemDiv>
