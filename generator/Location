@@ -1,0 +1,12 @@
+{
+  "template": "Location",
+  "content": "<h1>General</h1>\n<ul>\n  <li><strong>Name</strong>:</li>\n  <li><strong>Description</strong>:</li>\n  <li><strong>Category</strong>: town, street, building, a space or room, etc.</li>\n  <li><strong>Type</strong>: house, forest, capital, bedroom, salon,</li>\n  <li><strong>Composition</strong>: List all the items you can see, for example the furniture, equipment etc</li>\n  <li><strong>Sight</strong>: Describe all the things you see in terms of their size, colour, and position or settings</li>\n  <li><strong>Atmosphere</strong>: The air(</li>\n  <li><strong>Sound</strong>:</li>\n  <li><strong>Touch</strong>:</li>\n  <li><strong>ESP</strong>: extra sensory, useful when the story involves magic or something surreal</li>\n</ul>\n<h1>Geography</h1>\n<ul>\n  <li>Location:</li>\n  <li>Climate:</li>\n  <li>Weathers: summer, autumn, harmattan</li>\n</ul>\n<p><br></p>\n<ul>\n  <li>Landmark:</li>\n</ul>\n<p><br></p>",
+  "scenes": [
+    {
+      "date": "",
+      "event": "",
+      "changes": "",
+      "colour": "inherit"
+    }
+  ]
+}

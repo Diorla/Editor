@@ -5,7 +5,6 @@ import fs from "fs";
 import Item from "../../../components/Item";
 import { openGenerator } from "../../../redux/aside";
 import ErrorLog from "../../../components/ErrorLog";
-import basename from "../../../utils/basename";
 import { GiInvertedDice3 } from "react-icons/gi";
 
 /**
@@ -23,12 +22,12 @@ const Dir = (props) => {
   return (
     <div>
       <h2>Generators</h2>
-      {dirList.map(basename).map((item, idx) => (
+      {dirList.map((item, idx) => (
         <Item
           key={idx}
           name={item}
           icon={<GiInvertedDice3 />}
-          onClick={() => openGenerator(`${item}.json`)}
+          onClick={() => openGenerator(`${item}`)}
         />
       ))}
     </div>
