@@ -37,6 +37,7 @@
     "electron": "^8.2.5",
     "electron-reload": "^1.5.0",
     "jest": "^26.1.0",
+    "jest-extended": "^0.11.5",
     "react-test-renderer": "^16.13.1"
   },
   "dependencies": {
