@@ -1,7 +1,7 @@
 //@ts-check
 
 /**
- * Uses odds based on arithmetric progression based on the increment e.g. +1 = [1, 2, 3, 4] or + 10 = [1, 10, 21, 31]
+ * Uses odds based on arithmetric progression based on the increment e.g. +1 = [1, 2, 4, 8] or + 10 = [1, 10, 100, 1000]
  * @param {any[]} arr - The items to be processed
  * @param {number} length - The number of items to be returned
  * @param {number} increment - The rate in geometric progression. Note, it has to be greater than 1
