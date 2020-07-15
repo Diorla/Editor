@@ -1,5 +1,5 @@
 //@ts-check
-import { selectWithOdds, select } from "../../../../utils/random";
+import { selectWithOdds, select } from "../utils/random";
 
 /**
  * @param {boolean} useBinary

@@ -1,5 +1,5 @@
 //@ts-check
-import { arithmetic, range } from "../../../../utils/random";
+import { arithmetic, range } from "../utils/random";
 
 /**
  * Returns the weight based on the height and body mass index categories

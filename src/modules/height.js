@@ -1,5 +1,5 @@
 //@ts-check
-import { range, geometric } from "../../../../utils/random";
+import { range, geometric } from "../utils/random";
 
 /**
  * @param {"male"|"female"} gender - This is biological sex ie. male or female

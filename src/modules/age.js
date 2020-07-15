@@ -1,5 +1,5 @@
 //@ts-check
-import { selectWithOdds, range } from "../../../../utils/random";
+import { selectWithOdds, range } from "../utils/random";
 
 /**
  * @param {string} type? - One of child, teenager, adult or senior
