@@ -20,8 +20,9 @@ export default (props) => {
   );
   const editorRef = useRef(null);
 
-  // const focusEditor = () => editorRef.current.focus();
+  const focusEditor = () => editorRef.current.focus();
   useEffect(() => {
+    focusEditor();
     load(itemDir, setEditorState);
   }, [itemDir]);
 
@@ -73,7 +74,7 @@ export default (props) => {
           </Box>
         </Box>
       )}
-      <div className={className}>
+      <div className={className} onClick={focusEditor}>
         <Editor
           ref={editorRef}
           editorState={editorState}
