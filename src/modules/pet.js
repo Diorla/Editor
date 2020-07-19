@@ -1,14 +1,20 @@
 //@ts-check
 import { selectWithOdds } from "../utils/random";
+import sentence from "../utils/sentence";
+import { title } from "string-007";
 
 /**
  * @param {number} count - The number of pets to be returned
  */
 export default (count = 1) => {
-  return selectWithOdds(
-    pets.map((item) => item[0]),
-    pets.map((item) => Number(item[1])),
-    count
+  return title(
+    sentence(
+      selectWithOdds(
+        pets.map((item) => item[0]),
+        pets.map((item) => Number(item[1])),
+        count
+      )
+    )
   );
 };
 /**

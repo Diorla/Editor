@@ -8,7 +8,7 @@ export default () => {
   return selectWithOdds(
     bloodGroups.map((item) => item[0]),
     bloodGroups.map((item) => item[1])
-  );
+  )[0];
 };
 
 // This data is based on global distribution and sourced from "https://www.wikipedia.org/wiki/Blood_type_distribution_by_country"
