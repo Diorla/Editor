@@ -9,7 +9,7 @@ export default () => {
   //hinge: standard/barrel hinges, spring hinges, no hinges(for kids)
   //material: plastic, metal(Au, Ag, Al, Be, steel, titanium, monel, nickel titanium), natural(wood, bone, leather, semi-precious/precious stone)
   const frame = select(["Framed", "Semi", "rimless"])[0];
-  const type = select([
+  const shape = select([
     "Aviator",
     "Browline",
     "Cat eye",
@@ -32,8 +32,8 @@ export default () => {
     ],
     [13, 1, 1, 1, 1, 1, 1, 1] //13:7
   )[0];
-  if (frame === "rimless") return `${type} glasses`;
+  if (frame === "rimless") return `${shape} glasses`;
   else if (frame === "Semi-rimless frame")
-    return `${material}, half rimmed ${type} glasses`;
-  else return `${type} glasses with ${material} frame`;
+    return `${material}, half rimmed ${shape} glasses`;
+  else return `${shape} glasses with ${material} frame`;
 };
