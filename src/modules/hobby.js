@@ -18,7 +18,7 @@ export default (type, length) => {
   return title(sentence(arr));
 };
 
-const hobbies = {
+export const hobbies = {
   indoor: [
     "Badminton",
     "Baking",
@@ -94,10 +94,3 @@ const hobbies = {
     "Volleyball",
   ],
 };
-
-const { indoors, outdoors } = hobbies;
-let list = hobbies.outdoors;
-list = list.sort((a, b) => (a < b ? -1 : 1));
-// console.log("light:", indoors.length);
-// console.log("intense:", outdoors.length);
-console.log(list);
