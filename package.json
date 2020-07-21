@@ -9,7 +9,7 @@
     "compile:webpack": "webpack --mode production",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "build": "electron-packager . --icon=assets/books.ico"
+    "build": "electron-packager . --icon=assets/icon.ico"
   },
   "repository": "",
   "keywords": [

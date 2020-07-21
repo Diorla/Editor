@@ -6,7 +6,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     minHeight: 600,
     minWidth: 800,
-    icon: path.join(__dirname, "./assets/books.ico"),
+    icon: path.join(__dirname, "./assets/icon.ico"),
     webPreferences: {
       nodeIntegration: true,
     },
