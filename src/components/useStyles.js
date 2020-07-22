@@ -9,6 +9,16 @@ export default makeStyles((theme) => ({
   fullWidth: {
     width: "100%",
   },
+  bottom: {
+    position: "fixed",
+    bottom: 26,
+  },
+  search: {
+    outline: "none",
+    zIndex: 100,
+    background: "white",
+    border: "none",
+  },
   // anything above here is added
   browserHome: {
     display: "flex",

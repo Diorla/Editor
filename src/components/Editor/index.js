@@ -1,6 +1,6 @@
 //@ts-check
 import React, { useState, useRef, useEffect } from "react";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { Editor, EditorState, RichUtils, CompositeDecorator } from "draft-js";
 import { Divider, Box } from "@material-ui/core";
 import { InlineTools, BlockTools } from "./Toolbar";
 import useStyles from "../useStyles";
@@ -58,6 +58,62 @@ export default (props) => {
    * @param {React.KeyboardEvent<{}>} e
    */
   const onTab = (e) => onChange(RichUtils.onTab(e, editorState, 4));
+  // Fix
+  const [search, setSearch] = useState("");
+
+  // Search
+
+  /**
+   * @param {RegExp} regex
+   * @param {any} contentBlock
+   * @param {{ (start: number, end: number): void; (arg0: any, arg1: any): void; }} callback
+   */
+  const findWithRegex = (regex, contentBlock, callback) => {
+    const text = contentBlock.getText();
+    let matchArr, start, end;
+    while ((matchArr = regex.exec(text)) !== null) {
+      start = matchArr.index;
+      end = start + matchArr[0].length;
+      callback(start, end);
+    }
+  };
+
+  /**
+   * @param {{ children: React.ReactNode; }} props
+   */
+  const SearchHighlight = (props) => (
+    <span style={{ background: "yellow" }}>{props.children}</span>
+  );
+
+  /**
+   * @param {string | RegExp} highlightTerm
+   */
+  const generateDecorator = (highlightTerm) => {
+    const regex = new RegExp(highlightTerm, "g");
+    return new CompositeDecorator([
+      {
+        strategy: (contentBlock, callback) => {
+          if (highlightTerm !== "") {
+            findWithRegex(regex, contentBlock, callback);
+          }
+        },
+        component: SearchHighlight,
+      },
+    ]);
+  };
+
+  /**
+   * @param {{ target: { value: any; }; }} e
+   */
+  const onChangeSearch = (e) => {
+    const search = e.target.value;
+    setSearch(search);
+    setEditorState(
+      EditorState.set(editorState, {
+        decorator: generateDecorator(search),
+      })
+    );
+  };
 
   return (
     <div>
@@ -71,6 +127,12 @@ export default (props) => {
               className={classes.white}
             />
             <InlineTools toggleBlock={toggleInline} editorState={editorState} />
+            <input
+              value={search}
+              onChange={onChangeSearch}
+              placeholder="Search..."
+              className={classes.search}
+            />
           </Box>
         </Box>
       )}
