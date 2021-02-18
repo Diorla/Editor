@@ -13,15 +13,7 @@
   },
   "repository": "",
   "keywords": [
-    "Novel",
-    "Story",
-    "Writer",
-    "Character",
-    "Generator",
-    "Characters",
-    "Scene",
-    "Creatures",
-    "Worlds"
+    "Create", "Read", "Update", "Delete", "Share"
   ],
   "author": "Ade Adeola <adedoster@gmail.com>",
   "license": "MIT",
